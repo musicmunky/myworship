@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  author: MyString
+  song_key: MyString
+  capo_fret: 1
+  media_link: MyString
+
+two:
+  name: MyString
+  author: MyString
+  song_key: MyString
+  capo_fret: 1
+  media_link: MyString

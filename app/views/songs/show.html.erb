@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @song.name %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @song.author %>
+</p>
+
+<p>
+  <strong>Song key:</strong>
+  <%= @song.song_key %>
+</p>
+
+<p>
+  <strong>Capo fret:</strong>
+  <%= @song.capo_fret %>
+</p>
+
+<p>
+  <strong>Media link:</strong>
+  <%= @song.media_link %>
+</p>
+
+<%= link_to 'Edit', edit_song_path(@song) %> |
+<%= link_to 'Back', songs_path %>
