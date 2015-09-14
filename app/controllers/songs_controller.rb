@@ -21,35 +21,51 @@ class SongsController < ApplicationController
   def edit
   end
 
-  # POST /songs
-  # POST /songs.json
-  def create
-    @song = Song.new(song_params)
+	# POST /songs
+	# POST /songs.json
+	def create
 
-    respond_to do |format|
-      if @song.save
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
-        format.json { render :show, status: :created, location: @song }
-      else
-        format.html { render :new }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+		params = song_params
+		songkey = params['song_key']
+		params.delete('song_key')
 
-  # PATCH/PUT /songs/1
-  # PATCH/PUT /songs/1.json
-  def update
-    respond_to do |format|
-      if @song.update(song_params)
-        format.html { redirect_to @song, notice: 'Song was successfully updated.' }
-        format.json { render :show, status: :ok, location: @song }
-      else
-        format.html { render :edit }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+		@song = Song.new(params)
+
+		respond_to do |format|
+			if @song.save
+
+				@song.song_keys << SongKey.find(songkey)
+
+				format.html { redirect_to songs_url, notice: 'Song was successfully created.' }
+				format.json { render :show, status: :created, location: @song }
+			else
+				format.html { render :new }
+				format.json { render json: @song.errors, status: :unprocessable_entity }
+			end
+		end
+	end
+
+	# PATCH/PUT /songs/1
+	# PATCH/PUT /songs/1.json
+	def update
+
+		params = song_params
+		songkey = params['song_key']
+		params.delete('song_key')
+
+		respond_to do |format|
+			if @song.update(params)
+
+				@song.song_keys = [SongKey.find(songkey)]
+
+				format.html { redirect_to songs_url, notice: 'Song was successfully updated.' }
+				format.json { render :show, status: :ok, location: @song }
+			else
+				format.html { render :edit }
+				format.json { render json: @song.errors, status: :unprocessable_entity }
+			end
+		end
+	end
 
   # DELETE /songs/1
   # DELETE /songs/1.json
@@ -69,6 +85,6 @@ class SongsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params.require(:song).permit(:name, :author, :song_key, :capo_fret, :media_link)
+      params.require(:song).permit(:name, :author, :capo_fret, :media_link, :lyrics, :composer, :song_key)
     end
 end

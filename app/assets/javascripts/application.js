@@ -13,9 +13,10 @@
 // require jquery
 // require jquery_ujs
 //= require jquery-1.11.0.min
-// require jquery.turbolinks
+//= require jquery-ui-1.10.4.custom
+//= require jquery.turbolinks
 //= require jquery_ujs
-
+//= require jquery.editable-select
 //= require fusionlib
 //= require bootstrap
 //= require worship

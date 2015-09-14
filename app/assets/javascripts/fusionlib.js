@@ -15,6 +15,20 @@ if(!loadjq){
 	console.log("NOTICE: jQuery library is not loaded");
 }
 
+Array.prototype.clean = function(deleteValue) {
+	for (var i = 0; i < this.length; i++) {
+		if (this[i] == deleteValue) {
+			this.splice(i, 1);
+			i--;
+		}
+	}
+	return this;
+};
+
+//test = new Array("","One","Two","", "Three","","Four").clean("");//-->
+//test2 = [1,2,,3,,3,,,,,,4,,4,,5,,6,,,,];
+//test2.clean(undefined);
+
 
 //Getter methods
 FUSION.get = {

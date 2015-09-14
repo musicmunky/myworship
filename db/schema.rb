@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20150914141336) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "schedules_songs", id: false, force: :cascade do |t|
+    t.integer "song_id",     limit: 4
+    t.integer "schedule_id", limit: 4
+  end
+
+  add_index "schedules_songs", ["schedule_id"], name: "index_songs_schedules_on_schedule_id", using: :btree
+  add_index "schedules_songs", ["song_id"], name: "index_songs_schedules_on_song_id", using: :btree
+
   create_table "song_keys", force: :cascade do |t|
     t.string   "key_symbol",    limit: 255
     t.string   "key_full_name", limit: 255
@@ -31,18 +39,17 @@ ActiveRecord::Schema.define(version: 20150914141336) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "song_song_keys", id: false, force: :cascade do |t|
+  create_table "song_keys_songs", id: false, force: :cascade do |t|
     t.integer "song_id",     limit: 4
     t.integer "song_key_id", limit: 4
   end
 
-  add_index "song_song_keys", ["song_id"], name: "index_song_song_keys_on_song_id", using: :btree
-  add_index "song_song_keys", ["song_key_id"], name: "index_song_song_keys_on_song_key_id", using: :btree
+  add_index "song_keys_songs", ["song_id"], name: "index_song_song_keys_on_song_id", using: :btree
+  add_index "song_keys_songs", ["song_key_id"], name: "index_song_song_keys_on_song_key_id", using: :btree
 
   create_table "songs", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "author",     limit: 255
-    t.string   "song_key",   limit: 255
     t.integer  "capo_fret",  limit: 4
     t.string   "media_link", limit: 255
     t.datetime "created_at",               null: false
@@ -50,13 +57,5 @@ ActiveRecord::Schema.define(version: 20150914141336) do
     t.text     "lyrics",     limit: 65535
     t.string   "composer",   limit: 255
   end
-
-  create_table "songs_schedules", id: false, force: :cascade do |t|
-    t.integer "song_id",     limit: 4
-    t.integer "schedule_id", limit: 4
-  end
-
-  add_index "songs_schedules", ["schedule_id"], name: "index_songs_schedules_on_schedule_id", using: :btree
-  add_index "songs_schedules", ["song_id"], name: "index_songs_schedules_on_song_id", using: :btree
 
 end

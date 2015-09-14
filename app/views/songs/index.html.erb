@@ -6,10 +6,10 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Author</th>
-      <th>Song key</th>
-      <th>Capo fret</th>
-      <th>Media link</th>
+      <th>Artist</th>
+      <th>Song Key</th>
+      <th>Capo Fret</th>
+      <th>Media Link</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -17,9 +17,9 @@
   <tbody>
     <% @songs.each do |song| %>
       <tr>
-        <td><%= song.name %></td>
+        <td><%= link_to song.name, edit_song_path(song) %></td>
         <td><%= song.author %></td>
-        <td><%= song.song_key %></td>
+        <td><%= song.song_keys.first.key_symbol.html_safe %></td>
         <td><%= song.capo_fret %></td>
         <td><%= song.media_link %></td>
         <td><%= link_to 'Edit', edit_song_path(song) %></td>
@@ -31,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Song', new_song_path %>
+<%= link_to 'New Song', new_song_path, { class: "btn btn-success", style: "float:left;width:150px;" } %>
