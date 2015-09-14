@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Songs</h1>
+<h3>Listing Songs</h3>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -10,7 +10,7 @@
       <th>Song key</th>
       <th>Capo fret</th>
       <th>Media link</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -22,9 +22,8 @@
         <td><%= song.song_key %></td>
         <td><%= song.capo_fret %></td>
         <td><%= song.media_link %></td>
-        <td><%= link_to 'Show', song %></td>
         <td><%= link_to 'Edit', edit_song_path(song) %></td>
-        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

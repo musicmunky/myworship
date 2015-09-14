@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Schedules</h1>
+<h3>Listing Schedules</h3>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
       <th>Schedule date</th>
       <th>Notes</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -18,9 +18,8 @@
         <td><%= schedule.name %></td>
         <td><%= schedule.schedule_date %></td>
         <td><%= schedule.notes %></td>
-        <td><%= link_to 'Show', schedule %></td>
         <td><%= link_to 'Edit', edit_schedule_path(schedule) %></td>
-        <td><%= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

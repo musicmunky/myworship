@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914114421) do
+ActiveRecord::Schema.define(version: 20150914141336) do
 
   create_table "schedules", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -45,8 +45,10 @@ ActiveRecord::Schema.define(version: 20150914114421) do
     t.string   "song_key",   limit: 255
     t.integer  "capo_fret",  limit: 4
     t.string   "media_link", limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.text     "lyrics",     limit: 65535
+    t.string   "composer",   limit: 255
   end
 
   create_table "songs_schedules", id: false, force: :cascade do |t|
