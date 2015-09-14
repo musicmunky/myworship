@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150913135521) do
+ActiveRecord::Schema.define(version: 20150914114421) do
 
   create_table "schedules", force: :cascade do |t|
     t.string   "name",          limit: 255
@@ -20,6 +20,24 @@ ActiveRecord::Schema.define(version: 20150913135521) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
+
+  create_table "song_keys", force: :cascade do |t|
+    t.string   "key_symbol",    limit: 255
+    t.string   "key_full_name", limit: 255
+    t.string   "key_root",      limit: 255
+    t.string   "key_modifier",  limit: 255
+    t.integer  "capo_fret",     limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "song_song_keys", id: false, force: :cascade do |t|
+    t.integer "song_id",     limit: 4
+    t.integer "song_key_id", limit: 4
+  end
+
+  add_index "song_song_keys", ["song_id"], name: "index_song_song_keys_on_song_id", using: :btree
+  add_index "song_song_keys", ["song_key_id"], name: "index_song_song_keys_on_song_key_id", using: :btree
 
   create_table "songs", force: :cascade do |t|
     t.string   "name",       limit: 255
