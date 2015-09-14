@@ -28,4 +28,10 @@ jQuery( document ).ready(function() {
 			}
 		}
 	}
+
+	var options = {
+		valueNames: [ 'song_name' ]
+	};
+
+	var songList = new List('song_list_div', options);
 });

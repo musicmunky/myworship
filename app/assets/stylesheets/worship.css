@@ -30,6 +30,14 @@ p {
 	line-height:24px;
 }
 
+.song_list_li {
+	padding-left:5px;
+}
+
+.song_list_li:hover {
+	background-color:#AAA;
+}
+
 #mainwrapper {
 	position: relative;
 	top: 80px;

@@ -19,6 +19,7 @@
 //= require jquery.editable-select
 //= require fusionlib
 //= require bootstrap
+//= require list.min
 //= require worship
 //= require turbolinks
 // require_tree .
