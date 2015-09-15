@@ -40,7 +40,7 @@
 		<% song_keys = SongKey.all.map { |k| [k.key_symbol.html_safe, k.id] } %>
 		<select id="song_key_song" name="song[song_key]" class="txt100">
 			<option value=""></option>
-			<% keyid = !@song.id.nil? ? @song.song_keys.first.id : "" %>
+			<% keyid = (!@song.id.nil? and @song.song_keys.length > 0) ? @song.song_keys.first.id : "" %>
 			<%= options_for_select(song_keys, keyid) %>
 		</select>
 	</div>

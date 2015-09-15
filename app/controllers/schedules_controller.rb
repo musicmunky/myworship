@@ -27,16 +27,12 @@ class SchedulesController < ApplicationController
 	def create
 
 		params  = schedule_params
-
-		schdate = Date.strptime(schedule_params['schedule_date'], '%m/%d/%Y') #.strftime("%Y-%d-%m")
+		schdate = Date.strptime(schedule_params['schedule_date'], '%m/%d/%Y')
 		songids = JSON.parse(params['song_ids'])
 		params.delete('song_ids')
 		params['schedule_date'] = schdate
 
 		newschedule = { :name => params['name'], :schedule_date => schdate, :notes => params['notes']}
-
-# 		logger.debug "\n\n\n\n\n\n\nSCHEDULE DATE IS: #{schdate}\n\n\n\n\n\n\n"
-
 		@schedule = Schedule.new(newschedule)
 
 		respond_to do |format|
@@ -59,7 +55,6 @@ class SchedulesController < ApplicationController
 	def update
 
 		params  = schedule_params
-
 		schdate = Date.strptime(schedule_params['schedule_date'], '%m/%d/%Y') #.strftime("%Y-%d-%m")
 		songids = JSON.parse(params['song_ids'])
 		params.delete('song_ids')

@@ -31,6 +31,33 @@ jQuery( document ).ready(function() {
 });
 
 
+function checkScheduleForm()
+{
+	var sname = FUSION.get.node("schedule_name").value;
+	var sdate = FUSION.get.node("schedule_schedule_date").value;
+
+	if(FUSION.lib.isBlank(sname) || FUSION.lib.isBlank(sdate))
+	{
+		alert("Please enter both a name and a date before saving the schedule!");
+		return false;
+	}
+	return true;
+}
+
+
+function checkSongForm()
+{
+	var sname = FUSION.get.node("song_name").value;
+	var sauth = FUSION.get.node("song_author").value;
+	if(FUSION.lib.isBlank(sname) || FUSION.lib.isBlank(sauth))
+	{
+		alert("Please enter both a song name and an author before saving the song!");
+		return false;
+	}
+	return true;
+}
+
+
 function createSongList()
 {
 	try {

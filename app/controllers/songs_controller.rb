@@ -4,7 +4,7 @@ class SongsController < ApplicationController
   # GET /songs
   # GET /songs.json
   def index
-    @songs = Song.all
+    @songs = Song.all.order(:name)
   end
 
   # GET /songs/1
@@ -34,7 +34,9 @@ class SongsController < ApplicationController
 		respond_to do |format|
 			if @song.save
 
-				@song.song_keys << SongKey.find(songkey)
+				if songkey.to_s.length > 0
+					@song.song_keys << SongKey.find(songkey)
+				end
 
 				format.html { redirect_to songs_url, notice: 'Song was successfully created.' }
 				format.json { render :show, status: :created, location: @song }
@@ -56,8 +58,11 @@ class SongsController < ApplicationController
 		respond_to do |format|
 			if @song.update(params)
 
-				@song.song_keys = [SongKey.find(songkey)]
-
+				if songkey.to_s.length > 0
+					@song.song_keys = [SongKey.find(songkey)]
+				else
+					@song.song_keys.destroy_all
+				end
 				format.html { redirect_to songs_url, notice: 'Song was successfully updated.' }
 				format.json { render :show, status: :ok, location: @song }
 			else
