@@ -20,6 +20,7 @@
 //= require fusionlib
 //= require bootstrap
 //= require list.min
+//= require jquery.dataTables.min
 //= require worship
 //= require turbolinks
 // require_tree .

@@ -11,6 +11,8 @@ jQuery( document ).ready(function() {
 		document.body.style.setProperty("font-family", "'Trebuchet MS', Helvetica, sans-serif", "important");
 	}
 
+	$('#song_table').DataTable();
+
 	$( "#schedule_schedule_date" ).datepicker();
 
 	var path = window.location.pathname.split("/").clean("");
