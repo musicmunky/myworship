@@ -14,7 +14,6 @@ jQuery( document ).ready(function() {
 	$( "#schedule_schedule_date" ).datepicker();
 
 	var path = window.location.pathname.split("/").clean("");
-
 	if(path.length > 0)
 	{
 		if(path[0] == "songs")
