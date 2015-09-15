@@ -1,3 +1,5 @@
+var SONGLIST = {};
+
 jQuery( document ).ready(function() {
 
 	//IE doesn't like Google fonts...apparently it's Google's fault
@@ -15,23 +17,91 @@ jQuery( document ).ready(function() {
 
 	if(path.length > 0)
 	{
-		console.log("gothere1");
-		console.log(path.join("--"));
 		if(path[0] == "songs")
 		{
-			console.log("gothere2");
 			if(path[1] == "new" || path[path.length - 1] == "edit")
 			{
-				console.log("gothere3");
 				$('#song_author').editableSelect();
 				$('#song_composer').editableSelect();
 			}
 		}
 	}
 
+	createSongList();
+});
+
+
+function createSongList()
+{
+	try {
+		var options  = { valueNames: [ 'song_name' ] };
+		var songList = new List('song_list_div', options);
+		SONGLIST = songList;
+		SONGLIST.sort('song_name', { order: "asc" });
+	}
+	catch(err){}
+}
+
+
+function addSongToSchedule(t)
+{
+	var old_li = t;
+	var new_ul = FUSION.get.node("current_song_list");
+	var new_sn = old_li.getElementsByTagName("p")[0].innerHTML;
+ 	var sng_id = old_li.getElementsByTagName("p")[1].innerHTML;
+	var new_li = FUSION.lib.createHtmlElement({"type":"li",
+											   "attributes":{"class":"song_list_li"},
+											   "style":{"display":"list-item"},
+											   "onclick":"removeSongFromSchedule(this)"});
+	var new_p1 = FUSION.lib.createHtmlElement({"type":"p", "text":new_sn, "style":{"margin":"0px"}, "attributes":{"class":"song_name"}});
+ 	var new_p2 = FUSION.lib.createHtmlElement({"type":"p", "text":sng_id, "style":{"display":"none"}, "attributes":{"class":"song_id"}});
+
+	new_li.appendChild(new_p1);
+	new_li.appendChild(new_p2);
+	new_ul.appendChild(new_li);
+
+	var sids = JSON.parse(FUSION.get.node("schedule_song_ids").value);
+	sids.push(sng_id);
+	FUSION.get.node("schedule_song_ids").value = JSON.stringify(sids);
+
+	SONGLIST.remove("song_name", new_sn);
+}
+
+
+function removeSongFromSchedule(t)
+{
+	var old_li = t;
+	var new_sn = old_li.getElementsByTagName("p")[0].innerHTML;
+ 	var sng_id = old_li.getElementsByTagName("p")[1].innerHTML;
+	FUSION.remove.node(old_li);
+
 	var options = {
-		valueNames: [ 'song_name' ]
+		"item": "<li><p class='song_name'></p><p style='display:none;' class='song_id'></p></li>",
+		"song_name": new_sn,
+		"song_id": sng_id
 	};
 
-	var songList = new List('song_list_div', options);
-});
+	var sids = JSON.parse(FUSION.get.node("schedule_song_ids").value);
+	var index_int = sids.indexOf(sng_id);
+	var index_str = sids.indexOf(parseInt(sng_id));
+	if(index_int > -1) {
+		sids.splice(index_int, 1);
+	}
+	if(index_str > -1) {
+		sids.splice(index_str, 1);
+	}
+	FUSION.get.node("schedule_song_ids").value = JSON.stringify(sids);
+
+	SONGLIST.add(options);
+ 	SONGLIST.sort('song_name', { order: "asc" });
+}
+
+
+function sortUl(parent, childSelector, keySelector) {
+    var items = parent.children(childSelector).sort(function(a, b) {
+        var vA = $(keySelector, a).text();
+        var vB = $(keySelector, b).text();
+        return (vA < vB) ? -1 : (vA > vB) ? 1 : 0;
+    });
+    parent.append(items);
+}

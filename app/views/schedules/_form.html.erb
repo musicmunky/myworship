@@ -19,16 +19,19 @@
 
 	<div class="field w100fl">
 		<%= f.label :schedule_date %><br>
-		<%= f.text_field :schedule_date, { class: "txt100", style: "" } %>
+		<% dval = @schedule.id.nil? ? "" : @schedule.schedule_date.strftime("%m/%d/%Y") %>
+		<%= f.text_field :schedule_date, { class: "txt100", style: "", value: dval } %>
 	</div>
 
 	<div id="song_list_div" class="field w50fl" style="padding-right:10px;height:200px;">
 		<label>Search Songs<i>(Click to add)</i>:</label><br>
 		<input class="search txt100" />
 		<ul class="list" id="full_song_list" style="overflow-y:scroll;height:75%;width:100%;list-style:none;padding-left: 0px;background-color:#EEE;border:1px solid #DDD;">
-		<% Song.all.each do |song| %>
-			<li class="song_list_li" id="song_<%= song.id %>" style="display:list_items">
+		<% @allsongs = Song.all - @schedule.songs %>
+		<% @allsongs.each do |song| %>
+			<li class="song_list_li" style="display:list-item;" onclick="addSongToSchedule(this)">
 				<p class="song_name" style="margin:0px;"><%= song.name %></p>
+				<p class="song_id" style="display:none;"><%= song.id %></p>
 			</li>
 		<% end %>
 		</ul>
@@ -37,12 +40,18 @@
 	<div id="current_list_div" class="field w50fl" style="padding-left:10px;height:200px;">
 		<label>Schedule Songs <i>(Click to remove)</i>:</label><br>
 		<ul class="list" id="current_song_list" style="overflow-y:scroll;height:75%;width:100%;list-style:none;margin-top:25px;padding-left: 0px;background-color:#EEE;border:1px solid #DDD;">
-		<% Song.all.each do |song| %>
-			<li class="song_list_li" id="song_<%= song.id %>" style="display:list_items">
+		<% @schedule.songs.each do |song| %>
+			<li class="song_list_li" style="display:list-item;" onclick="removeSongFromSchedule(this)">
 				<p class="song_name" style="margin:0px;"><%= song.name %></p>
+				<p class="song_id" style="display:none;"><%= song.id.to_s %></p>
 			</li>
 		<% end %>
-		</"list">
+		</ul>
+		<% idarray = [] %>
+		<% if !@schedule.nil? %>
+			<% idarray = @schedule.songs.pluck(:id) %>
+		<% end %>
+		<input type="hidden" id="schedule_song_ids" name="schedule[song_ids]" value='<%= idarray %>' />
 	</div>
 
 	<div class="field w100fl">
