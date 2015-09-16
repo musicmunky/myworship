@@ -11,8 +11,12 @@ jQuery( document ).ready(function() {
 		document.body.style.setProperty("font-family", "'Trebuchet MS', Helvetica, sans-serif", "important");
 	}
 
-	$('#song_table').DataTable();
-	$('#schedule_table').DataTable({"order": [[ 1, "desc" ]]});
+	$('#song_table').DataTable({
+		"columnDefs": [{ "searchable": false, "targets": [4,5,6] }]
+	});
+	$('#schedule_table').DataTable({
+		"order": [[ 1, "desc" ]]
+	});
 
 	$( "#schedule_schedule_date" ).datepicker();
 
