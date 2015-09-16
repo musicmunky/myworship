@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 	get 'pages/index'
+	get 'reports' => 'pages#reports'
 
 	resources :song_keys
 	resources :schedules
