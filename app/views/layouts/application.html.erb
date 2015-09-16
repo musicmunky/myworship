@@ -44,14 +44,13 @@
 		</div><!-- /.container-fluid -->
 	</nav>
 
-	<div id="mainwrapper" class="container">
+	<div id="mainwrapper" class="container" style="margin-bottom:150px;">
 		<% if notice %>
 			<p class="alert alert-success"><%= notice %></p>
 		<% end %>
 		<% if alert %>
 			<p class="alert alert-danger"><%= alert %></p>
 		<% end %>
-
 		<%= yield %>
 	</div>
 

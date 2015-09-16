@@ -12,6 +12,7 @@ jQuery( document ).ready(function() {
 	}
 
 	$('#song_table').DataTable();
+	$('#schedule_table').DataTable();
 
 	$( "#schedule_schedule_date" ).datepicker();
 
@@ -27,7 +28,6 @@ jQuery( document ).ready(function() {
 			}
 		}
 	}
-
 	createSongList();
 });
 

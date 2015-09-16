@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%#= notice %></p>//-->
 
-<p>
-  <strong>Name:</strong>
-  <%= @schedule.name %>
-</p>
+<h3><%= @schedule.name %><span style="font-size:14px;float:right;height:36px;line-height:36px;display:block;">
+	<%= link_to 'Edit', edit_schedule_path(@schedule) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Back', schedules_path %>
+</span></h3>
 
 <p>
   <strong>Schedule date:</strong>
@@ -15,5 +14,15 @@
   <%= @schedule.notes %>
 </p>
 
-<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
-<%= link_to 'Back', schedules_path %>
+<div style="width:50%;">
+	<p>
+		<strong>Songs:</strong>
+	</p>
+	<div class="list-group">
+		<% if @schedule.songs.length > 0 %>
+			<% @schedule.songs.each do |song| %>
+				<a href="<%= song_path(song) %>" class="list-group-item"><%= song.name %></a>
+			<% end %>
+		<% end %>
+	</div>
+</div>
