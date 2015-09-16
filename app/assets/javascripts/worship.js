@@ -12,7 +12,7 @@ jQuery( document ).ready(function() {
 	}
 
 	$('#song_table').DataTable();
-	$('#schedule_table').DataTable();
+	$('#schedule_table').DataTable({"order": [[ 1, "desc" ]]});
 
 	$( "#schedule_schedule_date" ).datepicker();
 
@@ -88,9 +88,9 @@ function addSongToSchedule(t)
 	new_li.appendChild(new_p2);
 	new_ul.appendChild(new_li);
 
-	var sids = JSON.parse(FUSION.get.node("schedule_song_ids").value);
+	var sids = JSON.parse(FUSION.get.node("schedule_song_order").value);
 	sids.push(sng_id);
-	FUSION.get.node("schedule_song_ids").value = JSON.stringify(sids);
+	FUSION.get.node("schedule_song_order").value = JSON.stringify(sids);
 
 	SONGLIST.remove("song_name", new_sn);
 }
@@ -109,7 +109,7 @@ function removeSongFromSchedule(t)
 		"song_id": sng_id
 	};
 
-	var sids = JSON.parse(FUSION.get.node("schedule_song_ids").value);
+	var sids = JSON.parse(FUSION.get.node("schedule_song_order").value);
 	var index_int = sids.indexOf(sng_id);
 	var index_str = sids.indexOf(parseInt(sng_id));
 	if(index_int > -1) {
@@ -118,7 +118,7 @@ function removeSongFromSchedule(t)
 	if(index_str > -1) {
 		sids.splice(index_str, 1);
 	}
-	FUSION.get.node("schedule_song_ids").value = JSON.stringify(sids);
+	FUSION.get.node("schedule_song_order").value = JSON.stringify(sids);
 
 	SONGLIST.add(options);
  	SONGLIST.sort('song_name', { order: "asc" });

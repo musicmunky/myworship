@@ -40,7 +40,7 @@
 	<div id="current_list_div" class="field w50fl" style="padding-left:10px;height:200px;">
 		<label>Schedule Songs <i>(Click to remove)</i>:</label><br>
 		<ul class="list" id="current_song_list" style="overflow-y:scroll;height:75%;width:100%;list-style:none;margin-top:25px;padding-left: 0px;background-color:#EEE;border:1px solid #DDD;">
-		<% @schedule.songs.each do |song| %>
+		<% @schedule.get_songs_by_order.each do |song| %>
 			<li class="song_list_li" style="display:list-item;" onclick="removeSongFromSchedule(this)">
 				<p class="song_name" style="margin:0px;"><%= song.name %></p>
 				<p class="song_id" style="display:none;"><%= song.id.to_s %></p>
@@ -48,10 +48,10 @@
 		<% end %>
 		</ul>
 		<% idarray = [] %>
-		<% if !@schedule.nil? %>
-			<% idarray = @schedule.songs.pluck(:id) %>
+		<% if !@schedule.nil? and !@schedule.song_order.nil? %>
+			<% idarray = @schedule.song_order %>
 		<% end %>
-		<input type="hidden" id="schedule_song_ids" name="schedule[song_ids]" value='<%= idarray %>' />
+		<input type="hidden" id="schedule_song_order" name="schedule[song_order]" value='<%= idarray %>' />
 	</div>
 
 	<div class="field w100fl">

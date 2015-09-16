@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
 	# GET /schedules
 	# GET /schedules.json
 	def index
-		@schedules = Schedule.all
+		@schedules = Schedule.all.order("schedule_date DESC")
 	end
 
 	# GET /schedules/1
@@ -28,11 +28,12 @@ class SchedulesController < ApplicationController
 
 		params  = schedule_params
 		schdate = Date.strptime(schedule_params['schedule_date'], '%m/%d/%Y')
-		songids = JSON.parse(params['song_ids'])
-		params.delete('song_ids')
+		songids = JSON.parse(params['song_order'])
+		#params.delete('song_ids')
 		params['schedule_date'] = schdate
+		params['song_order'] = songids
 
-		newschedule = { :name => params['name'], :schedule_date => schdate, :notes => params['notes']}
+		newschedule = { :name => params['name'], :schedule_date => schdate, :notes => params['notes'], :song_order => params['song_order']}
 		@schedule = Schedule.new(newschedule)
 
 		respond_to do |format|
@@ -56,9 +57,10 @@ class SchedulesController < ApplicationController
 
 		params  = schedule_params
 		schdate = Date.strptime(schedule_params['schedule_date'], '%m/%d/%Y') #.strftime("%Y-%d-%m")
-		songids = JSON.parse(params['song_ids'])
-		params.delete('song_ids')
+		songids = JSON.parse(params['song_order'])
+		#params.delete('song_ids')
 		params['schedule_date'] = schdate
+		params['song_order'] = songids
 
 # 		logger.debug "\n\n\n\n\n\n\nSCHEDULE DATE IS: #{schdate}\n\n\n\n\n\n\n"
 
@@ -94,6 +96,6 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:name, :schedule_date, :notes, :song_ids)
+      params.require(:schedule).permit(:name, :schedule_date, :notes, :song_order)
     end
 end
