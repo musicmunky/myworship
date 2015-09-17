@@ -3,28 +3,29 @@
 <h3>All Worship Songs</h3>
 
 <table class="table" id="song_table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Artist</th>
-      <th>Song Key</th>
-      <th>Capo Fret</th>
-      <th>Media Link</th>
-<!--      <th colspan="2"></th>//-->
-		<th></th>
-		<th></th>
-    </tr>
-  </thead>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Artist</th>
+			<th>Song Key</th>
+			<th>Capo Fret</th>
+			<th>Last Scheduled</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
 
   <tbody>
     <% @songs.each do |song| %>
       <tr>
-        <td><%= link_to song.name, edit_song_path(song) %></td>
+        <td><%= link_to song.name, song_path(song) %></td>
         <td><%= song.author %></td>
-        <td><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
-        <td><%= song.capo_fret %></td>
+        <td style="text-align:center;"><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
+        <td style="text-align:center;"><%= song.capo_fret %></td>
+		<td style="text-align:center;"><%= song.get_last_scheduled %></td>
         <td><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
-        <td><%= link_to 'Lyrics', song_path(song) %></td>
+        <td><%= link_to 'Edit', edit_song_path(song) %></td>
         <td><%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

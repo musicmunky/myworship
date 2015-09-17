@@ -41,7 +41,7 @@ class SchedulesController < ApplicationController
 
 				@schedule.songs << Song.find(songids)
 
-				format.html { redirect_to schedules_url, notice: 'Schedule was successfully created.' }
+				format.html { redirect_to schedules_url, notice: 'Schedule was successfully created!' }
 				format.json { render :show, status: :created, location: @schedule }
 			else
 				format.html { render :new }
@@ -69,7 +69,7 @@ class SchedulesController < ApplicationController
 
 				@schedule.songs = Song.find(songids)
 
-				format.html { redirect_to schedules_url, notice: 'Schedule was successfully updated.' }
+				format.html { redirect_to schedules_url, notice: 'Schedule was successfully updated!' }
 				format.json { render :show, status: :ok, location: @schedule }
 			else
 				format.html { render :edit }
@@ -83,7 +83,7 @@ class SchedulesController < ApplicationController
 	def destroy
 		@schedule.destroy
 		respond_to do |format|
-			format.html { redirect_to schedules_url, notice: 'Schedule was successfully destroyed.' }
+			format.html { redirect_to schedules_url, notice: 'Schedule was successfully deleted!' }
 			format.json { head :no_content }
 		end
 	end

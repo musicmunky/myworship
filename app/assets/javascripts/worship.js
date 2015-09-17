@@ -12,10 +12,11 @@ jQuery( document ).ready(function() {
 	}
 
 	$('#song_table').DataTable({
-		"columnDefs": [{ "searchable": false, "targets": [4,5,6] }]
+		"columnDefs": [{ "searchable": false, "targets": [5,6,7] }, { "orderable": false, "targets": [5,6,7] }]
 	});
 	$('#schedule_table').DataTable({
-		"order": [[ 1, "desc" ]]
+		"order": [[ 1, "desc" ]],
+		"columnDefs": [{ "searchable": false, "targets": 4 }, { "orderable": false, "targets": 4 }]
 	});
 
 	$( "#schedule_schedule_date" ).datepicker();

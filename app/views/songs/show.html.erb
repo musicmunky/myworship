@@ -10,19 +10,23 @@
 </p>
 
 <p>
-	<strong>Song key:</strong>
+	<strong>Song Key:</strong>
 	<% begin %><%= @song.song_keys.first.key_symbol.html_safe %><% rescue;end %>
 </p>
 
 <p>
-	<strong>Capo fret:</strong>
+	<strong>Capo Fret:</strong>
 	<%= @song.capo_fret %>
 </p>
 
 <p>
-	<strong>Media link:</strong>
+	<strong>YouTube Link:</strong>
 	<%= link_to "YouTube", @song.media_link, target: "_blank" %>
 </p>
+
+<div style="width:500px;height:300px;margin-bottom:15px;">
+	<%= @song.get_embed_video %>
+</div>
 
 <p><strong>Lyrics:</strong></p>
 <div style="margin-bottom:50px;">
