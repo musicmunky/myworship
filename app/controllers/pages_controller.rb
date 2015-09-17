@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
 	def index
-		@schedules = Schedule.all.order("schedule_date DESC")
+#		@schedules = Schedule.all.order("schedule_date DESC")
+# 		@posts = Post.paginate(:page => params[:page], :per_page => 20)
+		@schedules = Schedule.paginate(:page => params[:page], :per_page => 10).order("schedule_date DESC")
 	end
 
 	def reports

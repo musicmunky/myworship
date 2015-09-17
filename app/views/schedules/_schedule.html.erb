@@ -1,0 +1,32 @@
+<div class="schedule schedule_display_list">
+	<h3 style="margin-bottom:0px !important;"><%= link_to schedule.name, schedule_path(schedule), target: "_blank" %>
+		<span style="font-size:14px;float:right;height:36px;line-height:36px;display:block;"><%= schedule.schedule_date.strftime('%m/%d/%Y') %></span>
+	</h3>
+	<% if !schedule.notes.nil? and schedule.notes.length > 0 %>
+		<p style="margin-top: 5px; margin-bottom: 5px; padding-left: 5px; background-color:#DDD;">
+			<strong style="padding-right:10px;">NOTES: </strong><%= schedule.notes %>
+		</p>
+	<% end %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th style="width:48%">Name</th>
+				<th style="width:13%;text-align:center;">Key</th>
+				<th style="width:13%;text-align:center;">Capo</th>
+				<th style="width:13%;text-align:center;"></th>
+				<th style="width:13%;text-align:center;"></th>
+			</tr>
+		</thead>
+		<tbody>
+		<% schedule.get_songs_by_order.each do |song| %>
+			<tr>
+				<td style="width:48%"><%= link_to song.name, song_path(song) %></td>
+				<td style="width:13%;text-align:center;"><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
+				<td style="width:13%;text-align:center;"><%= song.capo_fret %></td>
+				<td style="width:13%;text-align:center;"><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
+				<td style="width:13%;text-align:center;"><%= link_to 'Lyrics', song_path(song) %></td>
+			</tr>
+		<% end %>
+		</tbody>
+	</table>
+</div>
