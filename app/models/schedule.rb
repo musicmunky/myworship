@@ -3,7 +3,9 @@ class Schedule < ActiveRecord::Base
 	serialize :song_order
 
 	def get_songs_by_order
-		@songs = !self.song_order.nil? ? Song.find(self.song_order.map(&:to_i)) : []
+		ids		= !self.song_order.nil? ? self.song_order.map(&:to_i) : []
+		@songs	=  ids.length > 0 ? Song.find(ids).index_by(&:id).values_at(*ids) : []
+		return @songs
 	end
 
 end

@@ -12,9 +12,22 @@ class Song < ActiveRecord::Base
 	end
 
 	def get_last_scheduled
-		last_date = "N/A"
-		if !self.schedules.order("schedule_date DESC").first.nil?
-			last_date = self.schedules.order("schedule_date DESC").first.schedule_date.strftime("%m/%d/%Y")
+		schdl_date = ""
+		schdl = self.schedules.order("schedule_date DESC").first
+
+		if !schdl.nil?
+			diff = (Time.now().to_date - schdl.schedule_date).to_i
+			schdl_date = schdl.schedule_date.strftime("%m/%d/%Y")
+
+			if diff > 60
+				last_date = "<span class='label label-success' title=\"#{diff} days\">#{schdl_date}</span>"
+			elsif diff > 30
+				last_date = "<span class='label label-warning' title=\"#{diff} days\">#{schdl_date}</span>"
+			else
+				last_date = "<span class='label label-danger' title=\"#{diff} days\">#{schdl_date}</span>"
+			end
+		else
+			last_date = "<span class='label label-default' title='Never Scheduled'>N/A</span>"
 		end
 		return last_date
 	end
