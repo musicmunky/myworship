@@ -18,20 +18,18 @@
 	</div>
 	<div class="field w100fl">
 		<%= f.label :author %><br>
-		<%#= f.text_field :author, { class: "txt100", style: "" } %>
 		<% authors = Song.uniq.pluck(:author).map { |a| [a, a] } %>
 		<select id="song_author" name="song[author]" class="txt100">
 			<option value=""></option>
-			<%= options_for_select(authors, @song.author) %>
+			<%= options_for_select(authors.sort_by {|i| i.first.split(' ').map(&:to_s).reverse }, @song.author) %>
 		</select>
 	</div>
 	<div class="field w100fl">
 		<%= f.label :composer %><br>
-		<%#= f.text_field :composer, { class: "txt100", style: "" } %>
 		<% composers = Song.uniq.pluck(:composer).map { |c| [c, c] } %>
 		<select id="song_composer" name="song[composer]" class="txt100">
 			<option value=""></option>
-			<%= options_for_select(composers, @song.composer) %>
+			<%= options_for_select(composers.sort_by {|i| i.first.split(' ').map(&:to_s).reverse }, @song.composer) %>
 		</select>
 	</div>
 
@@ -50,16 +48,6 @@
 		<% cfs = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8]] %>
 		<select id="song_capo_fret" name="song[capo_fret]" class="txt100">
 			<%= options_for_select(cfs, @song.capo_fret) %>
-				<!--
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option> -->
 		</select>
 	</div>
 
