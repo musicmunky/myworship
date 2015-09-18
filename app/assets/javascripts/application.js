@@ -18,7 +18,7 @@
 //= require jquery_ujs
 //= require jquery.editable-select
 //= require fusionlib
-//= require bootstrap
+//= require bootstrap.min
 //= require list.min
 //= require jquery.dataTables.min
 //= require worship
