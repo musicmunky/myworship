@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
+
 	get 'pages/index'
 	get 'reports' => 'pages#reports'
 
-	resources :song_keys
-	resources :schedules
-	resources :songs
+	resources :song_keys #, path: "worship/song_keys"
+ 	resources :schedules #, path: "worship/schedules"
+	resources :songs #, path: "worship/songs"
 
-	root 'pages#index'
+	root 'pages#index' #, path: "worship"
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
