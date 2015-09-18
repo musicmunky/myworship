@@ -170,7 +170,7 @@ function addSongToSchedule(t)
 											   "style":{"display":"list-item"}});
 	var new_p1 = FUSION.lib.createHtmlElement({"type":"p", "text":new_sn, "style":{"margin":"0px"}, "attributes":{"class":"song_name"}});
  	var new_p2 = FUSION.lib.createHtmlElement({"type":"p", "text":sng_id, "style":{"display":"none"}, "attributes":{"class":"song_id"}});
-	var newbtn = FUSION.lib.createHtmlElement({"type":"button", "onclick":"removeSongFromSchedule(this.parentNode)", "attributes":{"class":"li_delete btn btn-default"}});
+	var newbtn = FUSION.lib.createHtmlElement({"type":"button", "onclick":"removeSongFromSchedule(this.parentNode)", "attributes":{"class":"li_delete"}});
 	var newspn = FUSION.lib.createHtmlElement({"type":"span", "attributes":{"class":"glyphicon glyphicon-remove"}});
 
 	newbtn.appendChild(newspn);

@@ -30,6 +30,22 @@ p {
 	line-height:24px;
 }
 
+.schedule_display_link {
+	color:inherit;
+	text-decoration:none !important;
+}
+
+.schedule_display_link:hover {
+	color:#666;
+}
+
+.dataTables_filter input {
+    background-color: #F3F3F3;
+    border: none;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
 .schedule_display_list {
 	width:100%;
 	float:left;
@@ -58,6 +74,9 @@ p {
     float: right;
     margin-top: -22px;
     margin-right: 5px;
+	background-color:inherit;
+	line-height:20px;
+	border:none;
 }
 
 .schedule_note {
