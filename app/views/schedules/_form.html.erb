@@ -1,6 +1,6 @@
 <% btntxt = new_or_edit == "edit" ? "Update Schedule" : "Add New Schedule" %>
 
-<%= form_for(@schedule, html: { class: "rails_form", style: 'height:300px;' }) do |f| %>
+<%= form_for(@schedule, html: { class: "rails_form", style: 'height:600px;' }) do |f| %>
 	<% if @schedule.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -25,7 +25,7 @@
 
 	<div id="song_list_div" class="field w50fl" style="padding-right:10px;height:200px;">
 		<label>Search Songs<i>(Click to add)</i>:</label><br>
-		<input class="search txt100" />
+		<input id="song_search_txt" class="search txt100" />
 		<ul class="list" id="full_song_list" style="overflow-y:scroll;height:75%;width:100%;list-style:none;padding-left: 0px;background-color:#EEE;border:1px solid #DDD;">
 		<% @allsongs = Song.all - @schedule.songs %>
 		<% @allsongs.each do |song| %>
@@ -38,12 +38,15 @@
 	</div>
 
 	<div id="current_list_div" class="field w50fl" style="padding-left:10px;height:200px;">
-		<label>Schedule Songs <i>(Click to remove)</i>:</label><br>
+		<label>Schedule Songs <i>(Drag to reorder)</i>:</label><br>
 		<ul class="list" id="current_song_list" style="overflow-y:scroll;height:75%;width:100%;list-style:none;margin-top:25px;padding-left: 0px;background-color:#EEE;border:1px solid #DDD;">
 		<% @schedule.get_songs_by_order.each do |song| %>
-			<li class="song_list_li" style="display:list-item;" onclick="removeSongFromSchedule(this)">
+			<li class="song_list_li" style="display:list-item;">
 				<p class="song_name" style="margin:0px;"><%= song.name %></p>
 				<p class="song_id" style="display:none;"><%= song.id.to_s %></p>
+				<button class="li_delete btn btn-default" onclick="removeSongFromSchedule(this)">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
 			</li>
 		<% end %>
 		</ul>

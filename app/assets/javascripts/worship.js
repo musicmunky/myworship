@@ -35,6 +35,21 @@ jQuery( document ).ready(function() {
 	}
 	createSongList();
 
+	$( "#current_song_list" ).sortable({
+		stop: function( event, ui ) {
+			var li_arry = this.getElementsByTagName("li");
+			var id_arry = [];
+			var id_tmp = "";
+			for(var i = 0; i < li_arry.length; i++)
+			{
+				id_tmp = li_arry[i].getElementsByClassName("song_id")[0].innerHTML;
+				id_arry.push(id_tmp);
+			}
+			FUSION.get.node("schedule_song_order").value = JSON.stringify(id_arry);
+		}
+	});
+
+    $( "#current_song_list" ).disableSelection();
 
 	if ($('.pagination').length) {
 		$(window).scroll(function() {
@@ -47,6 +62,18 @@ jQuery( document ).ready(function() {
 		return $(window).scroll();
 	}
 
+	$( "#song_search_txt" ).keypress(function( event ) {
+		if ( event.which == 13 ) {
+			event.preventDefault();
+			var ul = FUSION.get.node("full_song_list");
+			var li_arry = ul.getElementsByTagName("li");
+			if(li_arry.length > 0)
+			{
+				var li = li_arry[0];
+				addSongToSchedule(li);
+			}
+		}
+	});
 
 });
 
@@ -98,13 +125,16 @@ function addSongToSchedule(t)
  	var sng_id = old_li.getElementsByTagName("p")[1].innerHTML;
 	var new_li = FUSION.lib.createHtmlElement({"type":"li",
 											   "attributes":{"class":"song_list_li"},
-											   "style":{"display":"list-item"},
-											   "onclick":"removeSongFromSchedule(this)"});
+											   "style":{"display":"list-item"}});
 	var new_p1 = FUSION.lib.createHtmlElement({"type":"p", "text":new_sn, "style":{"margin":"0px"}, "attributes":{"class":"song_name"}});
  	var new_p2 = FUSION.lib.createHtmlElement({"type":"p", "text":sng_id, "style":{"display":"none"}, "attributes":{"class":"song_id"}});
+	var newbtn = FUSION.lib.createHtmlElement({"type":"button", "onclick":"removeSongFromSchedule(this.parentNode)", "attributes":{"class":"li_delete btn btn-default"}});
+	var newspn = FUSION.lib.createHtmlElement({"type":"span", "attributes":{"class":"glyphicon glyphicon-remove"}});
 
+	newbtn.appendChild(newspn);
 	new_li.appendChild(new_p1);
 	new_li.appendChild(new_p2);
+	new_li.appendChild(newbtn);
 	new_ul.appendChild(new_li);
 
 	var sids = JSON.parse(FUSION.get.node("schedule_song_order").value);
