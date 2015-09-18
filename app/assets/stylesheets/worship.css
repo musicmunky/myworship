@@ -60,6 +60,14 @@ p {
     margin-right: 5px;
 }
 
+.schedule_note {
+	margin-top:5px;
+	margin-bottom:5px;
+	padding-left:5px;
+	background-color:#333;
+	color:#EEE;
+}
+
 #current_song_list > li > p {
 	white-space:nowrap;
 	width:215px;
