@@ -21,6 +21,8 @@ gem 'turbolinks'
 
 gem 'jquery-turbolinks'
 gem 'will_paginate', '~> 3.0.7'
+gem 'devise'
+
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
