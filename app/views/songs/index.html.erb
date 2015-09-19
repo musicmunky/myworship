@@ -9,8 +9,10 @@
 			<th>Capo Fret</th>
 			<th>Last Scheduled</th>
 			<th></th>
+		<% if user_signed_in? %>
 			<th></th>
 			<th></th>
+		<% end %>
 		</tr>
 	</thead>
 
@@ -23,13 +25,16 @@
         <td style="text-align:center;"><%= song.capo_fret %></td>
 		<td style="text-align:center;"><%= song.get_last_scheduled.html_safe %></td>
         <td><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
-        <td><%= link_to 'Edit', edit_song_path(song) %></td>
+	<% if user_signed_in? %>
+		<td><%= link_to 'Edit', edit_song_path(song) %></td>
         <td><%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Song', new_song_path, { class: "btn btn-success", style: "float:left;width:150px;" } %>
+<% if user_signed_in? %>
+	<%= link_to 'New Song', new_song_path, { class: "btn btn-success", style: "float:left;width:150px;" } %>
+<% end %>

@@ -3,7 +3,9 @@
 <h3><%= @schedule.name %>
 	<span style="font-size:14px;float:right;height:36px;line-height:36px;display:block;">
 		<%= @schedule.schedule_date.strftime('%m/%d/%Y') %>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<% if user_signed_in? %>
 		<%= link_to 'Edit', edit_schedule_path(@schedule) %>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<% end %>
 		<%= link_to 'Back', schedules_path %>
 	</span>
 </h3>

@@ -11,12 +11,36 @@ jQuery( document ).ready(function() {
 		document.body.style.setProperty("font-family", "'Trebuchet MS', Helvetica, sans-serif", "important");
 	}
 
+	var sng_coldefs = [];
+	if(FUSION.get.node("song_table"))
+	{
+		var sng_last_col = FUSION.get.node("song_table").rows[0].cells.length - 1;
+		var sng_cols_arr = [];
+		if(sng_last_col > 4)
+		{
+			for(var i = 5; i <= sng_last_col; i++)
+			{
+				sng_cols_arr.push(i);
+			}
+			sng_coldefs = [{ "searchable": false, "targets": sng_cols_arr }, { "orderable": false, "targets": sng_cols_arr }];
+		}
+	}
 	$('#song_table').DataTable({
-		"columnDefs": [{ "searchable": false, "targets": [5,6,7] }, { "orderable": false, "targets": [5,6,7] }]
+		"columnDefs": sng_coldefs
 	});
+
+	var sch_coldefs  = [];
+	if(FUSION.get.node("schedule_table"))
+	{
+		var sch_last_col = FUSION.get.node("schedule_table").rows[0].cells.length - 1;
+		if(sch_last_col > 3)
+		{
+			sch_coldefs = [{ "searchable": false, "targets": sch_last_col }, { "orderable": false, "targets": sch_last_col }];
+		}
+	}
 	$('#schedule_table').DataTable({
 		"order": [[ 1, "desc" ]],
-		"columnDefs": [{ "searchable": false, "targets": 4 }, { "orderable": false, "targets": 4 }]
+		"columnDefs": sch_coldefs
 	});
 
 	$( "#schedule_schedule_date" ).datepicker();

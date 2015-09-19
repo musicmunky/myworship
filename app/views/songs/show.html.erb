@@ -1,7 +1,10 @@
 <!--<p id="notice"><%#= notice %></p>//-->
 
 <h3><%= @song.name %><span style="font-size:14px;float:right;height:36px;line-height:36px;display:block;">
-	<%= link_to 'Edit', edit_song_path(@song) %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Back', songs_path %>
+	<% if user_signed_in? %>
+		<%= link_to 'Edit', edit_song_path(@song) %>&nbsp;&nbsp;|&nbsp;&nbsp;
+	<% end %>
+	<%= link_to 'Back', songs_path %>
 </span></h3>
 
 <p>
