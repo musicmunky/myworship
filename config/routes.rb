@@ -6,7 +6,19 @@ Rails.application.routes.draw do
 	get 'pages/index'
 	get 'reports' => 'pages#reports'
 
-	resources :song_keys #, path: "worship/song_keys"
+#	resources :song_keys #, path: "worship/song_keys"
+	resource :song_keys, only: [:index, :show]
+
+# 	authenticate :user do
+# 		resources :schedules, only: [:new, :create, :edit, :update, :destroy]
+# 	end
+# 	resources :schedules, only: [:index, :show]
+
+# 	authenticate :user do
+# 		resources :songs, only: [:new, :create, :edit, :update, :destroy]
+# 	end
+# 	resources :songs, only: [:index, :show]
+
  	resources :schedules #, path: "worship/schedules"
 	resources :songs #, path: "worship/songs"
 
