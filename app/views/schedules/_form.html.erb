@@ -44,7 +44,7 @@
 			<li class="song_list_li" style="display:list-item;">
 				<p class="song_name" style="margin:0px;"><%= song.name %></p>
 				<p class="song_id" style="display:none;"><%= song.id.to_s %></p>
-				<button class="li_delete" onclick="removeSongFromSchedule(this)">
+				<button type="button" class="li_delete" onclick="removeSongFromSchedule(this.parentNode);return false;">
 					<span class="glyphicon glyphicon-remove"></span>
 				</button>
 			</li>
