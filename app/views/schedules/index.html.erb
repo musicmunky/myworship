@@ -9,7 +9,7 @@
 			<th style="text-align:center;">Schedule Date</th>
 			<th style="text-align:center;"># of Songs</th>
 			<th>Notes</th>
-			<% if user_signed_in? %>
+			<% if user_signed_in? and current_user.has_role? :admin %>
 				<th></th>
 			<% end %>
 		</tr>
@@ -18,7 +18,7 @@
 	<tbody>
 		<% @schedules.each do |schedule| %>
 			<tr>
-			<% if user_signed_in? %>
+			<% if user_signed_in? and current_user.has_role? :admin %>
 				<td><%= link_to schedule.name, edit_schedule_path(schedule) %></td>
 			<% else %>
 				<td><%= link_to schedule.name, schedule_path(schedule) %></td>
@@ -26,7 +26,7 @@
 				<td style="text-align:center;"><%= schedule.schedule_date.strftime("%m/%d/%Y") %></td>
 				<td style="text-align:center;"><%= link_to schedule.songs.length, schedule_path(schedule) %></td>
 				<td><%= schedule.notes %></td>
-				<% if user_signed_in? %>
+				<% if user_signed_in? and current_user.has_role? :admin %>
 					<td><%= link_to 'Delete', schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 				<% end %>
 			</tr>
@@ -35,6 +35,6 @@
 </table>
 
 <br>
-<% if user_signed_in? %>
+<% if user_signed_in? and current_user.has_role? :admin %>
 	<%= link_to 'New Schedule', new_schedule_path, { class: "btn btn-success", style: "float:left;width:150px;" } %>
 <% end %>
