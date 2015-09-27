@@ -44,3 +44,8 @@
 #         :key_root => :string,
 #     :key_modifier => :string,
 #        :capo_fret => :integer,
+
+	roles = ["admin", "player"]
+	roles.each do |roll|
+		Role.create( name: roll )
+	end

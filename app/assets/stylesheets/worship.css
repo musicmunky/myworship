@@ -30,6 +30,15 @@ p {
 	line-height:24px;
 }
 
+.schedule_td_song_name {
+	width:48%;
+}
+
+.schedule_td_cell {
+	width:13%;
+	text-align:center;
+}
+
 .schedule_display_link {
 	color:inherit;
 	text-decoration:none !important;
