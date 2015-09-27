@@ -38,13 +38,6 @@
 # SHARP => &#x266f;
 # FLAT  => &#x266d;
 
-
-#       :key_symbol => :string,
-#    :key_full_name => :string,
-#         :key_root => :string,
-#     :key_modifier => :string,
-#        :capo_fret => :integer,
-
 	roles = ["admin", "player"]
 	roles.each do |roll|
 		Role.create( name: roll )
