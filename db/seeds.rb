@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+# SHARP => &#x266f;
+# FLAT  => &#x266d;
 	song_key = [
 		["A", "A", "A", "", 0],
 		["A<sup>&#x266f;</sup>", "A sharp", "A", "&#x266f;", 0],
@@ -34,9 +36,6 @@
 	song_key.each do |key|
 		SongKey.create( key_symbol: key[0], key_full_name: key[1], key_root: key[2], key_modifier: key[3], capo_fret: key[4] )
 	end
-
-# SHARP => &#x266f;
-# FLAT  => &#x266d;
 
 	roles = ["admin", "player"]
 	roles.each do |roll|
