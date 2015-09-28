@@ -30,6 +30,53 @@ p {
 	line-height:24px;
 }
 
+.simple-calendar {
+	width:100%;
+}
+
+.simple-calendar .simple-calendar-table {
+	width:100%;
+}
+.simple-calendar .day {
+/* 	width:15%; */
+	height:125px;
+	padding:10px;
+	border:2px solid #CCC;
+	position:relative;
+	width:14%;
+}
+.dayspan {
+	display: block;
+    float: left;
+    height: 16px;
+    left: 10px;
+    line-height: 16px;
+    position: absolute;
+    top: 10px;
+}
+.simple-calendar .wday-0 {  }
+.simple-calendar .wday-1 {  }
+.simple-calendar .wday-2 {  }
+.simple-calendar .wday-3 {  }
+.simple-calendar .wday-4 {  }
+.simple-calendar .wday-5 {  }
+.simple-calendar .wday-6 {  }
+.simple-calendar .today {  }
+.simple-calendar .past {  }
+.simple-calendar .future {  }
+.simple-calendar .past {  }
+.simple-calendar .start-date {  }
+.simple-calendar .prev-month {
+	background-color:#DDD;
+}
+.simple-calendar .next-month {
+	background-color:#DDD;
+}
+.simple-calendar .current-month {  }
+.simple-calendar .has-events {  }
+
+
+
 .schedule_td_song_name {
 	width:48%;
 }
@@ -469,7 +516,7 @@ p {
 .unitspan {
 	margin-right:10px;
 }
-
+/*
 .day {
  	border-radius:4px;
     box-shadow: 0 0 1px 1px #CCC;
@@ -480,7 +527,8 @@ p {
     text-align: center;
     width: 220px;
 }
-
+*/
+/*
 .hourofday {
 	height:205px;
 	width: 95px;
@@ -490,10 +538,10 @@ p {
 
 	-webkit-transition: box-shadow .25s; /* Safari */
     -webkit-transition-timing-function: linear; /* Safari */
-    transition: box-shadow .25s;
-    transition-timing-function: linear;
-}
-
+/*     transition: box-shadow .25s; */
+/*     transition-timing-function: linear; */
+/* } */
+/*
 .hour {
     float: left;
     height: 205px;
@@ -502,11 +550,11 @@ p {
     width: 125px;
 
 	-webkit-transition: margin-top .25s; /* Safari */
-    -webkit-transition-timing-function: linear; /* Safari */
-    transition: margin-top .25s;
-    transition-timing-function: linear;
-}
-
+/*     -webkit-transition-timing-function: linear; /* Safari */ */
+/*     transition: margin-top .25s; */
+/*     transition-timing-function: linear; */
+/* } */
+/*
 .hour:hover {
 	margin-top:-1px;
 }
@@ -514,7 +562,7 @@ p {
 .hourofday:hover {
 	box-shadow: 0 2px 3px 0px #CCC;
 }
-
+*/
 .searchbox {
 	color:#222;
 	width:200px;
@@ -653,14 +701,15 @@ p {
 		right:calc(50% - 131px);
 		border-radius: 4px;
 	}
-
+/*
 	.day {
 		margin-bottom:20px;
 	}
-
+*/
 	.tfcbtm {
 		margin-top:30px;
 	}
+/*
 	.hour {
 		margin-top:20px;
 	}
@@ -672,7 +721,7 @@ p {
 	.hourwrapper {
 		margin-top:0px;
 	}
-
+*/
 	.mainwrapper {
 		width:500px;
 		height:1520px;
