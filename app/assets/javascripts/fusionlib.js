@@ -180,8 +180,9 @@ FUSION.get = {
 
 	//returns the value of a URL parameter by name
 	urlParamByName: function(name) {
+		var rgx = new RexExp(name + "=" + "(.+?)(&|$)");
 		return decodeURI(
-			(RexExp(name + "=" + "(.+?)(&|$)").exec(location.search)||[,null])[1]
+			(rgx.exec(location.search)||[,null])[1]
 		);
 	},
 
@@ -192,7 +193,7 @@ FUSION.get = {
 			var pstr = window.location.search;
 			if(pstr && !FUSION.lib.isBlank(pstr))
 			{
-				var parr = pstr.substring[1].split("&");
+				var parr = pstr.toString().substring(1).split("&");
 				for(var i = 0; i < parr.length; i++)
 				{
 					var a = parr[i].split("=");

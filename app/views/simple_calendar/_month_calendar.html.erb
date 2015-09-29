@@ -1,8 +1,10 @@
 <div class="simple-calendar">
 	<h2 style="text-align:center;">
-	<%= link_to "<span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span>".html_safe, start_date: date_range.first - 1.day  %>&nbsp;&nbsp;&nbsp;&nbsp;
-	<%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>&nbsp;&nbsp;&nbsp;&nbsp;
-	<%= link_to "<span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>".html_safe, start_date: date_range.last + 1.day  %>
+	<%= link_to "<span class='glyphicon glyphicon-arrow-left' aria-hidden='true'></span>".html_safe, { start_date: date_range.first - 1.day }, { style: "color:#68a4c4;font-size:25px;" } %>
+	<span style="margin-left:15px;margin-right:15px;width:250px;display:inline-block;">
+		<%= I18n.t("date.month_names")[start_date.month] %> <%= start_date.year %>
+	</span>
+	<%= link_to "<span class='glyphicon glyphicon-arrow-right' aria-hidden='true'></span>".html_safe, { start_date: date_range.last + 1.day }, { style: "color:#68a4c4;font-size:25px;" }  %>
 	</h2>
 
 <!--	<table class="table table-striped">//-->
@@ -25,7 +27,7 @@
 							<% block.call day, sorted_events.fetch(day, []) %>
 						<% end %>
 					<% else %>
-						<% block.call "<span class='dayspan badge'><a class='newdaylink' href=\"#{new_attendance_path(:start_time => day)}\">#{day.strftime('%d')}</a></span>".html_safe, sorted_events.fetch(day, []) %>
+						<% block.call "<span class='dayspan badge'><a class='newdaylink' href=\"#{new_attendance_path(:start_time => day)}\">#{day.strftime('%d')}</a></>>".html_safe, sorted_events.fetch(day, []) %>
 					<% end %>
 				<% end %>
 			<% end %>

@@ -44,6 +44,8 @@ jQuery( document ).ready(function() {
 	});
 
 	$( "#schedule_schedule_date" ).datepicker();
+	$( "#attendance_start_time" ).datepicker();
+	$( "#attendance_end_time" ).datepicker();
 
 	var path = window.location.pathname.split("/").clean("");
 	if(path.length > 0)
