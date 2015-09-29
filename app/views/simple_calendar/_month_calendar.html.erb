@@ -10,7 +10,7 @@
 		<thead>
 			<tr style="height:50px;font-size:18px;">
 			<% date_range.slice(0, 7).each do |day| %>
-				<th style="padding:10px;border:2px solid #CCC;"><%= I18n.t("date.abbr_day_names")[day.wday] %></th>
+				<th class="simple-calendar-header"><%= I18n.t("date.abbr_day_names")[day.wday] %></th>
 			<% end %>
 			</tr>
 		</thead>

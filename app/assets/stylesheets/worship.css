@@ -37,12 +37,17 @@ p {
 .simple-calendar .simple-calendar-table {
 	width:100%;
 }
+
+.simple-calendar .simple-calendar-header {
+	padding:10px;
+	border:1px solid #CCC;
+}
 .simple-calendar .day {
 /* 	width:15%; */
 	height:125px;
 	padding:10px;
-	border:2px solid #CCC;
-	position:relative;
+	border:1px solid #CCC;
+/* 	position:relative; */
 	width:14%;
 }
 .dayspan {
@@ -51,8 +56,16 @@ p {
     height: 16px;
     left: 10px;
     line-height: 16px;
-    position: absolute;
+/*     position: absolute; */
     top: 10px;
+	/*	so this (the negative margin) is in place because of a stupid bug in FF that hides table borders when
+		a background color is set and the table is relatively positioned.  It's so fricking stupid...people
+		arguing over whether the behavior is "according to spec" or whatever, when it's just damn WRONG.
+		Why should applying a background color hide a border when a border is clearly defined in the CSS???
+		WHO DECIDED THAT WAS A GOOD IDEA???   ...ugh...
+		See the discussion here:  https://bugzilla.mozilla.org/show_bug.cgi?id=688556
+	*/
+	margin-top:-50px;
 }
 .simple-calendar .wday-0 {  }
 .simple-calendar .wday-1 {  }
