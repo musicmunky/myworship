@@ -25,7 +25,7 @@
 							<% block.call day, sorted_events.fetch(day, []) %>
 						<% end %>
 					<% else %>
-						<% block.call "<span class='dayspan'>#{day.strftime('%d')}</span>".html_safe, sorted_events.fetch(day, []) %>
+						<% block.call "<span class='dayspan badge'><a class='newdaylink' href=\"#{new_attendance_path(:start_time => day)}\">#{day.strftime('%d')}</a></span>".html_safe, sorted_events.fetch(day, []) %>
 					<% end %>
 				<% end %>
 			<% end %>

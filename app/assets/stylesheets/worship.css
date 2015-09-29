@@ -50,6 +50,19 @@ p {
 /* 	position:relative; */
 	width:14%;
 }
+
+.newdaylink {
+	color:#FFF;
+	font-weight:normal;
+	text-decoration:none;
+	display:block;
+	margin-top:-1px;
+}
+
+.newdaylink:hover {
+	color:#EEE;
+}
+
 .dayspan {
 	display: block;
     float: left;
@@ -67,27 +80,27 @@ p {
 	*/
 	margin-top:-50px;
 }
-.simple-calendar .wday-0 {  }
-.simple-calendar .wday-1 {  }
-.simple-calendar .wday-2 {  }
-.simple-calendar .wday-3 {  }
-.simple-calendar .wday-4 {  }
-.simple-calendar .wday-5 {  }
-.simple-calendar .wday-6 {  }
-.simple-calendar .today {  }
-.simple-calendar .past {  }
-.simple-calendar .future {  }
-.simple-calendar .past {  }
-.simple-calendar .start-date {  }
+
+.simple-calendar .wday-0 {}
+.simple-calendar .wday-1 {}
+.simple-calendar .wday-2 {}
+.simple-calendar .wday-3 {}
+.simple-calendar .wday-4 {}
+.simple-calendar .wday-5 {}
+.simple-calendar .wday-6 {}
+.simple-calendar .today {}
+.simple-calendar .past {}
+.simple-calendar .future {}
+.simple-calendar .past {}
+.simple-calendar .start-date {}
 .simple-calendar .prev-month {
 	background-color:#DDD;
 }
 .simple-calendar .next-month {
 	background-color:#DDD;
 }
-.simple-calendar .current-month {  }
-.simple-calendar .has-events {  }
-
+.simple-calendar .current-month {}
+.simple-calendar .has-events {}
 
 
 .schedule_td_song_name {

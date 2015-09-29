@@ -34,8 +34,11 @@
 				<ul class="nav navbar-nav">
 					<li class="" id=""><a href="<%= schedules_path %>">Schedules</a></li>
 					<li class="" id=""><a href="<%= songs_path %>">Songs</a></li>
-					<% if user_signed_in? and current_user.has_role? :admin %>
+					<% if user_signed_in? %>
+						<li class="" id=""><a href="<%= attendances_path %>">Calendar</a></li>
+						<% if current_user.has_role? :admin %>
 						<li class="" id=""><a href="<%= reports_path %>">Reports</a></li>
+						<% end %>
 					<% end %>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

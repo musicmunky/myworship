@@ -1,7 +1,17 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%#= notice %></p>//-->
 
-<h1>Listing Attendances</h1>
+<h3>Worship Team Calendar</h3>
 
+<%= month_calendar events: @attendances do |date, attendances| %>
+	<%= date %>
+	<% attendances.each do |attendance| %>
+		<div>
+			<%= attendance.description %>
+		</div>
+	<% end %>
+<% end %>
+
+<!--
 <table>
   <thead>
     <tr>
@@ -29,5 +39,5 @@
 </table>
 
 <br>
-
-<%= link_to 'New Attendance', new_attendance_path %>
+-->
+<%#= link_to 'New Attendance', new_attendance_path %>
