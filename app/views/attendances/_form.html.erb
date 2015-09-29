@@ -13,14 +13,14 @@
 	<% end %>
 
 	<div class="field w50fl" style="padding-right:10px;">
-		<%= f.label "Start Date" %><br>
+		<%= f.label :start_time, "Start Date" %><br>
 		<%#= f.datetime_select :start_time, { class: "txt100", style: "" } %>
 		<% sval = "" %>
 		<%= f.text_field :start_time, { class: "txt100", style: "", value: sval } %>
 	</div>
 
 	<div class="field w50fl" style="padding-left:10px;">
-		<%= f.label "End Date" %><br>
+		<%= f.label :end_time, "End Date" %><br>
 		<% eval = "" %>
 		<%= f.text_field :end_time, { class: "txt100", style: "", value: eval } %>
 	</div>

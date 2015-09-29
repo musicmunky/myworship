@@ -1,17 +1,17 @@
 <h3>New Calendar Entry</h3>
 
+<%= render 'form', new_or_edit: "new" %>
+
 <%= javascript_tag do %>
 	var params = FUSION.get.urlParams();
 	var stime  = "";
 	if(params['start_time'] && !FUSION.lib.isBlank(params['start_time']))
 	{
-		stime = "START TIME IS: " + params['start_time'];
+		var dt = moment(params['start_time']).format("MM/DD/YYYY");
+		FUSION.get.node("attendance_start_time").value = dt;
 	}
 	else
 	{
-		stime = "NO DATE SPECIFIED";
+		FUSION.get.node("attendance_start_time").value = "";
 	}
-	console.log(stime);
 <% end %>
-
-<%= render 'form', new_or_edit: "new" %>

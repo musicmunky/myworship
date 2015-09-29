@@ -17,6 +17,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.editable-select
+//= require moment.min
 //= require fusionlib
 //= require bootstrap.min
 //= require list.min

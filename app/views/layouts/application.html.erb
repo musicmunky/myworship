@@ -37,7 +37,7 @@
 					<% if user_signed_in? %>
 						<li class="" id=""><a href="<%= attendances_path %>">Calendar</a></li>
 						<% if current_user.has_role? :admin %>
-						<li class="" id=""><a href="<%= reports_path %>">Reports</a></li>
+							<li class="" id=""><a href="<%= reports_path %>">Reports</a></li>
 						<% end %>
 					<% end %>
 				</ul>
