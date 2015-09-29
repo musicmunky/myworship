@@ -9,6 +9,7 @@
 	{
 		var dt = moment(params['start_time']).format("MM/DD/YYYY");
 		FUSION.get.node("attendance_start_time").value = dt;
+		FUSION.get.node("attendance_end_time").value = dt;
 	}
 	else
 	{
