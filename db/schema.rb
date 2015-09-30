@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929152020) do
+ActiveRecord::Schema.define(version: 20150929200053) do
 
   create_table "attendances", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
     t.text     "description", limit: 65535
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "user_id",     limit: 4
   end
 
   create_table "attendances_users", id: false, force: :cascade do |t|

@@ -14,7 +14,11 @@ class AttendancesController < ApplicationController
 
 	# GET /attendances/new
 	def new
-		@attendance = Attendance.new
+		if !current_user.nil?
+			@attendance = Attendance.new
+		else
+			redirect_to attendances_url
+		end
 	end
 
 	# GET /attendances/1/edit
@@ -37,21 +41,30 @@ class AttendancesController < ApplicationController
 
 		respond_to do |format|
 			if @attendance.save
-				format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }
+				format.html { redirect_to attendances_url, notice: 'Attendance was successfully created.' }
 				format.json { render :show, status: :created, location: @attendance }
 			else
 				format.html { render :new }
 				format.json { render json: @attendance.errors, status: :unprocessable_entity }
 			end
 		end
+
 	end
 
 	# PATCH/PUT /attendances/1
 	# PATCH/PUT /attendances/1.json
 	def update
+
+		params = attendance_params
+		stime  = Date.strptime(attendance_params['start_time'], '%m/%d/%Y')
+		etime  = Date.strptime(attendance_params['end_time'], '%m/%d/%Y')
+		params['start_time'] = stime
+		params['end_time']   = etime
+
 		respond_to do |format|
-			if @attendance.update(attendance_params)
-				format.html { redirect_to @attendance, notice: 'Attendance was successfully updated.' }
+# 			if @attendance.update(attendance_params)
+			if @attendance.update(params)
+				format.html { redirect_to attendances_url, notice: 'Attendance was successfully updated.' }
 				format.json { render :show, status: :ok, location: @attendance }
 			else
 				format.html { render :edit }

@@ -60,10 +60,20 @@
 
 	<div id="mainwrapper" class="container" style="margin-bottom:150px;">
 		<% if notice %>
-			<p class="alert alert-success"><%= notice %></p>
+			<p class="alert alert-success">
+				<%= notice %>
+				<button class="notice-close btn btn-default" onclick="closeNotice(this)">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			</p>
 		<% end %>
 		<% if alert %>
-			<p class="alert alert-danger"><%= alert %></p>
+			<p class="alert alert-danger">
+				<%= alert %>
+				<button class="notice-close btn btn-default" onclick="closeNotice(this)">
+					<span class="glyphicon glyphicon-remove"></span>
+				</button>
+			</p>
 		<% end %>
 		<%= yield %>
 	</div>

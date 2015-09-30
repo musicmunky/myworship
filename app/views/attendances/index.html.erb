@@ -4,40 +4,13 @@
 
 <%= month_calendar events: @attendances do |date, attendances| %>
 	<%= date %>
+	<ul class="eventul">
 	<% attendances.each do |attendance| %>
-		<div>
-			<%= attendance.description %>
-		</div>
+		<li class="eventli" title="<%= attendance.description %>">
+			<a href="<%= edit_attendance_path(attendance) %>">
+			<%= attendance.description.truncate(15) %>
+			</a>
+		</li>
 	<% end %>
+	</ul>
 <% end %>
-
-<!--
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Description</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @attendances.each do |attendance| %>
-      <tr>
-        <td><%= attendance.user_id %></td>
-        <td><%= attendance.description %></td>
-        <td><%= attendance.start_time %></td>
-        <td><%= attendance.end_time %></td>
-        <td><%= link_to 'Show', attendance %></td>
-        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
--->
-<%#= link_to 'New Attendance', new_attendance_path %>

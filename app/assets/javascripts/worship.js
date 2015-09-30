@@ -104,6 +104,16 @@ jQuery( document ).ready(function() {
 });
 
 
+function closeNotice(t)
+{
+	if(t && FUSION.lib.isElement(t))
+	{
+		try { $( t.parentNode ).fadeOut( "slow", function() {}); }
+		catch(err) { FUSION.error.logError(err); }
+	}
+}
+
+
 function checkScheduleForm()
 {
 	var sname = FUSION.get.node("schedule_name").value;
@@ -181,7 +191,9 @@ function createSongList()
 		SONGLIST = songList;
 		SONGLIST.sort('song_name', { order: "asc" });
 	}
-	catch(err){}
+	catch(err){
+		FUSION.error.logError(err);
+	}
 }
 
 

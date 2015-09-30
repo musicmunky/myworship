@@ -15,13 +15,13 @@
 	<div class="field w50fl" style="padding-right:10px;">
 		<%= f.label :start_time, "Start Date" %><br>
 		<%#= f.datetime_select :start_time, { class: "txt100", style: "" } %>
-		<% sval = "" %>
+		<% sval = @attendance.id.nil? ? "" : @attendance.start_time.strftime("%m/%d/%Y") %>
 		<%= f.text_field :start_time, { class: "txt100", style: "", value: sval } %>
 	</div>
 
 	<div class="field w50fl" style="padding-left:10px;">
 		<%= f.label :end_time, "End Date" %><br>
-		<% eval = "" %>
+		<% eval = @attendance.id.nil? ? "" : @attendance.end_time.strftime("%m/%d/%Y") %>
 		<%= f.text_field :end_time, { class: "txt100", style: "", value: eval } %>
 	</div>
 

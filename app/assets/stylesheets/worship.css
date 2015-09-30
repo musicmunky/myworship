@@ -67,10 +67,10 @@ p {
 	display: block;
     float: left;
     height: 16px;
-    left: 10px;
+/*     left: 10px; */
     line-height: 16px;
 /*     position: absolute; */
-    top: 10px;
+/*     top: 10px; */
 	/*	so this (the negative margin) is in place because of a stupid bug in FF that hides table borders when
 		a background color is set and the table is relatively positioned.  It's so fricking stupid...people
 		arguing over whether the behavior is "according to spec" or whatever, when it's just damn WRONG.
@@ -78,7 +78,7 @@ p {
 		WHO DECIDED THAT WAS A GOOD IDEA???   ...ugh...
 		See the discussion here:  https://bugzilla.mozilla.org/show_bug.cgi?id=688556
 	*/
-	margin-top:-50px;
+/* 	margin-top:-50px; */
 }
 
 .simple-calendar .wday-0 {}
@@ -102,6 +102,35 @@ p {
 .simple-calendar .current-month {}
 .simple-calendar .has-events {}
 
+.eventul {
+	height:75px;
+	width:100%;
+	float:left;
+	padding-top:10px;
+	margin-bottom:10px;
+	padding-left:0px;
+	list-style:none;
+	overflow-y:hidden;
+}
+/*
+.eventul:hover {
+	overflow-y:scroll;
+}
+*/
+.eventli {
+	background-color: #ccc;
+    border-radius: 10px;
+    display: block;
+    height: 22px;
+    line-height: 16px;
+    padding: 2px 10px;
+	margin-bottom:1px;
+}
+
+.eventli:hover {
+	background-color:#DDD;
+	cursor:pointer;
+}
 
 .schedule_td_song_name {
 	width:48%;
@@ -145,6 +174,18 @@ p {
 
 .btn {
 	min-width: 100px !important;
+}
+
+.notice-close {
+	float: right;
+	background-color: ;
+	width: 30px !important;
+	min-width: 30px !important;
+	padding: 0 !important;
+	height: 30px;
+	opacity: 0.8;
+	background-color:inherit !important;
+	border:none !important;
 }
 
 .li_delete {
