@@ -25,7 +25,7 @@ Array.prototype.clean = function(deleteValue) {
 	return this;
 };
 
-//test = new Array("","One","Two","", "Three","","Four").clean("");//-->
+//test = new Array("","One","Two","", "Three","","Four").clean("");
 //test2 = [1,2,,3,,3,,,,,,4,,4,,5,,6,,,,];
 //test2.clean(undefined);
 
