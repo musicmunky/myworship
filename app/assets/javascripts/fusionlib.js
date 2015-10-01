@@ -159,20 +159,9 @@ FUSION.get = {
 					childCount++;
 				}
 			}
-			/*if(hasNonLeafNodes)
-			{
-				obj.num_children = childCount;
-				return childCount;
-			}
-			else
-			{
-				return childCount;
-			}*/
 			return childCount;
 		}
 		catch(err) {
-			//obj.is_error = true;
-			//obj.error_message = err;
 			FUSION.error.logError(err);
 			return 0;
 		}
