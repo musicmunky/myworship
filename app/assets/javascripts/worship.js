@@ -138,35 +138,43 @@ function checkScheduleForm()
 // Validates that the input string is a valid date formatted as "mm/dd/yyyy"
 function isValidDate(dateString)
 {
-	// First check for the pattern
-	if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
-	{ return false; }
+	try {
+		// First check for the pattern
+		if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+		{ return false; }
 
-	// Parse the date parts to integers
-	var parts = dateString.split("/");
-	var day   = 0;
-	var month = 0;
-	var year  = 0;
+		// Parse the date parts to integers
+		var parts = dateString.split("/");
+		var day   = 0;
+		var month = 0;
+		var year  = 0;
 
-	if(parts.length == 3)
-	{
-		day   = parseInt(parts[1], 10);
-		month = parseInt(parts[0], 10);
-		year  = parseInt(parts[2], 10);
+		if(parts.length == 3)
+		{
+			day   = parseInt(parts[1], 10);
+			month = parseInt(parts[0], 10);
+			year  = parseInt(parts[2], 10);
+		}
+		else
+		{ return false; }
+
+		// Check the ranges of month and year
+		if(year < 2000 || year > 2100 || month < 1 || month > 12)
+		{ return false; }
+
+		var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+		// Adjust for leap years
+		if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
+		{ monthLength[1] = 29; }
+
+		// Check the range of the day
+		return day > 0 && day <= monthLength[month - 1];
 	}
-
-	// Check the ranges of month and year
-	if(year < 2000 || year > 2100 || month < 1 || month > 12)
-	{ return false; }
-
-	var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-	// Adjust for leap years
-	if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-	{ monthLength[1] = 29; }
-
-	// Check the range of the day
-	return day > 0 && day <= monthLength[month - 1];
+	catch(err) {
+		FUSION.error.logError(err);
+		return false;
+	}
 }
 
 
