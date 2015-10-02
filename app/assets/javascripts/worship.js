@@ -263,6 +263,43 @@ function removeSongFromSchedule(t)
 }
 
 
+function getSchedules()
+{
+	var sid = FUSION.get.node("song_search").value;
+	if(!sid || FUSION.lib.isBlank(sid)) {
+		return false;
+	}
+	var info = {
+		"type": "GET",
+		"path": "/songs/" + sid + "/getSongSchedules",
+		"data": {
+			"song_id": sid
+		},
+		"func": displaySongSchedules
+	};
+	FUSION.lib.ajaxCall(info);
+}
+
+
+function displaySongSchedules(h)
+{
+	var hash = h || {};
+	if(hash['num_schedules'] > 0)
+	{
+		var scheds  = hash['schedules'];
+		var htmlobj = {};
+		var prntul  = FUSION.get.node("schedule_list");
+		var schinfo = {};
+		for(var i = 0; i < scheds.length; i++)
+		{
+			schinfo = scheds[i];
+			htmlobj = FUSION.lib.createHtmlElement({"type":"li", "text": schinfo['name'] + ",    " + schinfo['schedule_date']});
+			prntul.appendChild(htmlobj);
+		}
+	}
+}
+
+
 function sortUl(parent, childSelector, keySelector) {
     var items = parent.children(childSelector).sort(function(a, b) {
         var vA = $(keySelector, a).text();

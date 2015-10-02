@@ -18,6 +18,46 @@ class SongsController < ApplicationController
     @song = Song.new
   end
 
+	def getSongSchedules
+
+		sid = params[:song_id]
+
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+			@song = Song.find(sid)
+			schedules = @song.schedules.order("schedule_date DESC")
+
+			content['song_name'] = @song.name
+			content['song_id']   = @song.id
+			content['schedules'] = []
+
+			c = 0
+			schedules.each do |sch|
+				content['schedules'].push(sch.attributes)
+				c = c + 1
+			end
+			content['num_schedules'] = c
+
+			response['status'] = "success"
+			response['message'] = "Returning information on #{c} schedules for #{@song.name}"
+			response['content'] = content
+		rescue => error
+			response['status'] = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = error.backtrace
+		ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+
+	end
+
+
   # GET /songs/1/edit
   def edit
   end
