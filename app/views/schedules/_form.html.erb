@@ -14,7 +14,8 @@
 
 	<div class="field w100fl">
 		<%= f.label :name %><br>
-		<%= f.text_field :name, { class: "txt100", style: "" } %>
+		<% nm = @schedule.id.nil? ? "SONGS FOR " : @schedule.name %>
+		<%= f.text_field :name, { value: nm, class: "txt100", style: "", autofocus: true } %>
 	</div>
 
 	<div class="field w100fl">

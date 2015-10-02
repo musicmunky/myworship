@@ -228,6 +228,7 @@ function addSongToSchedule(t)
 	var sids = JSON.parse(FUSION.get.node("schedule_song_order").value);
 	sids.push(sng_id);
 	FUSION.get.node("schedule_song_order").value = JSON.stringify(sids);
+	FUSION.get.node("song_search_txt").value = "";
 
 	SONGLIST.remove("song_name", new_sn);
 }
