@@ -29,6 +29,8 @@ jQuery( document ).ready(function() {
 		"columnDefs": sng_coldefs
 	});
 
+	$("#song_search_table").DataTable();
+
 	var sch_coldefs  = [];
 	if(FUSION.get.node("schedule_table"))
 	{
@@ -269,6 +271,7 @@ function getSchedules()
 	if(!sid || FUSION.lib.isBlank(sid)) {
 		return false;
 	}
+// 	FUSION.get.node("schedule_list").innerHTML = "";
 	var info = {
 		"type": "GET",
 		"path": "/songs/" + sid + "/getSongSchedules",
@@ -286,6 +289,7 @@ function displaySongSchedules(h)
 	var hash = h || {};
 	if(hash['num_schedules'] > 0)
 	{
+		var table = $("#song_search_table").DataTable();
 		var scheds  = hash['schedules'];
 		var htmlobj = {};
 		var prntul  = FUSION.get.node("schedule_list");
@@ -293,8 +297,9 @@ function displaySongSchedules(h)
 		for(var i = 0; i < scheds.length; i++)
 		{
 			schinfo = scheds[i];
-			htmlobj = FUSION.lib.createHtmlElement({"type":"li", "text": schinfo['name'] + ",    " + schinfo['schedule_date']});
-			prntul.appendChild(htmlobj);
+			table.row.add( [schinfo['schedule_date'],schinfo['name']]).draw();
+			//htmlobj = FUSION.lib.createHtmlElement({"type":"li", "text": schinfo['name'] + ",    " + schinfo['schedule_date']});
+			//prntul.appendChild(htmlobj);
 		}
 	}
 }
