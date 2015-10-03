@@ -1,6 +1,55 @@
-<div id="schedule_song_search_div" class="w100fl">
+<div id="all_reports" style="padding:0px;">
+
+<ul>
+	<li><a href="#top_ten_div">Top 10 Songs</a></li>
+	<li><a href="#bottom_ten_div">Bottom 10 Songs</a></li>
+	<li><a href="#schedule_song_search_div">Schedules by Song</a></li>
+</ul>
+<div id="top_ten_div" class="w100fl" style="border-left:1px solid #DDD;border-right:1px solid #DDD;">
 	<h3>
-		Search for Schedules by Song<%#= @songs.size %>
+		Top 10 Songs at FFC
+	</h3>
+	<table class="table" style="margin-top:20px;">
+		<thead><tr>
+			<th>Name</th>
+			<th style="width:250px;text-align:center;">Number of Times Scheduled</th>
+			<th style="width:150px;text-align:center;">Last Scheduled</th>
+		</tr></thead>
+		<tbody>
+			<% Song.get_top_songs(10, "DESC").each do |song| %>
+				<tr>
+					<td><%= link_to song[0].name, song_path(song[0]) %></td>
+					<td style="text-align:center;"><%= song[1] %></td>
+					<td style="text-align:center;"><%= song[0].get_last_scheduled_span.html_safe %></td></tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<div id="bottom_ten_div" class="w100fl" style="border-left:1px solid #DDD;border-right:1px solid #DDD;">
+	<h3>
+		Bottom 10 Songs at FFC
+	</h3>
+	<table class="table" style="margin-top:20px;">
+		<thead><tr>
+			<th>Name</th>
+			<th style="width:250px;text-align:center;">Number of Times Scheduled</th>
+			<th style="width:150px;text-align:center;">Last Scheduled</th>
+		</tr></thead>
+		<tbody>
+			<% Song.get_top_songs(10, "ASC").each do |song| %>
+				<tr>
+					<td><%= link_to song[0].name, song_path(song[0]) %></td>
+					<td style="text-align:center;"><%= song[1] %></td>
+					<td style="text-align:center;"><%= song[0].get_last_scheduled_span.html_safe %></td></tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<div id="schedule_song_search_div" class="w100fl" style="border-left:1px solid #DDD;border-right:1px solid #DDD;">
+	<h3>
+		Search for Schedules by Song
 	</h3>
 	<div class="w100fl ui-widget">
 		<label>Please Select a Song: </label>
@@ -22,14 +71,9 @@
 			<tbody></tbody>
 		</table>
 	</div>
+</div>
 
 </div>
-<!--
-<h3>
-	NUMBER OF SCHEDULES: <%#= @schedules.size %>
-</h3>
--->
-
 
 <%= javascript_tag do %>
 
@@ -165,6 +209,7 @@
 
 $(function() {
 	$( "#song_search" ).combobox();
+	FUSION.get.node("song_search_txt").value = "";
 });
 
 <% end %>

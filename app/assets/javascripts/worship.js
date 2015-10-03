@@ -47,6 +47,8 @@ jQuery( document ).ready(function() {
 		"columnDefs": sch_coldefs
 	});
 
+	$( "#all_reports" ).tabs();
+
 	$( "#schedule_schedule_date" ).datepicker();
 	$( "#attendance_start_time" ).datepicker();
 	$( "#attendance_end_time" ).datepicker();

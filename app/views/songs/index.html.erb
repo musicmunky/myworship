@@ -23,7 +23,7 @@
         <td><%= song.author %></td>
         <td style="text-align:center;"><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
         <td style="text-align:center;"><%= song.capo_fret %></td>
-		<td style="text-align:center;"><%= song.get_last_scheduled.html_safe %></td>
+		<td style="text-align:center;"><%= song.get_last_scheduled_span.html_safe %></td>
         <td><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
 	<% if user_signed_in? and current_user.has_role? :admin %>
 		<td><%= link_to 'Edit', edit_song_path(song) %></td>
