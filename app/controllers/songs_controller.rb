@@ -36,8 +36,11 @@ class SongsController < ApplicationController
 			content['schedules'] = []
 
 			c = 0
+			sch = {}
 			schedules.each do |sch|
-				content['schedules'].push(sch.attributes)
+				schhash = sch.attributes
+				schhash['url'] = schedule_path(sch)
+				content['schedules'].push(schhash)
 				c = c + 1
 			end
 			content['num_schedules'] = c
