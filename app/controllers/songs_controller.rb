@@ -82,7 +82,7 @@ class SongsController < ApplicationController
 					@song.song_keys << SongKey.find(songkey)
 				end
 
-				format.html { redirect_to songs_url, notice: 'Song was successfully created!' }
+				format.html { redirect_to songs_url, notice: "#{@song.name} was successfully added!" }
 				format.json { render :show, status: :created, location: @song }
 			else
 				format.html { render :new }
@@ -107,7 +107,7 @@ class SongsController < ApplicationController
 				else
 					@song.song_keys.destroy_all
 				end
-				format.html { redirect_to songs_url, notice: 'Song was successfully updated!' }
+				format.html { redirect_to songs_url, notice: "#{@song.name} was successfully updated!" }
 				format.json { render :show, status: :ok, location: @song }
 			else
 				format.html { render :edit }
@@ -121,7 +121,7 @@ class SongsController < ApplicationController
   def destroy
     @song.destroy
     respond_to do |format|
-      format.html { redirect_to songs_url, notice: 'Song was successfully deleted!' }
+      format.html { redirect_to songs_url, notice: "#{@song.name} was successfully deleted!" }
       format.json { head :no_content }
     end
   end
