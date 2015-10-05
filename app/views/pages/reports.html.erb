@@ -9,6 +9,9 @@
 	<h3>
 		Top 10 Songs at FFC
 	</h3>
+	<div id="top_songs_chart">
+
+	</div>
 	<table class="table" style="margin-top:20px;">
 		<thead><tr>
 			<th>Name</th>
@@ -75,9 +78,20 @@
 
 </div>
 
+<% data = [] %>
+<% cats = [] %>
+<% Song.get_top_songs(10, "DESC").each do |song| %>
+	<% data.push(song[1]) %>
+	<% cats.push("#{song[0].name} (#{song[0].get_last_scheduled})") %>
+<% end %>
+
 <%= javascript_tag do %>
 
 (function( $ ) {
+
+	console.log("DATA IS: <%= data.to_s %>")
+	console.log("CATS IS: <%= cats.to_s %>")
+
 	$.widget( "custom.combobox", {
 		_create: function() {
 			this.wrapper = $( "<span>" )
@@ -211,5 +225,47 @@ $(function() {
 	$( "#song_search" ).combobox();
 	FUSION.get.node("song_search_txt").value = "";
 });
+
+$(function () {
+
+    $('#top_songs_chart').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: { text: "Most Frequently Scheduled Songs" },
+        subtitle: {},
+        xAxis: {
+            categories: <%= raw cats.to_json %>,
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Number of Schedules'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.0f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Times Scheduled',
+            data: <%= data %>
+
+        }]
+    });
+});
+
+
 
 <% end %>

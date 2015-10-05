@@ -23,5 +23,6 @@
 //= require list.min
 //= require jquery.dataTables.min
 //= require worship
+//= require highcharts
 //= require turbolinks
 // require_tree .
