@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  resources :attendances
 	devise_for :users
 
 	get 'pages/index'
