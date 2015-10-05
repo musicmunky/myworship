@@ -112,11 +112,12 @@ jQuery( document ).ready(function() {
 
 function closeNotice(t)
 {
-	if(t && FUSION.lib.isElement(t))
-	{
-		try { $( t.parentNode ).fadeOut( "slow", function() {}); }
-		catch(err) { FUSION.error.logError(err); }
+	try {
+		if(t && FUSION.lib.isElement(t)) {
+			$( t.parentNode ).fadeOut( "slow", function() {});
+		}
 	}
+	catch(err) { FUSION.error.logError(err); }
 }
 
 
@@ -217,9 +218,7 @@ function addSongToSchedule(t)
 	var new_ul = FUSION.get.node("current_song_list");
 	var new_sn = old_li.getElementsByTagName("p")[0].innerHTML;
  	var sng_id = old_li.getElementsByTagName("p")[1].innerHTML;
-	var new_li = FUSION.lib.createHtmlElement({"type":"li",
-											   "attributes":{"class":"song_list_li"},
-											   "style":{"display":"list-item"}});
+	var new_li = FUSION.lib.createHtmlElement({"type":"li", "attributes":{"class":"song_list_li"}, "style":{"display":"list-item"}});
 	var new_p1 = FUSION.lib.createHtmlElement({"type":"p", "text":new_sn, "style":{"margin":"0px"}, "attributes":{"class":"song_name"}});
  	var new_p2 = FUSION.lib.createHtmlElement({"type":"p", "text":sng_id, "style":{"display":"none"}, "attributes":{"class":"song_id"}});
 	var newbtn = FUSION.lib.createHtmlElement({"type":"button", "onclick":"removeSongFromSchedule(this.parentNode)", "attributes":{"class":"li_delete"}});
