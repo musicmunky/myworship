@@ -2,12 +2,15 @@
     box-sizing: border-box;
 }
 
+html {
+	min-height:100%;
+}
+
 html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0;
 	padding: 0;
-/* 	background-color:#EEE !important; */
 	font-family: 'Lato', serif !important;
 	cursor:default;
 }
@@ -30,8 +33,6 @@ p {
 	line-height:24px;
 }
 
-
-
 .custom-combobox {
 	position: relative;
 	display: inline-block;
@@ -47,79 +48,6 @@ p {
 	margin: 0;
 	padding: 5px 10px;
 }
-
-
-.simple-calendar {
-	width:100%;
-}
-
-.simple-calendar .simple-calendar-table {
-	width:100%;
-}
-
-.simple-calendar .simple-calendar-header {
-	padding:10px;
-	border:1px solid #CCC;
-}
-.simple-calendar .day {
-/* 	width:15%; */
-	height:125px;
-	padding:10px;
-	border:1px solid #CCC;
-/* 	position:relative; */
-	width:14%;
-}
-
-.newdaylink {
-	color:#FFF;
-	font-weight:normal;
-	text-decoration:none;
-	display:block;
-	margin-top:-1px;
-}
-
-.newdaylink:hover {
-	color:#EEE;
-}
-
-.dayspan {
-	display: block;
-    float: left;
-    height: 16px;
-/*     left: 10px; */
-    line-height: 16px;
-/*     position: absolute; */
-/*     top: 10px; */
-	/*	so this (the negative margin) is in place because of a stupid bug in FF that hides table borders when
-		a background color is set and the table is relatively positioned.  It's so fricking stupid...people
-		arguing over whether the behavior is "according to spec" or whatever, when it's just damn WRONG.
-		Why should applying a background color hide a border when a border is clearly defined in the CSS???
-		WHO DECIDED THAT WAS A GOOD IDEA???   ...ugh...
-		See the discussion here:  https://bugzilla.mozilla.org/show_bug.cgi?id=688556
-	*/
-/* 	margin-top:-50px; */
-}
-
-.simple-calendar .wday-0 {}
-.simple-calendar .wday-1 {}
-.simple-calendar .wday-2 {}
-.simple-calendar .wday-3 {}
-.simple-calendar .wday-4 {}
-.simple-calendar .wday-5 {}
-.simple-calendar .wday-6 {}
-.simple-calendar .today {}
-.simple-calendar .past {}
-.simple-calendar .future {}
-.simple-calendar .past {}
-.simple-calendar .start-date {}
-.simple-calendar .prev-month {
-	background-color:#DDD;
-}
-.simple-calendar .next-month {
-	background-color:#DDD;
-}
-.simple-calendar .current-month {}
-.simple-calendar .has-events {}
 
 .eventul {
 	height:75px;
@@ -254,10 +182,6 @@ p {
 	line-height:30px !important;
 }
 
-.container {
-/*     width: 1000px !important; */
-}
-
 @media (max-width: 767px) {
     .navbar-nav > li > a {
     line-height: 20px !important;
@@ -320,110 +244,25 @@ p {
 	float:right;
 }
 
-.mainwrapper {
-	width:1000px;
-	margin-left:auto;
-	margin-right:auto;
-/* 	margin-top:60px; */
-	background-color:#FFF;
-	height:100%;
-	border-left:1px solid #ddd;
-	border-right:1px solid #ddd;
-	padding-left:10px;
-	padding-right:10px;
-	min-height:700px;
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box; /* Firefox, other Gecko */
-    box-sizing: border-box; /* Opera/IE 8+ */
+/*
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #f5f5f5;
 }
-
-.navwrapper {
-	padding-top:61px;
-	margin:0 0 15px -10px;
-	border-bottom:1px solid rgba(0,0,0,0.07);
-/* 	height:42px; */
-	height:100px;
-	width:998px;
-	background-color:#FFF;
-	color:#333;
-}
-
-.navlink {
-	display:block;
-	width:100%;
-	height:100%;
-	text-decoration:none !important;
-	color:#333 !important;
-}
-
-.settingsrow {
-	width:50%;
-	float:left;
-	height:75px;
-	line-height:75px;
-}
-
-.settingsspan {
-	margin-left:10px;
-	margin-right:10px;
-	width:200px;
-}
-
-.srchbtn {
-	margin-right:10px;
-	border:0px none;
-	outline:medium none;
-	color:#FFF;
-	line-height:60px;
-	height:60px;
-	background-color:#445C80;
-	border-radius:2px;
-	width:150px;
-}
-
-.srchbtn:hover {
-	background-color:#556D91;
-	cursor:pointer;
-}
-
-.locdiv {
-	position:absolute;
-	color:#FFF;
-	background-color:#333;
-	top:45px;
-	right:105px;
-	width:250px;
-	height:0px;
-	display:none;
-	box-shadow: 0 5px 5px 1px #343434;
-	border-radius: 4px 0 4px 4px;
-}
-
-.loclinkdiv {
-	width:100%;
-	height:40px;
-	line-height:40px;
-	overflow:hidden;
-	max-height:200px;
-	border-radius:4px;
-}
-
-.loclinkdiv:hover {
-	background-color:#666;
-}
+*/
 
 /* begin sticky footer css */
 .footer {
 	position: fixed;
 	bottom: 0;
 	height: 30px;
-/* 	opacity: .95; */
 	width: 100%;
-/* 	background-color: #FFF; */
 	background-color: #222;
 	z-index: 1000;
 	font-size:14px;
-/* 	color:#666; */
 	color:#DDD;
 	line-height:30px;
 	box-shadow:0 0 1px 1px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.03), 0 0 1px 1px rgba(0, 0, 0, 0.03), 0 0 1px 1px rgba(0, 0, 0, 0.12)
@@ -437,69 +276,7 @@ p {
 /* end sticky footer css */
 
 
-/* beg sticky header css */
-.header {
-    background-color: #FFF;
-	color:#666;
-    position: fixed;
-    width: 100%;
-    height: 60px;
-    top: 0;
-    z-index: 2000;
-	box-shadow:0 1px 1px rgba(0, 0, 0, 0.15), -1px 0 0 rgba(0, 0, 0, 0.03), 1px 0 0 rgba(0, 0, 0, 0.03), 0 1px 0 rgba(0, 0, 0, 0.12)
-}
 
-.header-content {
-	width:100%;
-	height:100%;
-	line-height:1.5;
-}
-.header-nav {
-	padding:25px;
-	float:right;
-	cursor:pointer;
-}
-.main-content {
-	width:1065px;
-	margin-left:auto;
-	margin-right:auto;
-	margin-top:85px;
-}
-.title {
-	width:100%;
-	line-height:2.5em;
-	font-size:24px;
-	float:left;
-}
-.arrowdiv {
-	height:20px;
-	float:left;
-	width:100%;
-}
-.spanbtn {
-	display:block !important;
-	text-align:center;
-	width:55px;
-	font-size:21px;
-	cursor:pointer;
-}
-.divider {
-	background-color: #555;
-	border-radius: 10px;
-	cursor: default;
-	height: 100%;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 0;
-	padding: 0;
-	width: 2px;
-	float:right;
-}
-/* end sticky header css */
-
-.forecast {
-	width: 100%;
-}
 
 .w50fl {
 	width:50%;
@@ -543,198 +320,6 @@ p {
 	background-color:#E8EFFF !important;
 }
 
-.citylink {
-	white-space:nowrap;
-	color:#333;
-	text-decoration:none;
-	display:block;
-	outline:medium none;
-	float:left;width:85%;
-	margin-left:5px;
-	overflow:hidden;
-	text-overflow:ellipsis;
-}
-
-.logowrapper {
-	float:left;
-	width:200px;
-}
-
-.logoimage {
-	width:40px;
-	margin-top:10px;
-	margin-right:10px;
-	float:left;
-}
-
-.titletext {
-	float:left;
-	cursor:default;
-}
-
-.removespan {
-	float:left;
-	display:block;
-	height:35%;
-	margin-top:14px;
-	margin-left:3px;
-	cursor:pointer;
-	width:10%;
-	color:#666;
-}
-
-.locwrapper {
-	float:left;
-	margin-left:15px;
-	width:445px;
-	text-align:center;
-}
-
-.locdispwrapper {
-	font-size:25px;
-}
-
-.loccanvaswrapper {
-	height:60px;
-	display:inline-block;
-}
-
-.unitspan {
-	margin-right:10px;
-}
-/*
-.day {
- 	border-radius:4px;
-    box-shadow: 0 0 1px 1px #CCC;
-    float: left;
-    height: 175px;
-    margin: 0 15px;
-    position: relative;
-    text-align: center;
-    width: 220px;
-}
-*/
-/*
-.hourofday {
-	height:205px;
-	width: 95px;
-	margin-left:15px;
-	box-shadow: 0 0 1px 1px #CCC;
-	border-radius: 4px;
-
-	-webkit-transition: box-shadow .25s; /* Safari */
-    -webkit-transition-timing-function: linear; /* Safari */
-/*     transition: box-shadow .25s; */
-/*     transition-timing-function: linear; */
-/* } */
-/*
-.hour {
-    float: left;
-    height: 205px;
-    position: relative;
-    text-align: center;
-    width: 125px;
-
-	-webkit-transition: margin-top .25s; /* Safari */
-/*     -webkit-transition-timing-function: linear; /* Safari */ */
-/*     transition: margin-top .25s; */
-/*     transition-timing-function: linear; */
-/* } */
-/*
-.hour:hover {
-	margin-top:-1px;
-}
-
-.hourofday:hover {
-	box-shadow: 0 2px 3px 0px #CCC;
-}
-*/
-.searchbox {
-	color:#222;
-	width:200px;
-	text-align:left;
-	padding-left:5px;
-	margin-top:25px;
-}
-
-.searchinput {
-	border:1px solid #DDD;
-	height:22px;
-}
-
-.headspan {
-    display: block;
-    float: left;
-    font-size: 16px;
-    height: 100%;
-    line-height: 4em;
-	text-align:left;
-}
-
-.tfcdiv {
-	margin:10px auto;
-	width:470px;
-	height:125px;
-	box-shadow:0 0 1px 1px #CCC;
- 	border-radius:4px;
-}
-
-#tfcheadertext {
-	border-bottom:1px solid #EEE;
-	margin-bottom:5px;
-}
-
-#srchcont {
-	text-align:right;
-	font-size:18px;
-	line-height:3em;
-}
-
-#searchform {
-	width:225px;
-}
-
-#srchicn {
-	width:15px;
-	height:15px;
-}
-
-.locationspan {
-    color: #333;
-    display: block;
-    float: left;
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 2.5em;
-    margin-left: 15px;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 445px;
-}
-
-.header-logo {
-	height:100%;
-	float:left;
-	padding-left:50px;
-	width:450px;
-}
-
-.header-units {
-	width:120px;
-	float:right;
-	line-height:65px;
-	height:100%;
-	margin-right:20px
-}
-
-.header-search {
-	float:right;
-	height:100%;
-	padding-right:50px;
-	width:380px;
-}
 
 .footer-content-left {
 	width:75%;
@@ -742,11 +327,6 @@ p {
 	text-align:left;
 }
 
-/* .footer-content-center {
-	width:33%;
-	float:left;
-}
-*/
 .footer-content-right {
 	width:20%;
 	float:right;
@@ -774,40 +354,6 @@ p {
 		margin-left:25%;
 	}
 
-	#srchcont {
-		width:100%;
-		text-align:center;
-	}
-	.settingsrow {
-		width:100%;
-	}
-
-	.locdiv {
-		top:108px;
-		right:calc(50% - 131px);
-		border-radius: 4px;
-	}
-/*
-	.day {
-		margin-bottom:20px;
-	}
-*/
-	.tfcbtm {
-		margin-top:30px;
-	}
-/*
-	.hour {
-		margin-top:20px;
-	}
-
-	.hour:hover {
-		margin-top:20px;
-	}
-
-	.hourwrapper {
-		margin-top:0px;
-	}
-*/
 	.mainwrapper {
 		width:500px;
 		height:1520px;
@@ -835,7 +381,7 @@ p {
 	}
 
 	.footer {
-		height:62px;
+/* 		height:62px; */
 	}
 
 	.innerfooter{
