@@ -54,10 +54,8 @@ class Song < ActiveRecord::Base
 
 		if ascdsc == "DESC"
 			result = @connection.exec_query("SELECT `song_id`, COUNT(`song_id`) AS `num_schedules`
-											 FROM `schedules_songs`
-											 GROUP BY `song_id`
-											 ORDER BY `num_schedules` #{ascdsc}
-											 LIMIT #{lim};")
+											 FROM `schedules_songs` GROUP BY `song_id`
+											 ORDER BY `num_schedules` #{ascdsc} LIMIT #{lim};")
 			result.each do |row|
 				@song = Song.find(row['song_id'])
 				songs.push([@song, row['num_schedules']])
@@ -65,8 +63,7 @@ class Song < ActiveRecord::Base
 
 		else
 
-			result = @connection.exec_query("SELECT id, name
-											 FROM songs
+			result = @connection.exec_query("SELECT id, name FROM songs
 											 WHERE id NOT IN (SELECT song_id FROM schedules_songs)")
 			diff = lim - result.length
 			result.each do |row|
@@ -76,10 +73,8 @@ class Song < ActiveRecord::Base
 
 			if diff > 0
 				songarray = @connection.exec_query("SELECT `song_id`, COUNT(`song_id`) AS `num_schedules`
-											 	 	FROM `schedules_songs`
-											 	 	GROUP BY `song_id`
-											 	 	ORDER BY `num_schedules` #{ascdsc}
-											 	 	LIMIT #{diff};")
+											 	 	FROM `schedules_songs` GROUP BY `song_id`
+											 	 	ORDER BY `num_schedules` #{ascdsc} LIMIT #{diff};")
 				songarray.each do |row|
 					@song = Song.find(row['song_id'])
 					songs.push([@song, row['num_schedules']])
