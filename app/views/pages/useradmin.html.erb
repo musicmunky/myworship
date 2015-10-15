@@ -1,0 +1,26 @@
+<div id="all_users" style="padding:0px;">
+
+	<h3>
+		Manage Users
+	</h3>
+	<table class="table">
+		<thead><tr><th>Name</th><th>Email Address</th><th>Admin?</th><th></th></tr></thead>
+		<tbody>
+			<% @users.each do |user| %>
+				<tr>
+					<td><%= user.get_name %></td>
+					<td><%= link_to user.email %></td>
+					<td>
+						<% chk = (user.has_role? :admin) ? "checked" : "" %>
+						<input type="checkbox" id="admin_<%= user.id %>" <%= chk %> onchange="updateAdmin(<%= user.id %>, this.checked)">
+					</td>
+					<td>
+						<button class="btn btn-danger">
+							Delete
+						</button>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

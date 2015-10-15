@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
 
-	devise_for :users
+	devise_for :users, :controllers => { registrations: 'registrations' }
 
 	get 'pages/index'
+# 	get 'pages/useradmin'
 	get 'reports' => 'pages#reports'
+	get 'useradmin' => 'pages#useradmin'
 
 #	resources :song_keys #, path: "worship/song_keys"
 	resource :song_keys, only: [:index, :show]
