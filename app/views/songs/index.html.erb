@@ -8,6 +8,7 @@
 			<th style="text-align:center;">Song Key</th>
 			<th style="text-align:center;">Capo Fret</th>
 			<th style="text-align:center;">Times Scheduled</th>
+			<th style="text-align:center;">First Scheduled</th>
 			<th style="text-align:center;">Last Scheduled</th>
 			<th></th>
 		<% if user_signed_in? and current_user.has_role? :admin %>
@@ -25,6 +26,7 @@
         <td style="text-align:center;"><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
         <td style="text-align:center;"><%= song.capo_fret %></td>
 		<td style="text-align:center;"><%= song.schedules.size %></td>
+		<td style="text-align:center;"><%= song.get_first_scheduled %></td>
 		<td style="text-align:center;"><%= song.get_last_scheduled_span.html_safe %></td>
         <td><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
 	<% if user_signed_in? and current_user.has_role? :admin %>

@@ -11,18 +11,20 @@ jQuery( document ).ready(function() {
 		document.body.style.setProperty("font-family", "'Trebuchet MS', Helvetica, sans-serif", "important");
 	}
 
-	var sng_coldefs = [];
+	var sng_coldefs = [{ "type": "date", "targets": 5 }];
 	if(FUSION.get.node("song_table"))
 	{
 		var sng_last_col = FUSION.get.node("song_table").rows[0].cells.length - 1;
 		var sng_cols_arr = [];
 		if(sng_last_col > 4)
 		{
-			for(var i = 5; i <= sng_last_col; i++)
+			for(var i = 6; i <= sng_last_col; i++)
 			{
 				sng_cols_arr.push(i);
 			}
-			sng_coldefs = [{ "searchable": false, "targets": sng_cols_arr }, { "orderable": false, "targets": sng_cols_arr }];
+			//sng_coldefs = [{ "searchable": false, "targets": sng_cols_arr }, { "orderable": false, "targets": sng_cols_arr }];
+			sng_coldefs.push({ "searchable": false, "targets": sng_cols_arr });
+			sng_coldefs.push({ "orderable": false, "targets": sng_cols_arr });
 		}
 	}
 

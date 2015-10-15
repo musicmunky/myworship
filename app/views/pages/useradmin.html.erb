@@ -4,13 +4,13 @@
 		Manage Users
 	</h3>
 	<table class="table">
-		<thead><tr><th>Name</th><th>Email Address</th><th>Admin?</th><th></th></tr></thead>
+		<thead><tr><th>Name</th><th>Email Address</th><th style="text-align:center;">Admin?</th><th></th></tr></thead>
 		<tbody>
 			<% @users.each do |user| %>
 				<tr>
 					<td><%= user.get_name %></td>
 					<td><%= link_to user.email %></td>
-					<td>
+					<td style="text-align:center;">
 						<% chk = (user.has_role? :admin) ? "checked" : "" %>
 						<input type="checkbox" id="admin_<%= user.id %>" <%= chk %> onchange="updateAdmin(<%= user.id %>, this.checked)">
 					</td>

@@ -33,6 +33,17 @@ class Song < ActiveRecord::Base
 		return last_date
 	end
 
+	def get_first_scheduled
+		schdl_date = ""
+		schdl = self.schedules.order("schedule_date ASC").first
+
+		if !schdl.nil?
+			schdl_date = schdl.schedule_date.strftime("%m/%d/%Y")
+		else
+			schdl_date = "N/A"
+		end
+		return schdl_date
+	end
 
 	def get_last_scheduled
 		schdl_date = ""
