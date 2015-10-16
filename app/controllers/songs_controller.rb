@@ -1,22 +1,25 @@
 class SongsController < ApplicationController
-  before_action :set_song, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, :except => [:show, :index]
+	before_action :set_song, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user!, :except => [:show, :index]
 
-  # GET /songs
-  # GET /songs.json
-  def index
-    @songs = Song.all.order(:name)
-  end
+	# GET /songs
+	# GET /songs.json
+	def index
+		@songs = Song.all.order(:name)
+	end
 
-  # GET /songs/1
-  # GET /songs/1.json
-  def show
-  end
 
-  # GET /songs/new
-  def new
-    @song = Song.new
-  end
+	# GET /songs/1
+	# GET /songs/1.json
+	def show
+	end
+
+
+	# GET /songs/new
+	def new
+		@song = Song.new
+	end
+
 
 	def getSongSchedules
 
@@ -61,9 +64,10 @@ class SongsController < ApplicationController
 	end
 
 
-  # GET /songs/1/edit
-  def edit
-  end
+	# GET /songs/1/edit
+	def edit
+	end
+
 
 	# POST /songs
 	# POST /songs.json

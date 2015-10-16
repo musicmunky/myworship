@@ -125,19 +125,68 @@ function closeNotice(t)
 
 function updateAdmin(id, chk)
 {
-	alert("ID IS: " + id + ",  CHECKED IS: " + chk);
+	var uid = id;
+	var adm = chk;
+
+	if(!uid || FUSION.lib.isBlank(uid)) {
+		return false;
+	}
+
+	var info = {
+		"type": "POST",
+		"path": "/pages/1/updateAdmin",
+		"data": {
+			"user_id": uid,
+			"is_admin": adm
+		},
+		"func": updateAdminResponse
+	};
+	FUSION.lib.ajaxCall(info);
+}
+
+
+function updateAdminResponse(h)
+{
+	var hash = h || {};
+}
+
+
+function disableUser(id, chk)
+{
+	var uid = id;
+	var dis = chk;
+
+	if(!uid || FUSION.lib.isBlank(uid)) {
+		return false;
+	}
+
+	var info = {
+		"type": "POST",
+		"path": "/pages/1/disableUser",
+		"data": {
+			"user_id": uid,
+			"is_disabled": dis
+		},
+		"func": disableUserResponse
+	};
+	FUSION.lib.ajaxCall(info);
+}
+
+
+function disableUserResponse(h)
+{
+	var hash = h || {};
 }
 
 
 function deleteUser(id)
 {
-	alert("ID IS: " + id);
-}
-
-
-function disableUser(id)
-{
-	alert("ID IS: " + id);
+	var uid = id;
+	if(!uid || FUSION.lib.isBlank(uid)) {
+		return false;
+	}
+	alert("Currently this functionality is not implemented, but it *might* be soon");
+	return false;
 }
 
 

@@ -26,6 +26,76 @@ class PagesController < ApplicationController
 
 
 	def updateAdmin
+
+		uid = params[:user_id]
+		adm = params[:is_admin]
+
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+			@user = User.find(uid)
+
+#  		logger.debug "\n\n\n\n\n\n\nADM IS: #{adm}\n\n\n\n\n\n\n"
+
+			if adm == "true"
+				@user.add_role(:admin)
+			else
+				@user.remove_role(:admin)
+			end
+
+			content['user'] = @user.attributes
+			content['roles'] = @user.roles
+
+			response['status'] = "success"
+			response['message'] = "Updated role information for #{@user.get_name}"
+			response['content'] = content
+		rescue => error
+			response['status'] = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = error.backtrace
+		ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+
+	end
+
+
+	def disableUser
+
+		uid = params[:user_id]
+		dis = params[:is_disabled]
+
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+			@user = User.find(uid)
+
+			arch = (dis == "true") ? true : false
+			@user.update({archive: arch})
+
+			content['user'] = @user.attributes
+
+			response['status'] = "success"
+			response['message'] = "Updated account information for #{@user.get_name}"
+			response['content'] = content
+		rescue => error
+			response['status'] = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = error.backtrace
+		ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+
 	end
 
 

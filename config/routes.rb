@@ -28,6 +28,13 @@ Rails.application.routes.draw do
 		end
 	end
 
+	resources :pages do
+		member do
+			post "updateAdmin"
+			post "disableUser"
+		end
+	end
+
 	root 'pages#index' #, path: "worship"
 
 	# The priority is based upon order of creation: first created -> highest priority.

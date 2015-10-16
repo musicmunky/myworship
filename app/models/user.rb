@@ -6,6 +6,14 @@ class User < ActiveRecord::Base
 			:rememberable, :trackable, :validatable #:recoverable,
 	has_many :attendances
 
+	def active_for_authentication?
+		super && !self.archive # i.e. super && self.is_active
+	end
+
+	def inactive_message
+		"Sorry, this account has been disabled - please contact your administrator"
+	end
+
 	def get_name
 		fullname = "#{self.first_name} #{self.last_name}"
 	end
