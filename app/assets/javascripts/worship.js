@@ -7,9 +7,12 @@ jQuery( document ).ready(function() {
 	var gbr = FUSION.get.browser();
 	if(gbr.browser && gbr.browser == "IE")
 	{
-// 		document.body.style.fontFamily = "'Trebuchet MS', Helvetica, sans-serif";
 		document.body.style.setProperty("font-family", "'Trebuchet MS', Helvetica, sans-serif", "important");
 	}
+
+	$( ".navlink" ).click(function() {
+		FUSION.set.overlayMouseWait();
+	});
 
 	var sng_coldefs = [{ "type": "date", "targets": 5 }];
 	if(FUSION.get.node("song_table"))
@@ -22,7 +25,6 @@ jQuery( document ).ready(function() {
 			{
 				sng_cols_arr.push(i);
 			}
-			//sng_coldefs = [{ "searchable": false, "targets": sng_cols_arr }, { "orderable": false, "targets": sng_cols_arr }];
 			sng_coldefs.push({ "searchable": false, "targets": sng_cols_arr });
 			sng_coldefs.push({ "orderable": false, "targets": sng_cols_arr });
 		}

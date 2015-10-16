@@ -5,6 +5,7 @@ class Song < ActiveRecord::Base
 	has_and_belongs_to_many :schedules
 	has_and_belongs_to_many :song_keys
 
+
 	def get_embed_video
 		mtch = self.media_link.match(/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/)
 		vid  = mtch.length > 0 ? content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{mtch[1]}", style: "width:500px;height:300px;border:none;") : ""
@@ -33,6 +34,7 @@ class Song < ActiveRecord::Base
 		return last_date
 	end
 
+
 	def get_first_scheduled
 		schdl_date = ""
 		schdl = self.schedules.order("schedule_date ASC").first
@@ -44,6 +46,7 @@ class Song < ActiveRecord::Base
 		end
 		return schdl_date
 	end
+
 
 	def get_last_scheduled
 		schdl_date = ""
