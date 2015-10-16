@@ -129,6 +129,18 @@ function updateAdmin(id, chk)
 }
 
 
+function deleteUser(id)
+{
+	alert("ID IS: " + id);
+}
+
+
+function disableUser(id)
+{
+	alert("ID IS: " + id);
+}
+
+
 function checkScheduleForm()
 {
 	var sname = FUSION.get.node("schedule_name").value;

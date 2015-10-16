@@ -4,19 +4,23 @@
 		Manage Users
 	</h3>
 	<table class="table">
-		<thead><tr><th>Name</th><th>Email Address</th><th style="text-align:center;">Admin?</th><th></th></tr></thead>
+		<thead><tr><th>Name</th><th>Email Address</th><th style="text-align:center;">Admin?</th><th style="text-align:center;">Disable?</th><th></th></tr></thead>
 		<tbody>
 			<% @users.each do |user| %>
 				<tr>
-					<td><%= user.get_name %></td>
-					<td><%= link_to user.email %></td>
-					<td style="text-align:center;">
+					<td style="vertical-align:middle;"><%= user.get_name %></td>
+					<td style="vertical-align:middle;"><%= link_to user.email %></td>
+					<td style="text-align:center;vertical-align:middle;">
 						<% chk = (user.has_role? :admin) ? "checked" : "" %>
 						<input type="checkbox" id="admin_<%= user.id %>" <%= chk %> onchange="updateAdmin(<%= user.id %>, this.checked)">
 					</td>
+					<td style="text-align:center;vertical-align:middle;">
+						<% chk = user.archive? ? "checked" : "" %>
+						<input type="checkbox" id="archive_<%= user.id %>" <%= chk %> onchange="disableUser(<%= user.id %>, this.checked)">
+					</td>
 					<td>
-						<button class="btn btn-danger">
-							Delete
+						<button class="btn btn-danger" onclick="deleteUser(<%= user.id %>)">
+							<span class="glyphicon glyphicon-trash" style="margin-left:-5px;margin-right:10px;"></span>Delete
 						</button>
 					</td>
 				</tr>

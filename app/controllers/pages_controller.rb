@@ -19,8 +19,17 @@ class PagesController < ApplicationController
 				format.html { redirect_to root_url, alert: 'You are not authorized to view that page' }
 			end
 		else
-			@users = User.all
+# 			@users = User.where("archive = false").order("last_name ASC")
+			@users = User.order("last_name ASC")
 		end
+	end
+
+
+	def updateAdmin
+	end
+
+
+	def deleteUser
 	end
 
 end
