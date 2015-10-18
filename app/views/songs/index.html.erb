@@ -1,4 +1,9 @@
-<h3>All Songs</h3>
+<h3>
+	All Songs
+	<% if user_signed_in? and current_user.has_role? :admin %>
+		<%= link_to 'New Song', new_song_path, { class: "btn btn-default btn-xs", style: "float:right;margin-top:2px;" } %>
+	<% end %>
+</h3>
 
 <table class="table" id="song_table">
 	<thead>
@@ -37,8 +42,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-<% if user_signed_in? and current_user.has_role? :admin %>
-	<%= link_to 'New Song', new_song_path, { class: "btn btn-success", style: "float:left;width:150px;" } %>
-<% end %>
