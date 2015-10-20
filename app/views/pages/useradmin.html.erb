@@ -4,12 +4,22 @@
 		Manage Users
 	</h3>
 	<table class="table">
-		<thead><tr><th>Name</th><th>Email Address</th><th style="text-align:center;">Admin?</th><th style="text-align:center;">Disable?</th><th></th></tr></thead>
+		<thead><tr>
+			<th>Name</th>
+			<th>Email Address</th>
+			<th>Last Sign-in</th>
+			<th>IP Address</th>
+			<th style="text-align:center;">Admin?</th>
+			<th style="text-align:center;">Disable?</th>
+			<th></th></tr>
+		</thead>
 		<tbody>
 			<% @users.each do |user| %>
 				<tr>
 					<td style="vertical-align:middle;"><%= user.get_name %></td>
 					<td style="vertical-align:middle;"><%= link_to user.email %></td>
+					<td style="vertical-align:middle;"><%= user.current_sign_in_at.strftime("%m/%d/%Y %I:%M:%S %p") %></td>
+					<td style="vertical-align:middle;"><%= user.current_sign_in_ip %></td>
 					<td style="text-align:center;vertical-align:middle;">
 						<% chk = (user.has_role? :admin) ? "checked" : "" %>
 						<input type="checkbox" id="admin_<%= user.id %>" <%= chk %> onchange="updateAdmin(<%= user.id %>, this.checked)">
