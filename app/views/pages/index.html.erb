@@ -15,7 +15,8 @@
 	</div>
 </div>
 -->
+<% nxtsch = Schedule.next_schedule %>
 <div id="schedules">
-	<%= render @schedules %>
+	<%= render :partial => 'schedules/schedule', :collection => @schedules, locals: {next_sched: nxtsch} %>
 </div>
 <%= will_paginate @schedules %>
