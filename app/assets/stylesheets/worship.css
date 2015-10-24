@@ -406,7 +406,21 @@ p {
 		width:100%;
 		text-align:center;
 	}
+/* Tim additions - also quick and dirty, but Randy smells */}
+.anncmnt_div {
+	width:100%;
+	background-color:#52A0DB;
+	padding:5px;
+	color:#FFF;
+	margin-top:-1px;
+	border:1px solid #333;
 }
+
+.anncmnt_div > a {
+	text-decoration:none;
+	color:#FFF;
+}
+
 
 /* Randy Tweaks - Quick and DIIRTY!*/
 
@@ -417,7 +431,7 @@ p {
 
 .navbar, .navbar-header, .container-fluid, .navbar-right, {min-height:100px !important;}
 
-.navbar-fixed-bottom, .navbar-fixed-top {position:absolute !important;}
+/* .navbar-fixed-bottom, .navbar-fixed-top {position:absolute !important;} */
 .navlink {height:100px; !important; }
 .navbar-inverse .navbar-nav>li>a {line-height:100px !important;}
 

@@ -16,6 +16,16 @@
 	</div>
 </div>
 -->
+
+<div id="announcementdiv" style="width:100%;">
+	<% Announcement.get_active.each do |announcement| %>
+		<div class="anncmnt_div">
+			<%= "<strong>#{announcement.heading}</strong>&nbsp;&nbsp;#{announcement.message}".html_safe %>
+		</div>
+	<% end %>
+</div>
+
+
 <%# nxtsch = Schedule.next_schedule %>
 <div id="schedules">
 	<%#= render :partial => 'schedules/schedule', :collection => @schedules, locals: {next_sched: nxtsch} %>

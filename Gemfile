@@ -23,6 +23,7 @@ gem 'jquery-turbolinks'
 gem 'will_paginate', '~> 3.0.7'
 gem 'devise'
 gem 'rolify'
+gem 'acts_as_commentable'
 #gem 'simple_calendar', '~> 2.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

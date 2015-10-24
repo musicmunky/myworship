@@ -1,5 +1,6 @@
 class Schedule < ActiveRecord::Base
 	has_and_belongs_to_many :songs
+	acts_as_commentable
 	serialize :song_order
 
 	scope :next_schedule, Proc.new { |after = DateTime.now, limit = 1| where('schedule_date > ?', after).order("schedule_date ASC").limit(limit) }

@@ -2,6 +2,8 @@ class Song < ActiveRecord::Base
 
 	include ActionView::Helpers::TagHelper
 
+	acts_as_commentable
+
 	has_and_belongs_to_many :schedules
 	has_and_belongs_to_many :song_keys
 
