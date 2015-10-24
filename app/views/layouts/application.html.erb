@@ -37,6 +37,8 @@
 					<% if user_signed_in? and current_user.has_role? :admin %>
 						<li class="" id=""><a class="navlink" href="<%= reports_path %>">Reports</a></li>
 						<li class="" id=""><a class="navlink" href="<%= useradmin_path %>">Users</a></li>
+						<li class="" id=""><a class="navlink" href="<%= announcements_path %>">Announcements</a></li>
+
 					<% end %>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

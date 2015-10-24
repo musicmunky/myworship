@@ -1,0 +1,38 @@
+<!--<p id="notice"><%#= notice %></p>//-->
+
+<h3>
+	Announcements
+	<% if user_signed_in? and current_user.has_role? :admin %>
+		<%= link_to 'New Announcement', new_announcement_path, { class: "btn btn-default btn-xs", style: "float:right;margin-top:2px;" } %>
+	<% end %>
+</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Heading</th>
+      <th>Message</th>
+      <th style="text-align:center;">Active?</th>
+      <th style="text-align:center;">Created By</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @announcements.each do |announcement| %>
+      <tr>
+        <td><%= announcement.heading %></td>
+        <td><%= announcement.message %></td>
+        <td style="text-align:center;">
+			<input type="checkbox"
+				   onchange="updateAnnouncementActive(this)"
+				   id="is_active_<%= announcement.id %>"
+				   <%= announcement.is_active? ? "checked" : "" %> />
+		</td>
+        <td style="text-align:center;"><%= User.find(announcement.user_id).get_name %></td>
+        <td><%= link_to 'Edit', edit_announcement_path(announcement) %></td>
+        <td><%= link_to 'Delete', announcement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

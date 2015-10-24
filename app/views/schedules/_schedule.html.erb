@@ -1,5 +1,8 @@
-<% bgclr = schedule.id == next_sched.first.id ? "#FFFFAA" : "#FFFFFF" %>
-<div class="schedule schedule_display_list" style="padding-left:10px;padding-right:10px;background-color:<%= bgclr %>;">
+<% next_sched = Schedule.next_schedule %>
+<% styl = schedule.id == next_sched.first.id ? "background-color:#FFFFAA;border:1px solid #888;" : "" %>
+<% notc = schedule.id == next_sched.first.id ? "<span style='float:left;width:100%;display:block;font-style:italic;font-size:24px;'>Next Up</span>" : "" %>
+<div class="schedule schedule_display_list" style="padding-left:10px;padding-right:10px;<%= styl %>;">
+	<%= notc.html_safe %>
 	<h3 style="margin-bottom:0px !important;">
 		<%= link_to schedule.name, schedule_path(schedule), { class: "schedule_display_link", target: "_blank" } %>
 		<span style="font-size:14px;float:right;height:36px;line-height:36px;display:block;"><%= schedule.schedule_date.strftime('%m/%d/%Y') %></span>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  heading: MyString
+  message: MyText
+  is_active: false
+  user_id: 1
+
+two:
+  heading: MyString
+  message: MyText
+  is_active: false
+  user_id: 1

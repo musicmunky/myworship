@@ -1,7 +1,8 @@
+<!--//
 <div style="margin:-10px auto 0px;width:600px;">
-	<%= image_tag("ffc_worship3.png", alt: "Praise Team Announcement", style: "width:100%;") %>
+	<%#= image_tag("ffc_worship3.png", alt: "Praise Team Announcement", style: "width:100%;") %>
 </div>
-
+-->
 <!--Possible update to filter events/posts by type?//-->
 <!--
 <div style="width:100%;height:50px;float:left;background-color:#EEE;">
@@ -15,8 +16,9 @@
 	</div>
 </div>
 -->
-<% nxtsch = Schedule.next_schedule %>
+<%# nxtsch = Schedule.next_schedule %>
 <div id="schedules">
-	<%= render :partial => 'schedules/schedule', :collection => @schedules, locals: {next_sched: nxtsch} %>
+	<%#= render :partial => 'schedules/schedule', :collection => @schedules, locals: {next_sched: nxtsch} %>
+	<%= render @schedules %>
 </div>
 <%= will_paginate @schedules %>

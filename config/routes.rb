@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :announcements
 	devise_for :users, :controllers => { registrations: 'registrations' }
 
 	get 'pages/index'
@@ -32,6 +33,12 @@ Rails.application.routes.draw do
 		member do
 			post "updateAdmin"
 			post "disableUser"
+		end
+	end
+
+	resources :announcements do
+		member do
+			post "activeAnnouncement"
 		end
 	end
 

@@ -397,6 +397,34 @@ function displaySongSchedules(h)
 }
 
 
+function updateAnnouncementActive(t)
+{
+	var chk = t || {};
+	if(!t) {
+		return false;
+	}
+
+	var el_id = chk.id.split("_");
+	var aid = el_id[el_id.length - 1];
+	var info = {
+		"type": "POST",
+		"path": "/announcements/" + aid + "/activeAnnouncement",
+		"data": {
+			"announcement_id": aid,
+			"is_active": chk.checked
+		},
+		"func": updateAnnouncementActiveResponse
+	};
+	FUSION.lib.ajaxCall(info);
+}
+
+
+function updateAnnouncementActiveResponse(h)
+{
+	var hash = h || {};
+}
+
+
 function sortUl(parent, childSelector, keySelector) {
     var items = parent.children(childSelector).sort(function(a, b) {
         var vA = $(keySelector, a).text();

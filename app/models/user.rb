@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable,
 			:rememberable, :trackable, :validatable #:recoverable,
-	has_many :attendances
+	has_many :announcements
 
 	def active_for_authentication?
 		super && !self.archive # i.e. super && self.is_active
