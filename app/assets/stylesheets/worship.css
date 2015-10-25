@@ -180,7 +180,7 @@ p {
     min-height: 60px !important;
 }
 
-.navbar-brand {	background:url(http://ourfaithfamily.com/img/new_style_white.png);
+.navbar-brand {	background:url(../assets/new_style_white.png);
 				background-size: contain; background-repeat:no-repeat;
 }
 
@@ -375,7 +375,7 @@ p {
 /* Tim additions - also quick and dirty, but Randy smells */}
 .announce_div {
 	width:100%;
-	background-color:#52A0DB;
+	background-color:#222;
 	padding:5px;
 	color:#FFF;
 	margin-top:-1px;
@@ -393,10 +393,30 @@ p {
 	margin-right:5px;
 }
 
+.current_schedule {
+	-webkit-box-shadow: 700px 0 0 0 #337ab7, -700px 0 0 0 #337ab7;
+	box-shadow: 700px 0 0 0 #337ab7, -700px 0 0 0 #337ab7;
+/* 	border-bottom:1px solid #496210; */
+/* 	border-top:1px solid #496210; */
+}
+
+.current_span {
+	float: left;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 3em;
+	margin-left: -70px;
+	color: #FFF;
+	transform: rotate(270deg);
+	transform-origin: left top 0px;
+	margin-top: 200px;
+	position: absolute;
+	text-transform: uppercase;
+}
 
 /* Randy Tweaks - Quick and DIIRTY!*/
 
-#mainwrapper div img:first-of-type {display:none;}
+/* #mainwrapper div img:first-of-type {display:none;} */
 
 .navbar-brand {padding-left:160px !important; width:290px !important; height:100px !important; line-height:100px !important;}
 .navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand img {display:none;}

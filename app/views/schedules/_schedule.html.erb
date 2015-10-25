@@ -1,7 +1,8 @@
 <% next_sched = Schedule.next_schedule %>
-<% styl = schedule.id == next_sched.first.id ? "background-color:#FFFFAA;border:1px solid #888;" : "" %>
-<% notc = schedule.id == next_sched.first.id ? "<span style='float:left;width:100%;display:block;font-style:italic;font-size:24px;'>Next Up</span>" : "" %>
-<div class="schedule schedule_display_list" style="padding-left:10px;padding-right:10px;<%= styl %>;">
+<% clss = schedule.id == next_sched.first.id ? "current_schedule" : "" %>
+<% notc = schedule.id == next_sched.first.id ? "<span class='current_span'>next up!</span>" : "" %>
+
+<div class="schedule schedule_display_list <%= clss %>" style="padding-left:10px;padding-right:10px;">
 	<%= notc.html_safe %>
 	<h3 style="margin-bottom:0px !important;">
 		<%= link_to schedule.name, schedule_path(schedule), { class: "schedule_display_link", target: "_blank" } %>
