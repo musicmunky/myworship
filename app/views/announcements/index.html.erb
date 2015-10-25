@@ -1,4 +1,3 @@
-
 <h3>
 	Announcements
 	<% if user_signed_in? and current_user.has_role? :admin %>
@@ -20,8 +19,8 @@
   <tbody>
     <% @announcements.each do |announcement| %>
       <tr>
-        <td><%= announcement.heading %></td>
-        <td><%= announcement.message %></td>
+        <td><%= announcement.heading.html_safe %></td>
+        <td><%= announcement.message.html_safe %></td>
         <td style="text-align:center;">
 			<input type="checkbox"
 				   onchange="updateAnnouncementActive(this)"
