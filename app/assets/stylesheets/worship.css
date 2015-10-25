@@ -201,13 +201,6 @@ p {
     padding-bottom: 10px !important;}
 }
 
-
-.homeparagraph {
-	line-height:40px !important;
-	margin-bottom:20px !important;
-	font-size:16px;
-}
-
 .field {
 	float: left;
     font-size: 14px;
@@ -222,8 +215,6 @@ p {
 	width:600px;
 	margin-top:25px;
 	padding:20px;
-/* 	height:300px; */
-/* 	box-shadow:0 3px 5px -2px #666; */
 }
 
 .txt100 {
@@ -237,10 +228,7 @@ p {
 	line-height:22px;
 }
 
-.actions {
-	width:100%;
-	float:left;
-}
+.actions { width:100%; float:left; }
 
 .uploadfield {
 	background-color: #efefef;
@@ -248,13 +236,9 @@ p {
     box-shadow: 0 2px 3px -2px #333;
 }
 
-.fl {
-	float:left;
-}
+.fl { float:left; }
 
-.fr {
-	float:right;
-}
+.fr { float:right; }
 
 /*
 .footer {
@@ -290,30 +274,12 @@ p {
 
 
 
-.w50fl {
-	width:50%;
-	float:left;
-}
+.w50fl { width:50%; float:left; }
+.innerw50fl { width:50%; float:left; }
+.w100fl { width:100%; float:left; }
+.h100fl { height:100%; float:left; }
 
-.innerw50fl {
-	width:50%;
-	float:left;
-}
-
-.w100fl {
-	width:100%;
-	float:left;
-}
-
-.h100fl {
-	height:100%;
-	float:left;
-}
-
-.container {
-	height: auto;
-	width: 100%;
-}
+.container { height: auto; 	width: 100%; }
 
 .navdiv {
 	width:20%;
@@ -407,18 +373,24 @@ p {
 		text-align:center;
 	}
 /* Tim additions - also quick and dirty, but Randy smells */}
-.anncmnt_div {
+.announce_div {
 	width:100%;
 	background-color:#52A0DB;
 	padding:5px;
 	color:#FFF;
 	margin-top:-1px;
 	border:1px solid #333;
+	font-size:16px;
 }
 
-.anncmnt_div > a {
+.announce_div > a {
 	text-decoration:none;
 	color:#FFF;
+}
+
+.announce_span {
+	font-weight:bold;
+	margin-right:5px;
 }
 
 

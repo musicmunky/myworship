@@ -19,8 +19,9 @@
 
 <div id="announcementdiv" style="width:100%;">
 	<% Announcement.get_active.each do |announcement| %>
-		<div class="anncmnt_div">
-			<%= "<strong>#{announcement.heading}</strong>&nbsp;&nbsp;#{announcement.message}".html_safe %>
+		<div class="announce_div">
+			<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
+			<%= "#{head} #{announcement.message}".html_safe %>
 		</div>
 	<% end %>
 </div>
