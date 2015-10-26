@@ -25,4 +25,7 @@
 //= require worship
 //= require highcharts
 //= require turbolinks
-// require_tree .
+//= require_tree .
+//= require websocket_rails/main
+
+

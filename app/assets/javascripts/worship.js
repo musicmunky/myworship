@@ -1,5 +1,12 @@
 var SONGLIST = {};
 
+var dispatcher = new WebSocketRails('localhost:3004/websocket');
+
+dispatcher.bind('tasks.create_success', function(task) {
+  console.log('successfully created ' + task.name);
+});
+
+
 jQuery( document ).ready(function() {
 
 	//IE doesn't like Google fonts...apparently it's Google's fault

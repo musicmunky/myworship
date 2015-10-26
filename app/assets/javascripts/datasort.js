@@ -68,7 +68,16 @@
 			alpha : function(a, b) {
 				a = a.toUpperCase();
 				b = b.toUpperCase();
-				return (a < b) ? -1 : (a > b) : 1 : 0;
+				if(a < b){
+					return -1;
+				}
+				else if(a > b) {
+					return 1;
+				}
+				else {
+					return 0;
+				}
+				//return (a < b) ? -1 : (a > b) : 1 : 0;
 				//ternary operator: condition ? returnIfTrue : returnIfFalse
 			},
 			number : function(a, b) {
