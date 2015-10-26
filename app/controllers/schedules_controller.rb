@@ -110,6 +110,11 @@ class SchedulesController < ApplicationController
 			comment.comment = txt
 			comment.save
 
+			usr = User.find(uid)
+			content['user'] = comment.get_comment_user_info
+#			content['is_admin'] = usr.has_role? :admin ? true : false
+			content['comment'] = comment.attributes
+
 			response['status'] = "success"
 			response['message'] = "Added comment for schedule id #{@schedule.id}"
 			response['content'] = content
@@ -123,6 +128,35 @@ class SchedulesController < ApplicationController
 			end
 		end
 	end
+
+
+	def deleteScheduleComment
+
+		cid = params[:comment_id]
+
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+			Comment.destroy(cid)
+			content['comment_id'] = cid
+
+			response['status'] = "success"
+			response['message'] = "Removed comment"
+			response['content'] = content
+		rescue => error
+			response['status'] = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = error.backtrace
+		ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+	end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

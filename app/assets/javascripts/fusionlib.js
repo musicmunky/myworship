@@ -792,7 +792,7 @@ FUSION.lib = {
 					stylearry = styls[key].split(" ");
 					if(stylearry.length > 1 && stylearry[1] == "!important")
 					{
-						el.style.setProperty(key, styls[key], "important");
+						el.style.setProperty(key, stylearry[0], "important");
 					}
 					else
 					{

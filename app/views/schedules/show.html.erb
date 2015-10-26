@@ -53,9 +53,18 @@
 	<% if @schedule.comments.size > 0 %>
 		<% @schedule.comments.each do |comment| %>
 			<% usr = comment.get_comment_user_info %>
-			<div id="sch_comment_<%= comment.id %>_<%= comment.commentable_id %>">
-				<span style="display:block;width:100%;font-weight:bold;"><%= usr['user_name'] %> says:</span>
-				<span style="display:block:width:100%;"><%= comment.comment %></span>
+			<div id="sch_comment_<%= comment.id %>" class="comment_div">
+				<div style="width:calc(100% - 50px);float:left">
+					<span class="comment_name"><%= usr['user_name'] %> says:</span>
+					<span class="comment_text"><%= comment.comment %></span>
+				</div>
+				<% if !current_user.nil? and (current_user.has_role? :admin or comment.user_id == current_user.id) %>
+				<div class="delete_comment_div">
+					<button class="btn btn-default" style="min-width:10px !important;width:40px !important;" onclick="deleteComment(<%= comment.id %>)">
+						<span class="glyphicon glyphicon-trash" style="color:#F00;"></span>
+					</button>
+				</div>
+				<% end %>
 			</div>
 		<% end %>
 	<% end %>

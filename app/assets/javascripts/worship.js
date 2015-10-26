@@ -459,6 +459,55 @@ function addNewComment()
 function addScheduleCommentResponse(h)
 {
 	var hash = h || {};
+	FUSION.get.node("comment_text").value = "";
+
+	var listdiv = FUSION.get.node("comment_list");
+
+	var comment = hash['comment'];
+	var wrapdiv = FUSION.lib.createHtmlElement({"type":"div", "attributes":{"class":"comment_div", "id":"sch_comment_" + comment['id']}});
+	var cmntdiv = FUSION.lib.createHtmlElement({"type":"div", "style":{"float":"left", "width":"calc(100% - 50px)"}});
+	var namespn = FUSION.lib.createHtmlElement({"type":"span", "attributes":{"class":"comment_name"}, "text": hash['user']['user_name'] + " says:"});
+	var cmntspn = FUSION.lib.createHtmlElement({"type":"span", "attributes":{"class":"comment_text"}, "text": comment['comment']});
+	var bttndiv = FUSION.lib.createHtmlElement({"type":"div", "attributes":{"class":"delete_comment_div"}});
+	var delbttn = FUSION.lib.createHtmlElement({"type":"button", "attributes":{"class":"btn btn-default"},
+												"onclick":"deleteComment(" + comment['id'] + ")", "style":{"width":"40px !important", "min-width":"30px !important"}});
+	var delicon = FUSION.lib.createHtmlElement({"type":"span", "attributes":{"class":"glyphicon glyphicon-trash"}, "style":{"color":"#F00"}});
+
+	delbttn.appendChild(delicon);
+	bttndiv.appendChild(delbttn);
+	cmntdiv.appendChild(namespn);
+	cmntdiv.appendChild(cmntspn);
+	wrapdiv.appendChild(cmntdiv);
+	wrapdiv.appendChild(bttndiv);
+	listdiv.appendChild(wrapdiv);
+}
+
+
+function deleteComment(cid)
+{
+	if(FUSION.lib.isBlank(cid)) {
+		alert("No comment selected - please refresh the page and try again");
+		return false;
+	}
+	var yn = confirm("Are you sure you would like to delete this comment?");
+	if(yn){
+		var info = {
+			"type": "POST",
+			"path": "/schedules/" + cid + "/deleteScheduleComment",
+			"data": {
+				"comment_id": cid
+			},
+			"func": deleteScheduleCommentResponse
+		};
+		FUSION.lib.ajaxCall(info);
+	}
+}
+
+
+function deleteScheduleCommentResponse(h)
+{
+	var hash = h || {};
+	FUSION.remove.node("sch_comment_" + hash['comment_id']);
 }
 
 

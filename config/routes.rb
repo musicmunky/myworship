@@ -25,6 +25,7 @@ Rails.application.routes.draw do
  	resources :schedules do #, path: "worship/schedules"
 		member do
 			post "addScheduleComment"
+			post "deleteScheduleComment"
 		end
 	end
 
