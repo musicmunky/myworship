@@ -89,6 +89,41 @@ class SchedulesController < ApplicationController
 		end
 	end
 
+
+	def addScheduleComment
+
+		uid = params[:user_id]
+		sid = params[:schedule_id]
+		txt = params[:comment_text]
+
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+			@schedule = Schedule.find(sid)
+
+#  		logger.debug "\n\n\n\n\n\n\nADM IS: #{adm}\n\n\n\n\n\n\n"
+			comment = @schedule.comments.create
+			comment.user_id = uid
+			comment.comment = txt
+			comment.save
+
+			response['status'] = "success"
+			response['message'] = "Added comment for schedule id #{@schedule.id}"
+			response['content'] = content
+		rescue => error
+			response['status'] = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = error.backtrace
+		ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+	end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_schedule

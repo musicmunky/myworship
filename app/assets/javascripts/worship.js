@@ -425,6 +425,43 @@ function updateAnnouncementActiveResponse(h)
 }
 
 
+function addNewComment()
+{
+	var uid = FUSION.get.node("current_user_id").value;
+	var txt = FUSION.get.node("comment_text").value;
+	var sid = FUSION.get.node("schedule_id").value;
+
+	if(FUSION.lib.isBlank(txt)) {
+		alert("Please make sure you have entered a comment before attempting to save!");
+		return false;
+	}
+
+	if(FUSION.lib.isBlank(uid) || FUSION.lib.isBlank(sid) || uid < 1 || sid < 1)
+	{
+		alert("Invalid user or schedule information - please refresh the page and try again");
+		return false;
+	}
+
+	var info = {
+		"type": "POST",
+		"path": "/schedules/" + sid + "/addScheduleComment",
+		"data": {
+			"user_id": uid,
+			"schedule_id": sid,
+			"comment_text": txt
+		},
+		"func": addScheduleCommentResponse
+	};
+	FUSION.lib.ajaxCall(info);
+}
+
+
+function addScheduleCommentResponse(h)
+{
+	var hash = h || {};
+}
+
+
 function sortUl(parent, childSelector, keySelector) {
     var items = parent.children(childSelector).sort(function(a, b) {
         var vA = $(keySelector, a).text();

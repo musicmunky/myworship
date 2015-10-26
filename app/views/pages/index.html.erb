@@ -19,7 +19,7 @@
 
 <div id="announcementdiv" style="width:100%;">
 	<% Announcement.get_active.each do |announcement| %>
-		<div class="announce_div">
+		<div class="alert alert-info">
 			<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
 			<%= "#{head} #{announcement.message}".html_safe %>
 		</div>

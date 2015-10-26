@@ -80,7 +80,7 @@ class Song < ActiveRecord::Base
 		else
 
 			result = @connection.exec_query("SELECT id, name FROM songs
-											 WHERE id NOT IN (SELECT song_id FROM schedules_songs)")
+											 WHERE id NOT IN (SELECT DISTINCT song_id FROM schedules_songs)")
 			diff = lim - result.length
 			result.each do |row|
 				@song = Song.find(row['id'])

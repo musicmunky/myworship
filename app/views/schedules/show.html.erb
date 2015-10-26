@@ -15,7 +15,7 @@
 		<strong style="padding-right:10px;">NOTES: </strong><%= @schedule.notes %>
 	</p>
 <% end %>
-<table class="table">
+<table class="table" style="margin-bottom:10px ! important;border-bottom:1px solid #DDD;">
 	<thead>
 		<tr>
 			<th style="width:48%">Name</th>
@@ -37,3 +37,26 @@
 	<% end %>
 	</tbody>
 </table>
+
+<% if !current_user.nil? %>
+<div id="comment_div" style="padding:10px;">
+	<div id="comment_form" style="width:100%;">
+		<input type="hidden" id="current_user_id" value="<%= current_user.id %>" />
+		<input type="hidden" id="schedule_id" value="<%= @schedule.id %>" />
+		<textarea id="comment_text" style="width:100%;height:75px;resize:none;margin-bottom:10px;padding:10px;border-radius:2px;box-shadow: 0px 4px 3px -3px #222;border:1px solid #CCC;"></textarea>
+		<button class="btn btn-default" style="float:right;" onclick="addNewComment()">ADD COMMENT</button>
+	</div>
+</div>
+<% end %>
+
+<div id="comment_list" style="width: 100%; float: left; padding: 10px;">
+	<% if @schedule.comments.size > 0 %>
+		<% @schedule.comments.each do |comment| %>
+			<% usr = comment.get_comment_user_info %>
+			<div id="sch_comment_<%= comment.id %>_<%= comment.commentable_id %>">
+				<span style="display:block;width:100%;font-weight:bold;"><%= usr['user_name'] %> says:</span>
+				<span style="display:block:width:100%;"><%= comment.comment %></span>
+			</div>
+		<% end %>
+	<% end %>
+</div>

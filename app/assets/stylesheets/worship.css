@@ -373,6 +373,22 @@ p {
 		text-align:center;
 	}
 /* Tim additions - also quick and dirty, but Randy smells */}
+
+.comment_link {
+	float: right;
+    text-transform: uppercase;
+	text-decoration:none;
+	color:#333;
+}
+
+.schedule_date {
+	font-size:14px;
+	float:right;
+	height:36px;
+	line-height:36px;
+	display:block;
+}
+
 .announce_div {
 	width:100%;
 	background-color:#222;
@@ -389,8 +405,11 @@ p {
 }
 
 .announce_span {
-	font-weight:bold;
-	margin-right:5px;
+	display: block;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
 }
 
 .current_schedule {

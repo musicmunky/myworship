@@ -22,7 +22,12 @@ Rails.application.routes.draw do
 # 	end
 # 	resources :songs, only: [:index, :show]
 
- 	resources :schedules #, path: "worship/schedules"
+ 	resources :schedules do #, path: "worship/schedules"
+		member do
+			post "addScheduleComment"
+		end
+	end
+
 	resources :songs do
 		member do
 			get "getSongSchedules"
