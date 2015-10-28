@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'comment/index'
+
+  get 'comment/show'
+
   resources :announcements
 	devise_for :users, :controllers => { registrations: 'registrations' }
 
@@ -21,6 +25,13 @@ Rails.application.routes.draw do
 # 		resources :songs, only: [:new, :create, :edit, :update, :destroy]
 # 	end
 # 	resources :songs, only: [:index, :show]
+
+#	resources :comment do
+#		member do
+#			post "addScheduleComment"
+#			#post "deleteScheduleComment"
+#		end
+#	end
 
  	resources :schedules do #, path: "worship/schedules"
 		member do

@@ -1,12 +1,5 @@
 var SONGLIST = {};
 
-var dispatcher = new WebSocketRails('localhost:3004/websocket');
-
-dispatcher.bind('tasks.create_success', function(task) {
-  console.log('successfully created ' + task.name);
-});
-
-
 jQuery( document ).ready(function() {
 
 	//IE doesn't like Google fonts...apparently it's Google's fault
@@ -432,7 +425,7 @@ function updateAnnouncementActiveResponse(h)
 }
 
 
-function addNewComment()
+function addScheduleComment()
 {
 	var uid = FUSION.get.node("current_user_id").value;
 	var txt = FUSION.get.node("comment_text").value;
@@ -487,6 +480,8 @@ function addScheduleCommentResponse(h)
 	wrapdiv.appendChild(cmntdiv);
 	wrapdiv.appendChild(bttndiv);
 	listdiv.appendChild(wrapdiv);
+
+	//send(comment['comment']);
 }
 
 

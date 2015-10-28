@@ -1,4 +1,4 @@
-class SchedulesController < ApplicationController
+class SchedulesController < ApplicationController # < WebsocketRails::BaseController #
 	before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 	before_action :authenticate_user!, :except => [:show, :index]
 
@@ -110,10 +110,19 @@ class SchedulesController < ApplicationController
 			comment.comment = txt
 			comment.save
 
+			#if comment.save
+      		#	send_message :addScheduleComment, comment, :namespace => :schedules
+		    #end
+
+			WebsocketRails[:comment].trigger(:new_comment, "THIS IS A TEST")
+#			WebsocketRails.users[User.find(1).id].send_message :new_comment, "test foo"
+
 			usr = User.find(uid)
 			content['user'] = comment.get_comment_user_info
 #			content['is_admin'] = usr.has_role? :admin ? true : false
 			content['comment'] = comment.attributes
+
+			content['wsr_users'] = WebsocketRails.users
 
 			response['status'] = "success"
 			response['message'] = "Added comment for schedule id #{@schedule.id}"
