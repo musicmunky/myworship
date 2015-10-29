@@ -8,7 +8,7 @@ $(function() {
 
 	channel.bind('new_comment', function(message) {
 		if(FUSION.get.node("sys_notes")) {
-			FUSION.get.node("sys_notes").innerHTML = message;
+			FUSION.get.node("sys_notes").style.display = "block";
 		}
 // 		document.querySelector('#sys_notes').innerHTML = message;
 	});

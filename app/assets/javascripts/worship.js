@@ -513,6 +513,12 @@ function deleteScheduleCommentResponse(h)
 }
 
 
+function hideNotifySpan(t)
+{
+	t.style.display = "none";
+}
+
+
 function sortUl(parent, childSelector, keySelector) {
     var items = parent.children(childSelector).sort(function(a, b) {
         var vA = $(keySelector, a).text();

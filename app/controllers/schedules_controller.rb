@@ -104,33 +104,27 @@ class SchedulesController < ApplicationController # < WebsocketRails::BaseContro
 		begin
 			@schedule = Schedule.find(sid)
 
-#  		logger.debug "\n\n\n\n\n\n\nADM IS: #{adm}\n\n\n\n\n\n\n"
 			comment = @schedule.comments.create
 			comment.user_id = uid
 			comment.comment = txt
 			comment.save
 
-			#if comment.save
-      		#	send_message :addScheduleComment, comment, :namespace => :schedules
-		    #end
+			if comment.save
+#				WebsocketRails[:comment].trigger(:new_comment, "THIS IS A TEST")
+#				WebsocketRails.users[User.find(1).id].send_message :new_comment, "test foo"
+				WebsocketRails[:comment].trigger(:new_comment, "true")
+		    end
 
-			WebsocketRails[:comment].trigger(:new_comment, "THIS IS A TEST")
-#			WebsocketRails.users[User.find(1).id].send_message :new_comment, "test foo"
+			content['user']		= comment.get_comment_user_info
+			content['comment']	= comment.attributes
 
-			usr = User.find(uid)
-			content['user'] = comment.get_comment_user_info
-#			content['is_admin'] = usr.has_role? :admin ? true : false
-			content['comment'] = comment.attributes
-
-			content['wsr_users'] = WebsocketRails.users
-
-			response['status'] = "success"
-			response['message'] = "Added comment for schedule id #{@schedule.id}"
-			response['content'] = content
+			response['status']	= "success"
+			response['message']	= "Added comment for schedule id #{@schedule.id}"
+			response['content']	= content
 		rescue => error
-			response['status'] = "failure"
-			response['message'] = "Error: #{error.message}"
-			response['content'] = error.backtrace
+			response['status']	= "failure"
+			response['message']	= "Error: #{error.message}"
+			response['content']	= error.backtrace
 		ensure
 			respond_to do |format|
 				format.html { render :json => response.to_json }
@@ -152,13 +146,13 @@ class SchedulesController < ApplicationController # < WebsocketRails::BaseContro
 			Comment.destroy(cid)
 			content['comment_id'] = cid
 
-			response['status'] = "success"
-			response['message'] = "Removed comment"
-			response['content'] = content
+			response['status']	= "success"
+			response['message']	= "Removed comment"
+			response['content']	= content
 		rescue => error
-			response['status'] = "failure"
-			response['message'] = "Error: #{error.message}"
-			response['content'] = error.backtrace
+			response['status']	= "failure"
+			response['message']	= "Error: #{error.message}"
+			response['content']	= error.backtrace
 		ensure
 			respond_to do |format|
 				format.html { render :json => response.to_json }
