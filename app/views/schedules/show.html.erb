@@ -49,7 +49,7 @@
 </div>
 <% end %>
 
-<div id="comment_list" style="width: 100%; float: left; padding: 10px;">
+<div id="comment_list" style="width:100%;float:left;padding:10px;margin-top:30px;">
 	<% if @schedule.comments.size > 0 %>
 		<% @schedule.comments.each do |comment| %>
 			<% usr = comment.get_comment_user_info %>
