@@ -17,27 +17,20 @@
 </div>
 -->
 
-<!--
-<div id="echo">
-    <ul id="messages"></ul>
-    <input id="send"/>
-    <button id="fire">Send</button>
-</div>
--->
-
 <div id="announcementdiv" style="width:100%;">
-	<% Announcement.get_active.each do |announcement| %>
+	<% if Announcement.get_active.size > 0 %>
 		<div class="alert alert-info">
-			<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
-			<%= "#{head} #{announcement.message}".html_safe %>
+			<% annc_arry = [] %>
+			<% Announcement.get_active.each do |announcement| %>
+				<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
+				<% annc_arry.push("#{head} #{announcement.message}") %>
+			<% end %>
+			<%= annc_arry.join("<br><br>").html_safe %>
 		</div>
 	<% end %>
 </div>
 
-
-<%# nxtsch = Schedule.next_schedule %>
 <div id="schedules">
-	<%#= render :partial => 'schedules/schedule', :collection => @schedules, locals: {next_sched: nxtsch} %>
 	<%= render @schedules %>
 </div>
 <%= will_paginate @schedules %>

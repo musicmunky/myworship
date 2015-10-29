@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :notifications
   get 'comment/index'
 
   get 'comment/show'
