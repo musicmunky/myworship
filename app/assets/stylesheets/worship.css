@@ -448,8 +448,6 @@ p {
 .current_schedule {
 	-webkit-box-shadow: 700px 0 0 0 #337ab7, -700px 0 0 0 #337ab7;
 	box-shadow: 700px 0 0 0 #337ab7, -700px 0 0 0 #337ab7;
-/* 	border-bottom:1px solid #496210; */
-/* 	border-top:1px solid #496210; */
 }
 
 .current_span {
