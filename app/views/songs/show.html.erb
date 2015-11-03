@@ -7,23 +7,18 @@
 	<%= link_to 'Back', songs_path %>
 </span></h3>
 
-<p>
-	<strong>Author:</strong>
-	<%= @song.author %>
+<p style="height: 30px; line-height: 30px; font-size: 18px;">
+	<span style="float:left;width:50%;display:block;">
+		<strong>Artist:</strong>
+		<%= @song.author %>
+	</span>
+	<span style="float:right;width:50%;display:block;">
+		<strong>Song Key:</strong>
+		<% begin %><%= @song.song_keys.first.key_symbol.html_safe %><% rescue;end %>
+	</span>
 </p>
 
-<p>
-	<strong>Song Key:</strong>
-	<% begin %><%= @song.song_keys.first.key_symbol.html_safe %><% rescue;end %>
-</p>
-
-<p>
-	<strong>Capo Fret:</strong>
-	<%= @song.capo_fret %>
-</p>
-
-<p>
-	<strong>YouTube Link:</strong>
+<p style="height: 30px; line-height: 30px; font-size: 18px;">
 	<%= link_to "YouTube", @song.media_link, target: "_blank" %>
 </p>
 
@@ -31,7 +26,7 @@
 	<%= @song.get_embed_video %>
 </div>
 
-<p><strong>Lyrics:</strong></p>
+<p style="font-size: 18px;"><strong>Lyrics:</strong></p>
 <div style="margin-bottom:50px;">
 	<%= @song.lyrics.gsub("\r\n","<br/>").html_safe %>
 </div>

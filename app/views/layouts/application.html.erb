@@ -45,10 +45,18 @@
 					<li class="" id=""><a class="navlink" href="<%= schedules_path %>">Schedules</a></li>
 					<li class="" id=""><a class="navlink" href="<%= songs_path %>">Songs</a></li>
 					<% if user_signed_in? and current_user.has_role? :admin %>
-						<li class="" id=""><a class="navlink" href="<%= reports_path %>">Reports</a></li>
-						<li class="" id=""><a class="navlink" href="<%= useradmin_path %>">Users</a></li>
-						<li class="" id=""><a class="navlink" href="<%= announcements_path %>">Announcements</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admins <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="<%= reports_path %>">Reports</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="<%= useradmin_path %>">Users</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="<%= announcements_path %>">Announcements</a></li>
+						</ul>
+					</li>
 					<% end %>
+
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
