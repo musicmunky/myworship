@@ -18,7 +18,6 @@
 			<tr>
 				<th class="schedule_td_song_name">Name</th>
 				<th class="schedule_td_cell">Key</th>
-<!--				<th class="schedule_td_cell">Capo</th>//-->
 				<th class="schedule_td_cell"></th>
 				<th class="schedule_td_cell"></th>
 			</tr>
@@ -28,16 +27,16 @@
 			<tr>
 				<td class="schedule_td_song_name"><%= link_to song.name, song_path(song) %></td>
 				<td class="schedule_td_cell"><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
-<!--				<td class="schedule_td_cell"><%#= song.capo_fret %></td>//-->
 				<td class="schedule_td_cell"><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
 				<td class="schedule_td_cell"><%= link_to 'Lyrics', song_path(song) %></td>
 			</tr>
 		<% end %>
 		</tbody>
 	</table>
-	<% if !current_user.nil? %>
 	<div>
-		<a class="comment_link btn btn-primary btn-xs" href="<%= schedule_path(schedule) %>">Add Comment</a>
+		<span style="float:left;padding-left:8px;color:#666;font-size:12px;"><%= schedule.comments.size %> Comments</span>
+		<% if !current_user.nil? %>
+			<a class="comment_link btn btn-primary btn-xs" href="<%= schedule_path(schedule) %>">Add Comment</a>
+		<% end %>
 	</div>
-	<% end %>
 </div>
