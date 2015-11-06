@@ -603,6 +603,7 @@ FUSION.lib = {
 					FUSION.set.overlayMouseNormal();
 					FUSION.error.showErrorDialog({'stacktrace':response['content'],
 												  'message':response['message'],
+												  'errormessage':response['content'],
 												  'linkvisible':false});
 				}
 			},

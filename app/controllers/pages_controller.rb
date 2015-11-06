@@ -25,6 +25,48 @@ class PagesController < ApplicationController
 	end
 
 
+	def updateUserInfo
+
+		uid = params[:user_id]
+		adm = params[:user_req_update]
+		dat = params[:field_data]
+
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+			@admn = User.find(adm)
+			if !@admn.has_role? :admin
+				msg = "INSUFFICIENT PRIVILEGES ERROR"
+				logger.debug "\n\n#{msg}\n\n"
+				raise msg
+			end
+
+			@user = User.find(uid)
+
+			dat.each do |key, value|
+				@user.update_attribute(key.to_sym, value)
+			end
+
+			response['status'] = "success"
+			response['message'] = "Updated user information for #{@user.get_name}"
+			response['content'] = content
+		rescue => error
+			response['status'] = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = "User with insufficient privileges attempted to update attributes of another user"
+# 			response['content'] = error.backtrace
+		ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+
+	end
+
+
 	def updateAdmin
 
 		uid = params[:user_id]

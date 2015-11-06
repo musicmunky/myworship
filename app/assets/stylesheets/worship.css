@@ -13,7 +13,6 @@ html, body {
 	padding: 0;
 	font-family: 'Lato', serif !important;
 	cursor:default;
-
 }
 
 a {
@@ -156,9 +155,9 @@ p {
 	padding-left:5px;
 	background-color:#fff;
 	color:#222;
-	border: 1px solid #999;
-	-webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
-	box-shadow: 0 1px 3px 0 rgba(0,0,0,.3);
+	border: 1px solid #ddd;
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,200,.07);
+	box-shadow: 0 1px 2px 0 rgba(0,0,200,.07);
 	padding:12px;
 }
 
@@ -484,3 +483,6 @@ p {
 
 .alert a {text-decoration:underline !important;}
 
+.btn-primary {background-color:#fff !important; color:#666 !important; border:1px solid #ccc !important;}
+
+table thead tr{ border:none;}

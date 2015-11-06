@@ -51,6 +51,7 @@ Rails.application.routes.draw do
 		member do
 			post "updateAdmin"
 			post "disableUser"
+			post "updateUserInfo"
 		end
 	end
 
