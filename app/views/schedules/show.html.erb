@@ -1,5 +1,4 @@
-
-<h3><%= @schedule.name %>
+<h3 style="border-bottom:0px !important;"><%= @schedule.name %>
 	<span style="font-size:14px;float:right;height:36px;line-height:36px;display:block;">
 		<%= @schedule.schedule_date.strftime('%m/%d/%Y') %>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<% if user_signed_in? %>

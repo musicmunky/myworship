@@ -141,6 +141,34 @@ class PagesController < ApplicationController
 	end
 
 
+	def resetPassword
+		uid = params[:user_id]
+
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+			@user = User.find(uid)
+
+			PasswordResetMailer.password_reset_email(@user).deliver
+
+			response['status'] = "success"
+			response['message'] = "Password reset for #{@user.get_name}"
+			response['content'] = content
+		rescue => error
+			response['status'] = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = error.backtrace
+		ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+	end
+
+
 	def deleteUser
 	end
 

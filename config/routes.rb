@@ -52,6 +52,7 @@ Rails.application.routes.draw do
 			post "updateAdmin"
 			post "disableUser"
 			post "updateUserInfo"
+			post "resetPassword"
 		end
 	end
 
