@@ -3,7 +3,7 @@ class Schedule < ActiveRecord::Base
 	acts_as_commentable
 	serialize :song_order
 
-	scope :next_schedule, Proc.new { |after = DateTime.now, limit = 1| where('schedule_date > ?', after).order("schedule_date ASC").limit(limit) }
+	scope :next_schedule, Proc.new { |after = (DateTime.now + 5.hours), limit = 1| where('schedule_date > ?', after).order("schedule_date ASC").limit(limit) }
 
 	def get_songs_by_order
 		ids		= !self.song_order.nil? ? self.song_order.map(&:to_i) : []
