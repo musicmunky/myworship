@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta content='text/html;charset=UTF-8' http-equiv='Content-Type' />
+		<style>
+			body {
+				font-family:Tahoma, Geneva, sans-serif
+			}
+		</style>
+	</head>
+	<body style="font-family:Tahoma, Geneva, sans-serif">
+		<h3 style="height:18px;margin-top:0px;color:#333;margin-bottom:10px;padding-bottom:10px;width:700px;font-size:18px;">
+			<a style="color: inherit;text-decoration: none !important;float:left;" target="_blank" href='<%= "#{@url}/schedules/#{@sked.id}" %>'><%= @sked.name %></a>
+			<span style="font-size: 14px;float: right;height: 36px;line-height: 36px;display: block;"><%= @sked.schedule_date.strftime('%m/%d/%Y') %></span>
+		</h3>
+		<% if !@sked.notes.nil? and @sked.notes.length > 0 %>
+		<p style="width:680px;margin-top:10px;margin-bottom:5px;padding-left:5px;background-color:#fff;color:#222;border:1px solid #ddd;padding:12px;">
+			<strong style="padding-right:10px;">NOTES: </strong><% begin %><%= @sked.notes.html_safe %><% rescue;end %>
+		</p>
+		<% end %>
+		<table style="margin-bottom:20px !important;width:700px;border-spacing: 0;border-collapse: collapse;display: table;border-color: grey;">
+			<thead>
+				<tr style="height:24px;">
+					<th style="width:350px;overflow:hidden;white-space:nowrap;font-family: Tahoma,Geneva,sans-serif;text-align:left;">Name</th>
+					<th style="width:13%;text-align:center;font-family: Tahoma,Geneva,sans-serif;">Key</th>
+					<th style="width:13%;text-align:center;font-family: Tahoma,Geneva,sans-serif;"></th>
+					<th style="width:13%;text-align:center;font-family: Tahoma,Geneva,sans-serif;"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @sked.get_songs_by_order.each do |song| %>
+					<tr style="height:24px;">
+						<td style="font-family: Tahoma,Geneva,sans-serif;">
+							<a href='<%= "#{@url}/songs/#{song.id}" %>' target="_blank"><%= song.name %></a>
+						</td>
+						<td style="text-align:center;font-family: Tahoma,Geneva,sans-serif;"><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
+						<td style="text-align:center;font-family: Tahoma,Geneva,sans-serif;"><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
+						<td style="text-align:center;font-family: Tahoma,Geneva,sans-serif;">
+							<a href='<%= "#{@url}/songs/#{song.id}" %>' target="_blank">Lyrics</a>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+		<p style="margin-top:10px;">See you Sunday!</p>
+
+	</body>
+</html>

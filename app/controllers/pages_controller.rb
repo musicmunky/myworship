@@ -152,7 +152,12 @@ class PagesController < ApplicationController
 		begin
 			@user = User.find(uid)
 
-			PasswordResetMailer.password_reset_email(@user).deliver
+ 			@pass = Devise.friendly_token.first(10)
+ 			@user.password = @pass
+ 			@user.password_confirmation = @pass
+ 			if @user.save
+ 				PasswordResetMailer.password_reset_email(@user, @pass).deliver_now
+ 			end
 
 			response['status'] = "success"
 			response['message'] = "Password reset for #{@user.get_name}"

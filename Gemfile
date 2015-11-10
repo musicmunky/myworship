@@ -25,6 +25,7 @@ gem 'devise'
 gem 'rolify'
 gem 'acts_as_commentable'
 gem 'websocket-rails'
+gem 'whenever'
 #gem 'simple_calendar', '~> 2.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

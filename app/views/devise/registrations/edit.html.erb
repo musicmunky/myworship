@@ -23,12 +23,12 @@
   <% end %>
 
   <div class="field w100fl">
-    <%= f.label :password %> <i style="color:#F00;">(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password, "New Password" %> <i style="color:#F00;">(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, { autocomplete: "off", class: "txt100", style: "" } %>
   </div>
 
   <div class="field w100fl">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation, "Confirm New Password" %><br />
     <%= f.password_field :password_confirmation, { autocomplete: "off", class: "txt100", style: "" } %>
   </div>
 

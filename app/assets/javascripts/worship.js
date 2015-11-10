@@ -612,10 +612,6 @@ function updateUserInfoResponse(h)
 
 function resetPassword(id)
 {
-
-	return false;
-
-
 	var uid = id || 0;
 	if(uid == 0) {
 		alert("No user selected - please refresh the page and try again");
@@ -624,8 +620,22 @@ function resetPassword(id)
 	var yn = confirm("Are you sure you want to reset this user's password?");
 	if(yn)
 	{
-		alert("foo: " + id);
+		var info = {
+			"type": "POST",
+			"path": "/pages/" + uid + "/resetPassword",
+			"data": {
+				"user_id": uid
+			},
+			"func": resetPasswordResponse
+		};
+		FUSION.lib.ajaxCall(info);
 	}
+}
+
+
+function resetPasswordResponse(h)
+{
+	var hash = h || {};
 }
 
 

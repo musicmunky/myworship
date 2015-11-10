@@ -11,4 +11,9 @@ class Schedule < ActiveRecord::Base
 		return @songs
 	end
 
+
+	def self.send_weekly_schedule
+		ScheduleMailer.weekly_schedule(Schedule.next_schedule.first).deliver_now
+	end
+
 end
