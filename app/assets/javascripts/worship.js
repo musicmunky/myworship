@@ -14,14 +14,14 @@ jQuery( document ).ready(function() {
 		FUSION.set.overlayMouseWait();
 	});
 
-	var sng_coldefs = [{ "type": "date", "targets": 4 }];
+	var sng_coldefs = [{ "type": "date", "targets": 4 }, { "targets": [ 5 ], "visible": false, "searchable": true }];
 	if(FUSION.get.node("song_table"))
 	{
 		var sng_last_col = FUSION.get.node("song_table").rows[0].cells.length - 1;
 		var sng_cols_arr = [];
-		if(sng_last_col > 4)
+		if(sng_last_col > 5)
 		{
-			for(var i = 5; i <= sng_last_col; i++)
+			for(var i = 6; i <= sng_last_col; i++)
 			{
 				sng_cols_arr.push(i);
 			}
@@ -393,6 +393,7 @@ function displaySongSchedules(h)
 			dt = moment(scheds[i]['schedule_date']).format("MM/DD/YYYY");
 			table.row.add( [ dt, "<a href='http://" + domain + scheds[i]['url'] + "'>" + scheds[i]['name'] + "</a>", scheds[i]['notes'] ]).draw();
 		}
+		table.column( '0:visible' ).order( 'desc' ).draw();
 	}
 }
 
