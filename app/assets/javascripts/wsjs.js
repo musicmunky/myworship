@@ -1,4 +1,4 @@
-$(function() {
+/*$(function() {
 
 	// Here we instantiate a new WebSocketRails instance
 	dispatcher = new WebSocketRails("45.55.189.112:3004/websocket", true);
@@ -20,4 +20,4 @@ $(function() {
 // Here we send the message in the websocket
 function send(message) {
  	channel.trigger('new_comment', message);
-}
+}*/

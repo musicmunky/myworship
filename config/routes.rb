@@ -1,40 +1,21 @@
 Rails.application.routes.draw do
 
 
-  resources :notifications
-  get 'comment/index'
+	resources :notifications
+	resources :announcements
 
-  get 'comment/show'
+	get 'comment/index'
+	get 'comment/show'
 
-  resources :announcements
 	devise_for :users, :controllers => { registrations: 'registrations' }
 
 	get 'pages/index'
-# 	get 'pages/useradmin'
 	get 'reports' => 'pages#reports'
 	get 'useradmin' => 'pages#useradmin'
 
-#	resources :song_keys #, path: "worship/song_keys"
 	resource :song_keys, only: [:index, :show]
 
-# 	authenticate :user do
-# 		resources :schedules, only: [:new, :create, :edit, :update, :destroy]
-# 	end
-# 	resources :schedules, only: [:index, :show]
-
-# 	authenticate :user do
-# 		resources :songs, only: [:new, :create, :edit, :update, :destroy]
-# 	end
-# 	resources :songs, only: [:index, :show]
-
-#	resources :comment do
-#		member do
-#			post "addScheduleComment"
-#			#post "deleteScheduleComment"
-#		end
-#	end
-
- 	resources :schedules do #, path: "worship/schedules"
+ 	resources :schedules do
 		member do
 			post "addScheduleComment"
 			post "deleteScheduleComment"
