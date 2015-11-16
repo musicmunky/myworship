@@ -15,6 +15,10 @@ html, body {
 	cursor:default;
 }
 
+.nav > li > a {
+	display: -webkit-inline-box;
+}
+
 a {
 	text-decoration:none !important;
 	outline:none !important;
