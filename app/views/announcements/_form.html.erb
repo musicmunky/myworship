@@ -1,36 +1,51 @@
 <% btntxt = new_or_edit == "edit" ? "Update Announcement" : "Add New Announcement" %>
 
 <%= form_for(@announcement, html: { class: "rails_form", style: 'height:400px;' }) do |f| %>
-  <% if @announcement.errors.any? %>
-    <div id="error_explanation" class="field w100fl">
-      <h3><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h3>
-      <ul>
-      <% @announcement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+	<% if @announcement.errors.any? %>
+		<div id="error_explanation" class="field w100fl">
+			<h3><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h3>
+			<ul>
+			<% @announcement.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+			</ul>
+		</div>
+	<% end %>
 
-  <div class="field w100fl">
-    <%= f.label :heading %><br>
-    <%= f.text_field :heading, { class: "txt100", style: "" } %>
-  </div>
-  <div class="field w100fl">
-    <%= f.label :message %><br>
-    <%= f.text_area :message, { class: "txt100", style: "height:150px" } %>
-  </div>
-  <div class="field w100fl">
-    <%= f.label :is_active, "Active?", { style: "display:block;width:75px;float:left;" } %>
-    <%= f.check_box :is_active, { style: "margin-top:5px;" } %>
-  </div>
+	<div class="field w100fl">
+		<%= f.label :heading %><br>
+		<%= f.text_field :heading, { class: "txt100", style: "" } %>
+	</div>
+
+	<div class="field w100fl">
+		<%= f.label :message %><br>
+		<%= f.text_area :message, { class: "txt100", style: "height:150px" } %>
+	</div>
+
+	<div class="field w100fl">
+		<%= f.label :announcement_type %><br>
+		<% announcement_types = AnnouncementType.all.order("type_level ASC").map { |a| [a.type_name.upcase, a.id] } %>
+		<% atid = !@announcement.id.nil? ? @announcement.announcement_type.id : "" %>
+		<select id="announcement_announcement_type_id" name="announcement[announcement_type_id]" class="txt100">
+			<option value=""></option>
+			<%= options_for_select(announcement_types, atid) %>
+		</select>
+	</div>
+
+	<div class="field w100fl">
+		<%= f.label :is_active, "Active?", { style: "display:block;width:75px;float:left;" } %>
+		<%= f.check_box :is_active, { style: "margin-top:5px;" } %>
+	</div>
+
 	<% uid = 0 %>
 	<% if !current_user.nil? %>
 		<% uid = current_user.id %>
 	<% end %>
+
 	<input type="hidden" id="anouncement_user_id" name="announcement[user_id]" value="<%= uid %>" />
-  <div class="actions w100fl">
-    <%= f.submit btntxt, { class: "btn btn-success", style: "float:left;width:200px;", onclick: "return checkAnnouncementForm();" } %>
-	<%= link_to 'Back', announcements_path, { class: "btn btn-primary", style: "float:right;width:150px;" } %>
-  </div>
+	<div class="actions w100fl">
+		<%= f.submit btntxt, { class: "btn btn-success", style: "float:left;width:200px;", onclick: "return checkAnnouncementForm();" } %>
+		<%= link_to 'Back', announcements_path, { class: "btn btn-primary", style: "float:right;width:150px;" } %>
+	</div>
+
 <% end %>

@@ -10,6 +10,7 @@
     <tr>
       <th>Heading</th>
       <th>Message</th>
+	  <th style="text-align:center;">Type</th>
       <th style="text-align:center;">Active?</th>
       <th style="text-align:center;">Created By</th>
       <th colspan="2"></th>
@@ -21,6 +22,7 @@
       <tr>
         <td><%= announcement.heading.html_safe %></td>
         <td><%= announcement.message.html_safe %></td>
+		<td style="text-align:center;"><%= announcement.announcement_type.type_name.upcase %></td>
         <td style="text-align:center;">
 			<input type="checkbox"
 				   onchange="updateAnnouncementActive(this)"

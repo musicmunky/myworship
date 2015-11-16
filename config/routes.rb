@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+	get 'announcement_types/index'
 
 	resources :announcements
 
@@ -40,6 +41,9 @@ Rails.application.routes.draw do
 			post "updateUserInfo"
 			post "resetPassword"
 		end
+	end
+
+	resources :announcement_types do
 	end
 
 	resources :announcements do
