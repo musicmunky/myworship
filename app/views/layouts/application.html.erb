@@ -54,8 +54,18 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="" id=""><a class="navlink" href="<%= schedules_path %>">Schedules</a></li>
-					<li class="" id=""><a class="navlink" href="<%= songs_path %>">Songs</a></li>
+					<li class="" id="">
+						<a class="navlink" href="<%= schedules_path %>">Schedules</a>
+						<% if user_signed_in? and current_user.has_role? :admin %>
+							<a class="glyphicon glyphicon-plus" style="font-size:12px;margin-top:-1px;position:absolute;right:-5px;width:10px;" href="<%= new_schedule_path %>"></a>
+						<% end %>
+					</li>
+					<li class="" id="">
+						<a class="navlink" href="<%= songs_path %>">Songs</a>
+						<% if user_signed_in? and current_user.has_role? :admin %>
+							<a class="glyphicon glyphicon-plus" style="font-size:12px;margin-top:-1px;position:absolute;right:-5px;width:10px;" href="<%= new_song_path %>"></a>
+						<% end %>
+					</li>
 					<% if user_signed_in? and current_user.has_role? :admin %>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admins <span class="caret"></span></a>
