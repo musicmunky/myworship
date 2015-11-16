@@ -1,4 +1,4 @@
-WebsocketRails::EventMap.describe do
+# WebsocketRails::EventMap.describe do
   # You can use this file to map incoming events to controller actions.
   # One event can be mapped to any number of controller actions. The
   # actions will be executed in the order they were subscribed.
@@ -15,7 +15,7 @@ WebsocketRails::EventMap.describe do
 #		subscribe :addScheduleComment, :to => CommentController, :with_method => :addScheduleComment
 #	end
 
-	namespace :comment do
-		subscribe :new_comment, to: CommentController, with_method: :new_comment
-	end
-end
+# 	namespace :comment do
+# 		subscribe :new_comment, to: CommentController, with_method: :new_comment
+# 	end
+# end

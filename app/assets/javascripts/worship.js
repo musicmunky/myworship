@@ -85,6 +85,16 @@ jQuery( document ).ready(function() {
 		}
 	});
 
+	function paginateScroll() {
+		$('html, body').animate({
+			scrollTop: 0
+		}, 10);
+		$(".paginate_button").unbind('click', paginateScroll);
+		$(".paginate_button").bind('click', paginateScroll);
+	}
+	paginateScroll();
+
+
     $( "#current_song_list" ).disableSelection();
 
 	if ($('.pagination').length) {
