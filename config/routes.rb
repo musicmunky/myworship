@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-	resources :notifications
 	resources :announcements
 
 	get 'comment/index'
@@ -14,6 +13,12 @@ Rails.application.routes.draw do
 	get 'useradmin' => 'pages#useradmin'
 
 	resource :song_keys, only: [:index, :show]
+
+	resources :notifications do
+		member do
+			post "updateAdminNotify"
+		end
+	end
 
  	resources :schedules do
 		member do

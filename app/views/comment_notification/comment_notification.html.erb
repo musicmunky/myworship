@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <h1>Hi <%= @user.name %></h1>
-    <p>
-      Sample mail sent using smtp.
-    </p>
-  </body>
+	<head>
+		<meta content='text/html;charset=UTF-8' http-equiv='Content-Type' />
+		<style>
+			body {
+				font-family:Tahoma, Geneva, sans-serif
+			}
+		</style>
+	</head>
+	<body style="font-family:Tahoma, Geneva, sans-serif">
+
+		<h3 style="height:18px;margin-top:0px;color:#333;margin-bottom:10px;padding-bottom:10px;width:700px;font-size:18px;">
+			<a style="color: inherit;text-decoration: none !important;float:left;" target="_blank" href='<%= "#{@url}/#{@comment.commentable_type.downcase.pluralize}/#{@comment.commentable_id}" %>'>
+				New Comment
+			</a>
+		</h3>
+		<p style="margin-top:10px;">
+			New comment from <%= @user.get_name %> on <%= @comment.commentable_type.downcase %>:
+			<a href='<%= "#{@url}/#{@comment.commentable_type.downcase.pluralize}/#{@comment.commentable_id}" %>'>
+				<%= @comment.commentable_type.constantize.find(@comment.commentable_id).name %>
+			</a>
+		</p>
+		<p style="margin-top:10px;font-weight:bold;">Comment Text:</p>
+		<p style="margin-top:10px;"><%= @comment.comment.html_safe %></p>
+
+	</body>
 </html>

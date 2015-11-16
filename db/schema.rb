@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029141911) do
+ActiveRecord::Schema.define(version: 20151116143114) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "heading",    limit: 255
@@ -55,11 +55,12 @@ ActiveRecord::Schema.define(version: 20151029141911) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "notifications", force: :cascade do |t|
-    t.integer  "user_id",           limit: 4
-    t.string   "notification_type", limit: 255
+    t.integer  "user_id",             limit: 4
+    t.string   "notification_type",   limit: 255
     t.boolean  "is_active"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.string   "notification_method", limit: 255, default: "EMAIL"
   end
 
   create_table "roles", force: :cascade do |t|

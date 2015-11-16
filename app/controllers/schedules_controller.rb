@@ -110,13 +110,7 @@ class SchedulesController < ApplicationController # < WebsocketRails::BaseContro
 			comment.save
 
 			if comment.save
-#				WebsocketRails[:comment].trigger(:new_comment, "THIS IS A TEST")
-#				WebsocketRails.users[User.find(1).id].send_message :new_comment, "test foo"
-				ntfy_obj = {}
-				ntfy_obj['user_id'] = uid
-				ntfy_obj['user_name'] = User.find(uid).get_name
-				ntfy_obj['notification_type'] = comment.class.name
-				WebsocketRails[:comment].trigger(:new_comment, ntfy_obj)
+				CommentNotification.comment_notification(User.find(uid), comment).deliver_now
 		    end
 
 			content['user']		= comment.get_comment_user_info

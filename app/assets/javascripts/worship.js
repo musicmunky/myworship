@@ -125,6 +125,36 @@ function closeNotice(t)
 }
 
 
+function updateNotifySettings(chk, id)
+{
+	var uid = id;
+	var ntf = chk;
+
+	if(!uid || FUSION.lib.isBlank(uid) || uid == 0) {
+		return false;
+	}
+
+	var info = {
+		"type": "POST",
+		"path": "/notifications/1/updateAdminNotify",
+		"data": {
+			"user_id": uid,
+			"is_active": ntf
+		},
+		"func": updateNotifySettingsResponse
+	};
+	FUSION.lib.ajaxCall(info);
+}
+
+
+function updateNotifySettingsResponse(h)
+{
+	var hash = h || {};
+	FUSION.get.node("update_notify_success").style.display = "block";
+	$( "#update_notify_success" ).fadeOut(3000);
+}
+
+
 function updateAdmin(id, chk)
 {
 	var uid = id;

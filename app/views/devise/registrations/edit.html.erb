@@ -1,46 +1,66 @@
-<h3>Edit <%= resource_name.to_s.humanize %></h3>
+<!--<h3>Edit <%#= resource_name.to_s.humanize %></h3>//-->
+<h3>Edit Your Information<%#= current_user.get_name %></h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "rails_form", style: 'height:600px;' }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field w100fl">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, { autofocus: true, class: "txt100", style: "" } %>
-  </div>
+	<%= devise_error_messages! %>
 
-  <div class="field w100fl">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, { class: "txt100", style: "" } %>
-  </div>
+	<div class="field w100fl">
+		<%= f.label :first_name %><br />
+		<%= f.text_field :first_name, { autofocus: true, class: "txt100", style: "" } %>
+	</div>
 
-  <div class="field w100fl">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, { class: "txt100", style: "" } %>
-  </div>
+	<div class="field w100fl">
+		<%= f.label :last_name %><br />
+		<%= f.text_field :last_name, { class: "txt100", style: "" } %>
+	</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+	<div class="field w100fl">
+		<%= f.label :email %><br />
+		<%= f.email_field :email, { class: "txt100", style: "" } %>
+	</div>
 
-  <div class="field w100fl">
-    <%= f.label :password, "New Password" %> <i style="color:#F00;">(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, { autocomplete: "off", class: "txt100", style: "" } %>
-  </div>
+	<% if user_signed_in? and current_user.has_role? :admin %>
+	<div class="field w100fl">
+		<%= f.label :notifications, "Notifications" %><br />
+		<div class="field w100fl">
+			<% ntfy = Notification.where("user_id = #{current_user.id} and notification_type='COMMENT' and notification_method='EMAIL'").first %>
+			<% chked = (!ntfy.nil? and ntfy.is_active?) ? "checked" : "" %>
+			<input type="checkbox" id="email_notifications" style="float:left;" onchange="updateNotifySettings(this.checked, <%= current_user.id %>)" <%= chked %> />
+			<span style="float:left;display:block;margin-top:-1px;margin-left:5px;">Send me an email when a user posts a comment</span>
+			<span id="update_notify_success" style="display:none;float:left;margin-left:15px;font-weight:bold;font-style:italic;color:#5CB85C;margin-top: -1px;">Updated!</span>
+		</div>
+	</div>
+	<% end %>
 
-  <div class="field w100fl">
-    <%= f.label :password_confirmation, "Confirm New Password" %><br />
-    <%= f.password_field :password_confirmation, { autocomplete: "off", class: "txt100", style: "" } %>
-  </div>
+	<hr style="width:100%;float:left;margin-top:-20px;height:1px;background-color:#CCC;">
 
-  <div class="field w100fl">
-    <%= f.label :current_password %> <i style="color:#F00;">(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, { autocomplete: "off", class: "txt100", style: "" } %>
-  </div>
+	<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+		<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+	<% end %>
 
-  <div class="actions w100fl">
-    <%= f.submit "Update", { class: "btn btn-success", style: "float:left;width:150px;", onclick: "return checkUserForm();" } %>
-	<%= link_to "Cancel", root_url, { class: "btn btn-default", style: "float:right;width:150px;" } %>
-  </div>
+
+	<div class="field w100fl">
+		<%= f.label :current_password %> <i style="color:#F00;">(we need your current password to confirm your changes)</i><br />
+		<%= f.password_field :current_password, { autocomplete: "off", class: "txt100", style: "" } %>
+	</div>
+
+	<div class="field w100fl">
+		<%= f.label :password, "New Password" %> <i style="color:#F00;">(leave blank if you don't want to change it)</i><br />
+		<%= f.password_field :password, { autocomplete: "off", class: "txt100", style: "" } %>
+	</div>
+
+	<div class="field w100fl">
+		<%= f.label :password_confirmation, "Confirm New Password" %><br />
+		<%= f.password_field :password_confirmation, { autocomplete: "off", class: "txt100", style: "" } %>
+	</div>
+
+
+	<div class="actions w100fl">
+		<%= f.submit "Update", { class: "btn btn-success", style: "float:left;width:150px;", onclick: "return checkUserForm();" } %>
+		<%= link_to "Cancel", root_url, { class: "btn btn-default", style: "float:right;width:150px;" } %>
+	</div>
+
 <% end %>
 
 <!--<h3>Cancel my account</h3>//-->
