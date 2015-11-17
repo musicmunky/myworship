@@ -1,15 +1,41 @@
-
 <div id="announcementdiv" style="width:100%;">
-	<% if Announcement.get_active.size > 0 %>
-		<div class="alert alert-info">
-			<% annc_arry = [] %>
-			<% Announcement.get_active.each do |announcement| %>
-				<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
-				<% annc_arry.push("#{head} #{announcement.message}") %>
-			<% end %>
-			<%= annc_arry.join("<br><br>").html_safe %>
-		</div>
+
+	<% @annc = Announcement.get_active_by_type %>
+	<% if @annc.size > 0 %>
+		<% if !@annc['warning'].nil? %>
+			<div class="alert alert-danger">
+				<% annc_arry = [] %>
+				<% @annc['warning'].each do |announcement| %>
+					<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
+					<% annc_arry.push("#{head} #{announcement.message}") %>
+				<% end %>
+				<%= annc_arry.join("<br><br>").html_safe %>
+			</div>
+		<% end %>
+
+		<% if !@annc['alert'].nil? %>
+			<div class="alert alert-warning">
+				<% annc_arry = [] %>
+				<% @annc['alert'].each do |announcement| %>
+					<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
+					<% annc_arry.push("#{head} #{announcement.message}") %>
+				<% end %>
+				<%= annc_arry.join("<br><br>").html_safe %>
+			</div>
+		<% end %>
+
+		<% if !@annc['information'].nil? %>
+			<div class="alert alert-info">
+				<% annc_arry = [] %>
+				<% @annc['information'].each do |announcement| %>
+					<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
+					<% annc_arry.push("#{head} #{announcement.message}") %>
+				<% end %>
+				<%= annc_arry.join("<br><br>").html_safe %>
+			</div>
+		<% end %>
 	<% end %>
+
 </div>
 
 <div id="schedules">
