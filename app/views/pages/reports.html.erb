@@ -217,7 +217,8 @@
 
 $(function() {
 	$( "#song_search" ).combobox();
-	FUSION.get.node("song_search_txt").value = "";
+	var sst = FUSION.get.node("song_search_txt");
+	if(sst){ sst.value = ""; }
 });
 
 $(function () {
