@@ -15,11 +15,22 @@ class SchedulesController < ApplicationController # < WebsocketRails::BaseContro
 
 	# GET /schedules/new
 	def new
-		@schedule = Schedule.new
+		if current_user.nil? or !current_user.has_role? :admin
+			respond_to do |format|
+				format.html { redirect_to root_url, alert: 'You are not authorized to view that page' }
+			end
+		else
+			@schedule = Schedule.new
+		end
 	end
 
 	# GET /schedules/1/edit
 	def edit
+		if current_user.nil? or !current_user.has_role? :admin
+			respond_to do |format|
+				format.html { redirect_to root_url, alert: 'You are not authorized to view that page' }
+			end
+		end
 	end
 
 

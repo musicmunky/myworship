@@ -17,7 +17,13 @@ class SongsController < ApplicationController
 
 	# GET /songs/new
 	def new
-		@song = Song.new
+		if current_user.nil? or !current_user.has_role? :admin
+			respond_to do |format|
+				format.html { redirect_to root_url, alert: 'You are not authorized to view that page' }
+			end
+		else
+			@song = Song.new
+		end
 	end
 
 
@@ -66,6 +72,11 @@ class SongsController < ApplicationController
 
 	# GET /songs/1/edit
 	def edit
+		if current_user.nil? or !current_user.has_role? :admin
+			respond_to do |format|
+				format.html { redirect_to root_url, alert: 'You are not authorized to view that page' }
+			end
+		end
 	end
 
 
