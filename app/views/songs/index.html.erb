@@ -4,14 +4,19 @@
 		<%= link_to 'New Song', new_song_path, { class: "btn btn-default btn-xs", style: "float:right;margin-top:2px;" } %>
 	<% end %>
 </h3>
-
+<div style="width:100%;height:30px;background-color:#FFF;text-align:center;line-height:30px;font-size:16px;">
+	<div style="width:315px;margin-left:auto;margin-right:auto;height:30px;">
+		<div class="keydiv" style="background-color:#5cb85c;">> 60 days ago</div>
+		<div class="keydiv" style="background-color:#f0ad4e;">< 60 days ago</div>
+		<div class="keydiv" style="background-color:#d9534f;">< 30 days ago</div>
+	</div>
+</div>
 <table class="table" id="song_table">
 	<thead>
 		<tr>
 			<th>Name</th>
 			<th>Artist</th>
 			<th style="text-align:center;">Song Key</th>
-<!--			<th style="text-align:center;">Capo Fret</th>//-->
 			<th style="text-align:center;">Times Scheduled</th>
 			<th style="text-align:center;">First Scheduled</th>
 			<th></th>
@@ -24,23 +29,22 @@
 		</tr>
 	</thead>
 
-  <tbody>
-    <% @songs.each do |song| %>
-      <tr>
-        <td><%= link_to song.name, song_path(song) %></td>
-        <td><%= song.author %></td>
-        <td style="text-align:center;"><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
-<!--        <td style="text-align:center;"><%#= song.capo_fret %></td>//-->
-		<td style="text-align:center;"><%= song.schedules.size %></td>
-		<td style="text-align:center;"><%= song.get_first_scheduled %></td>
-		<td><%= song.get_last_scheduled %></td>
-		<td style="text-align:center;"><%= song.get_last_scheduled_span.html_safe %></td>
-        <td><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
-	<% if user_signed_in? and current_user.has_role? :admin %>
-		<td><%= link_to 'Edit', edit_song_path(song) %></td>
-        <td><%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	<% end %>
-      </tr>
-    <% end %>
-  </tbody>
+	<tbody>
+		<% @songs.each do |song| %>
+		<tr>
+			<td><%= link_to song.name, song_path(song) %></td>
+			<td><%= song.author %></td>
+			<td style="text-align:center;"><% begin %><%= song.song_keys.first.key_symbol.html_safe %><% rescue;end %></td>
+			<td style="text-align:center;"><%= song.schedules.size %></td>
+			<td style="text-align:center;"><%= song.get_first_scheduled %></td>
+			<td><%= song.get_last_scheduled %></td>
+			<td style="text-align:center;"><%= song.get_last_scheduled_span.html_safe %></td>
+			<td><%= link_to "YouTube", song.media_link, target: "_blank" %></td>
+			<% if user_signed_in? and current_user.has_role? :admin %>
+				<td><%= link_to 'Edit', edit_song_path(song) %></td>
+				<td><%= link_to 'Delete', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			<% end %>
+		</tr>
+		<% end %>
+	</tbody>
 </table>

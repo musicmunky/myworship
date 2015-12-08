@@ -23,12 +23,17 @@ class Song < ActiveRecord::Base
 			diff = (Time.now().to_date - schdl.schedule_date).to_i
 			schdl_date = schdl.schedule_date.strftime("%m/%d/%Y")
 
+			ttlstr = "#{diff} days"
+			if diff < 0
+				ttlstr = "Future Schedule"
+			end
+
 			if diff > 60
-				last_date = "<span class='label label-success' title=\"#{diff} days\">#{schdl_date}</span>"
+				last_date = "<span class='label label-success' title=\"#{ttlstr}\">#{schdl_date}</span>"
 			elsif diff > 30
-				last_date = "<span class='label label-warning' title=\"#{diff} days\">#{schdl_date}</span>"
+				last_date = "<span class='label label-warning' title=\"#{ttlstr}\">#{schdl_date}</span>"
 			else
-				last_date = "<span class='label label-danger' title=\"#{diff} days\">#{schdl_date}</span>"
+				last_date = "<span class='label label-danger' title=\"#{ttlstr}\">#{schdl_date}</span>"
 			end
 		else
 			last_date = "<span class='label label-default' title='Never Scheduled'>N/A</span>"
