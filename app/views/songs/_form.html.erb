@@ -43,14 +43,6 @@
 		</select>
 	</div>
 
-	<div class="field w50fl" style="padding-left:10px;">
-		<%= f.label :capo_fret, "Capo Fret" %><br>
-		<% cfs = [[0, 0], [1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8]] %>
-		<select id="song_capo_fret" name="song[capo_fret]" class="txt100">
-			<%= options_for_select(cfs, @song.capo_fret) %>
-		</select>
-	</div>
-
 	<div class="field w100fl">
 		<%= f.label :media_link, "YouTube Link" %><br>
 		<%= f.text_field :media_link, { class: "txt100", style: "" } %>

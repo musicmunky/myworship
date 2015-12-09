@@ -9,9 +9,14 @@ class Song < ActiveRecord::Base
 
 
 	def get_embed_video
-		mtch = self.media_link.match(/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/)
-		vid  = mtch.length > 0 ? content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{mtch[1]}", style: "width:500px;height:300px;border:none;") : ""
-		return vid
+		begin
+			mtch = self.media_link.match(/.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/)
+			vid  = mtch.length > 0 ? content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{mtch[1]}", style: "width:500px;height:300px;border:none;") : ""
+		rescue
+			vid = ""
+		ensure
+			return vid
+		end
 	end
 
 

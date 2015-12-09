@@ -1,4 +1,3 @@
-
 <h3><%= @song.name %><span style="font-size:14px;float:right;height:36px;line-height:36px;display:block;">
 	<% if user_signed_in? %>
 		<%= link_to 'Edit', edit_song_path(@song) %>&nbsp;&nbsp;|&nbsp;&nbsp;
@@ -21,9 +20,12 @@
 	<%= link_to "YouTube", @song.media_link, target: "_blank" %>
 </p>
 
+<% embdvid = @song.get_embed_video %>
+<% if embdvid != "" %>
 <div style="width:500px;height:300px;margin-bottom:15px;">
-	<%= @song.get_embed_video %>
+	<%= embdvid %>
 </div>
+<% end %>
 
 <p style="font-size: 18px;"><strong>Lyrics:</strong></p>
 <div style="margin-bottom:50px;">
