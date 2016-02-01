@@ -1,6 +1,6 @@
 <% next_sched = Schedule.next_schedule %>
-<% clss = schedule.id == next_sched.first.id ? "current_schedule" : "" %>
-<% notc = schedule.id == next_sched.first.id ? "<span class='current_span'>next up!</span>" : "" %>
+<% clss = (next_sched.size > 0 and schedule.id == next_sched.first.id) ? "current_schedule" : "" %>
+<% notc = (next_sched.size > 0 and schedule.id == next_sched.first.id) ? "<span class='current_span'>next up!</span>" : "" %>
 
 <div class="schedule schedule_display_list <%= clss %>" style="padding-left:10px;padding-right:10px;">
 	<%= notc.html_safe %>
