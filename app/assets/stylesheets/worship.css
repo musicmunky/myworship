@@ -13,10 +13,58 @@ html, body {
 	padding: 0;
 	font-family: 'Lato', serif !important;
 	cursor:default;
+	background-color:#EEE !important;
 }
 
 .nav > li > a {
 	display: -webkit-inline-box;
+}
+
+.twitterdiv {
+/* 	float:left; */
+/* 	padding:15px; */
+/* 	background-color:#FFF; */
+/* 	position: absolute; */
+/* 	top:0px; */
+/* 	width: 500px; */
+/* 	left: 1020px; */
+/* 	box-shadow: 0px 0px 20px -10px; */
+
+	float: right;
+	padding: 15px;
+	top: 0px;
+	width: 30%;
+	padding-left: 30px;
+	padding-top: 30px;
+}
+
+.tweetdiv {
+	width:100%;
+	float:left;
+	margin-bottom:15px;
+	border-bottom: 1px solid #DDD;
+	padding-bottom: 10px;
+}
+
+.tweetimg {
+	float:left;
+	margin-right:5px;
+	border-radius:5px;
+}
+
+.tweetusername {
+	font-weight:bold;
+	width:100%;
+}
+
+.tweetscreenname {
+	color:#aaa;
+	display:block;
+}
+
+.tweettext {
+	float:left;
+	display:block;
 }
 
 a {
@@ -188,9 +236,15 @@ p {
 	position: relative;
 	top: 160px;
 	padding-bottom:80px;
+	max-width:1200px;
 }
 
-
+.container_wrapper {
+	width: 70%;
+	margin-right: 0px;
+	padding-right: 0px;
+	float: left;
+}
 
 .navbar-fixed-top {
     min-height: 60px !important;
@@ -212,9 +266,19 @@ p {
 
 @media (max-width: 767px) {
     .navbar-nav > li > a {
-    line-height: 20px !important;
-    padding-top: 10px !important;
-    padding-bottom: 10px !important;}
+    	line-height: 20px !important;
+    	padding-top: 10px !important;
+    	padding-bottom: 10px !important;
+	}
+
+	.twitterdiv {
+		display:none;
+	}
+
+	.container_wrapper {
+		width:100%;
+	}
+
 }
 
 .field {
@@ -327,7 +391,7 @@ p {
 	text-align:right;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
 
 	.header {
 		height:183px;
@@ -388,7 +452,8 @@ p {
 		width:100%;
 		text-align:center;
 	}
-/* Tim additions - also quick and dirty, but Randy smells */}
+/* Tim additions - also quick and dirty, but Randy smells */
+}
 
 .comment_div {
 	width: 100%;
@@ -462,22 +527,24 @@ p {
 }
 
 .current_schedule {
-	-webkit-box-shadow: 700px 0 0 0 #337ab7, -700px 0 0 0 #337ab7;
-	box-shadow: 700px 0 0 0 #337ab7, -700px 0 0 0 #337ab7;
+	-webkit-box-shadow: -60px 0 0 0 #1A1A1A;
+	box-shadow: -60px 0px 0px 0px #1A1A1A;
+    margin-left: -20px;
+    padding-left: 25px !important;
 }
 
 .current_span {
-	float: left;
-	display: inline-block;
-	font-weight: bold;
-	font-size: 3em;
-	margin-left: -70px;
-	color: #FFF;
-	transform: rotate(270deg);
-	transform-origin: left top 0px;
-	margin-top: 200px;
-	position: absolute;
-	text-transform: uppercase;
+    float: left;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 3em;
+    margin-left: -85px;
+    color: #FFF;
+    transform: rotate(270deg);
+    transform-origin: left top 0px;
+    margin-top: 230px;
+    position: absolute;
+    text-transform: uppercase;
 }
 
 /* Randy Tweaks - Quick and DIIRTY!*/

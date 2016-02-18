@@ -28,6 +28,8 @@ gem 'acts_as_commentable'
 gem 'whenever'
 #gem 'simple_calendar', '~> 2.0'
 
+gem 'twitter'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.

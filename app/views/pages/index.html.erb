@@ -1,3 +1,4 @@
+<div id="container_wrapper" class="container_wrapper">
 <div id="announcementdiv" style="width:100%;">
 
 	<% @annc = Announcement.get_active_by_type %>
@@ -35,10 +36,33 @@
 			</div>
 		<% end %>
 	<% end %>
-
 </div>
 
 <div id="schedules">
 	<%= render @schedules %>
 </div>
+</div>
+
+<div id="twitterdiv" class="twitterdiv">
+	<%# @client.user_timeline("thirdday").first(10).each do |tweet| %>
+	<% @client.user_timeline("worshiptogether").first(10).each do |tweet| %>
+		<%# @tweetbld.get_tweet(tweet) %>
+		<div class="tweetdiv">
+			<img class="tweetimg" src="<%= tweet.user.profile_image_url %>" />
+			<div style="float:left;height:50px;font-size:1.2em;">
+				<span class="tweetusername">
+					<a href="<%= tweet.user.url %>" target="_blank"><%= tweet.user.name %></a>
+				</span>
+				<span class="tweetscreenname">
+					@<%= tweet.user.screen_name %>
+				</span>
+			</div>
+			<div class="tweettext">
+				<%#= tweet.text.html_safe %>
+				<%= @tweetbld.get_tweet(tweet).html_safe %>
+			</div>
+		</div>
+	<% end %>
+</div>
+
 <%= will_paginate @schedules %>
