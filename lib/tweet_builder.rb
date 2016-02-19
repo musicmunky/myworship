@@ -7,6 +7,9 @@ class TweetBuilder
 
 		@tweet = t
 
+# 		Rails.logger.debug "\n\n\n\n\SOURCE IS: #{@tweet.html}\n\n\n\n\n\n"
+
+
 		tweet_text = @tweet.text
 		htags, users, links, media = [], [], [], []
 

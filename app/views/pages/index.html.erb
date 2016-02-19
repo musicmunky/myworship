@@ -25,16 +25,6 @@
 			</div>
 		<% end %>
 
-		<% if !@annc['information'].nil? %>
-			<div class="alert alert-info">
-				<% annc_arry = [] %>
-				<% @annc['information'].each do |announcement| %>
-					<% head = announcement.heading.size > 0 ? "<span class='announce_span'>#{announcement.heading}</span>" : "" %>
-					<% annc_arry.push("#{head} #{announcement.message}") %>
-				<% end %>
-				<%= annc_arry.join("<br><br>").html_safe %>
-			</div>
-		<% end %>
 	<% end %>
 </div>
 
@@ -44,21 +34,30 @@
 </div>
 
 <div id="twitterdiv" class="twitterdiv">
+
+	<% @info = Announcement.get_active.where("announcement_type_id = 1") %>
+	<% if @info.size > 0 %>
+		<div class="alert alert-info" style="margin-top:-30px;">
+			<% annc_arry = [] %>
+			<% @info.each do |announcement| %>
+				<% head = announcement.heading.size > 0 ? "<span class='announce_span' style='font-size:18px !important;'>#{announcement.heading}</span>" : "" %>
+				<% annc_arry.push("#{head} #{announcement.message}") %>
+			<% end %>
+			<%= annc_arry.join("<br><br>").html_safe %>
+		</div>
+	<% end %>
+
 	<%# @client.user_timeline("thirdday").first(10).each do |tweet| %>
 	<% @client.user_timeline("worshiptogether").first(10).each do |tweet| %>
-		<%# @tweetbld.get_tweet(tweet) %>
 		<div class="tweetdiv">
 			<img class="tweetimg" src="<%= tweet.user.profile_image_url %>" />
 			<div style="float:left;height:50px;font-size:1.2em;">
 				<span class="tweetusername">
 					<a href="<%= tweet.user.url %>" target="_blank"><%= tweet.user.name %></a>
 				</span>
-				<span class="tweetscreenname">
-					@<%= tweet.user.screen_name %>
-				</span>
+				<span class="tweetscreenname">@<%= tweet.user.screen_name %></span>
 			</div>
 			<div class="tweettext">
-				<%#= tweet.text.html_safe %>
 				<%= @tweetbld.get_tweet(tweet).html_safe %>
 			</div>
 		</div>
