@@ -14,6 +14,11 @@ jQuery( document ).ready(function() {
 		FUSION.set.overlayMouseWait();
 	});
 
+	$( ".btn-primary" ).click(function() {
+		FUSION.set.overlayMouseWait();
+	});
+
+
 	var sng_coldefs = [{ "type": "date", "targets": 4 }, { "targets": [ 5 ], "visible": false, "searchable": true }];
 	if(FUSION.get.node("song_table"))
 	{

@@ -9,9 +9,13 @@ class TweetBuilder
 
 # 		Rails.logger.debug "\n\n\n\n\SOURCE IS: #{@tweet.html}\n\n\n\n\n\n"
 
-
 		tweet_text = @tweet.text
 		htags, users, links, media = [], [], [], []
+
+		mytweet = {
+			"maintext"	=> "",
+			"images"	=> [],
+		}
 
 		@tweet.hashtags.each do |htag|
 			h = {}
@@ -82,14 +86,15 @@ class TweetBuilder
 				tmp = "<a href='#{ent[:url]}' target='_blank'>#{ent[:url]}</a>"
 			elsif ent[:ENT_TYPE] == "media"
 				if ent[:type] == "photo"
-					tmp = "<a href='#{ent[:url]}' target='_blank'><img src='#{ent[:media_url]}' style='width:90%;margin:5%;display:block;border-radius:2px;float:left;'/></a>"
+					mytweet["images"].push("<a href='#{ent[:url]}' target='_blank'><img src='#{ent[:media_url]}' class='tweetimg'/></a>")
 				end
 			end
 
 			tweet_text = "#{s1} #{tmp} #{s2}"
 		end
+		mytweet['maintext'] = tweet_text
 
-		return tweet_text
+		return mytweet
 
 	end
 end

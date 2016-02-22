@@ -39,7 +39,7 @@
 						<% chk = user.archive? ? "checked" : "" %>
 						<input type="checkbox" id="archive_<%= user.id %>" <%= chk %> onchange="disableUser(<%= user.id %>, this.checked)">
 					</td>
-					<td>
+					<td style="text-align:center;vertical-align:middle;">
 						<button class="btn btn-default btn-sm" onclick="resetPassword(<%= user.id %>)">
 							<span class="glyphicon glyphicon-edit" style="margin-left:-5px;margin-right:10px;"></span>Reset Password
 						</button>

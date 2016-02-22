@@ -50,15 +50,25 @@
 	<%# @client.user_timeline("thirdday").first(10).each do |tweet| %>
 	<% @client.user_timeline("worshiptogether").first(10).each do |tweet| %>
 		<div class="tweetdiv">
-			<img class="tweetimg" src="<%= tweet.user.profile_image_url %>" />
-			<div style="float:left;height:50px;font-size:1.2em;">
-				<span class="tweetusername">
-					<a href="<%= tweet.user.url %>" target="_blank"><%= tweet.user.name %></a>
-				</span>
-				<span class="tweetscreenname">@<%= tweet.user.screen_name %></span>
+			<div class="tweetheader">
+				<img class="tweeticon" src="<%= tweet.user.profile_image_url %>" />
+				<div class="tweetnamewrapper">
+					<span class="tweetusername">
+						<a href="<%= tweet.user.url %>" target="_blank"><%= tweet.user.name %></a>
+					</span>
+					<span class="tweetscreenname">@<%= tweet.user.screen_name %></span>
+				</div>
 			</div>
 			<div class="tweettext">
-				<%= @tweetbld.get_tweet(tweet).html_safe %>
+				<% @tweet = @tweetbld.get_tweet(tweet) %>
+				<% if @tweet['images'].length > 0 %>
+					<% @tweet['images'].each do |img| %>
+						<%= img.html_safe %>
+					<% end %>
+				<% end %>
+				<div class="tweetheader bubble">
+					<%= @tweet['maintext'].html_safe %>
+				</div>
 			</div>
 		</div>
 	<% end %>
