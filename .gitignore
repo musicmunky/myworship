@@ -13,5 +13,5 @@
 /tmp
 
 config/database.yml
-config/environments/development.rb
+config/secrets.yml
 cron_log.log
