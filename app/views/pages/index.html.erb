@@ -67,6 +67,7 @@
 					<% end %>
 				<% end %>
 				<div class="tweetheader bubble">
+					<span class="bubble_date"><%= tweet.created_at.strftime("%b %d, %l:%M%P") %></span>
 					<%= @tweet['maintext'].html_safe %>
 				</div>
 			</div>
