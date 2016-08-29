@@ -47,8 +47,8 @@
 		</div>
 	<% end %>
 
-	<%# @client.user_timeline("thirdday").first(10).each do |tweet| %>
-	<% @client.user_timeline("worshiptogether").first(10).each do |tweet| %>
+	<%# @client.user_timeline("thirdday").first(5).each do |tweet| %>
+	<% @client.user_timeline("worshiptogether").first(5).each do |tweet| %>
 		<div class="tweetdiv">
 			<div class="tweetheader">
 				<img class="tweeticon" src="<%= tweet.user.profile_image_url %>" />
@@ -75,4 +75,4 @@
 	<% end %>
 </div>
 
-<%= will_paginate @schedules %>
+<%#= will_paginate @schedules %>

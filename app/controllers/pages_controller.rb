@@ -12,7 +12,8 @@ class PagesController < ApplicationController
 			config.access_token_secret = Rails.application.secrets.twitter_access_token_secret
 		end
 
-		@schedules = Schedule.paginate(:page => params[:page], :per_page => 10).order("schedule_date DESC")
+		@schedules = Schedule.order("schedule_date DESC").first(5)
+# 		@schedules = Schedule.paginate(:page => params[:page], :per_page => 10).order("schedule_date DESC")
 	end
 
 
