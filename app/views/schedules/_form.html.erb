@@ -26,7 +26,7 @@
 
 	<div id="song_list_div" class="field w50fl" style="padding-right:10px;height:200px;">
 		<label>Search Songs<i>(Click to add)</i>:</label><br>
-		<input id="song_search_txt" class="search txt100" />
+		<input id="song_search_txt" class="search txt100" autocomplete="off" />
 		<ul class="list" id="full_song_list" style="overflow-y:scroll;height:75%;width:100%;list-style:none;padding-left: 0px;background-color:#FAFAFA;border:1px solid #DADADA;">
 		<% @allsongs = Song.all - @schedule.songs %>
 		<% @allsongs.each do |song| %>

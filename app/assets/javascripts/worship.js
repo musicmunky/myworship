@@ -2,7 +2,8 @@ var SONGLIST = {};
 
 //ensure that this function always runs...turbolinks is weird
 document.addEventListener("turbolinks:load", function() {
-  createSongList();
+    createSongList();
+    createAuthorList();
 });
 
 jQuery( document ).ready(function() {
@@ -67,19 +68,8 @@ jQuery( document ).ready(function() {
 	$( "#attendance_start_time" ).datepicker();
 	$( "#attendance_end_time" ).datepicker();
 
-	var path = window.location.pathname.split("/").clean("");
-	if(path.length > 0)
-	{
-		if(path[0] == "songs")
-		{
-			if(path[1] == "new" || path[path.length - 1] == "edit")
-			{
-				$('#song_author').editableSelect();
-				$('#song_composer').editableSelect();
-			}
-		}
-	}
 	createSongList();
+    createAuthorList();
 
 	$( "#current_song_list" ).sortable({
 		stop: function( event, ui ) {
@@ -347,6 +337,23 @@ function createSongList()
 	}
 	catch(err){
 		FUSION.error.logError(err);
+	}
+}
+
+
+function createAuthorList()
+{
+    var path = window.location.pathname.split("/").clean("");
+	if(path.length > 0)
+	{
+		if(path[0] == "songs")
+		{
+			if(path[1] == "new" || path[path.length - 1] == "edit")
+			{
+				$('#song_author').editableSelect();
+				$('#song_composer').editableSelect();
+			}
+		}
 	}
 }
 
