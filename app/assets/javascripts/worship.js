@@ -1,5 +1,10 @@
 var SONGLIST = {};
 
+//ensure that this function always runs...turbolinks is weird
+document.addEventListener("turbolinks:load", function() {
+  createSongList();
+});
+
 jQuery( document ).ready(function() {
 
 	//IE doesn't like Google fonts...apparently it's Google's fault
@@ -332,10 +337,13 @@ function checkSongForm()
 function createSongList()
 {
 	try {
-		var options  = { valueNames: [ 'song_name' ] };
-		var songList = new List('song_list_div', options);
-		SONGLIST = songList;
-		SONGLIST.sort('song_name', { order: "asc" });
+        var sld = FUSION.get.node("song_list_div");
+        if(sld !== null){
+            var options  = { valueNames: [ 'song_name' ] };
+            var songList = new List('song_list_div', options);
+            SONGLIST = songList;
+            SONGLIST.sort('song_name', { order: "asc" });
+        }
 	}
 	catch(err){
 		FUSION.error.logError(err);

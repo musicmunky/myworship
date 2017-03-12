@@ -18,12 +18,12 @@
 //= require jquery_ujs
 //= require jquery.editable-select
 //= require moment.min
-//= require fusionlib
-//= require bootstrap.min
 //= require list.min
+//= require bootstrap.min
 //= require jquery.dataTables.min
+//= require fusionlib
 //= require worship
 //= require highcharts
 //= require turbolinks
-//= require wsjs
+// require wsjs
 // require_tree .
