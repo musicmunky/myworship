@@ -1,13 +1,13 @@
 var SONGLIST = {};
 
 //ensure that this function always runs...turbolinks is weird
-document.addEventListener("turbolinks:load", function() {
-    createSongList();
-    createAuthorList();
-});
+//document.addEventListener("turbolinks:load", function() {
+//    createSongList();
+//    createAuthorList();
+//});
 
-jQuery( document ).ready(function() {
-
+//jQuery( document ).ready(function() {
+jQuery( document ).on('turbolinks:load', function() {
 	//IE doesn't like Google fonts...apparently it's Google's fault
 	//at the moment, but whatever...load Web Safe font for IE users
 	var gbr = FUSION.get.browser();
