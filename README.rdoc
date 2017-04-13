@@ -2,12 +2,16 @@
 
 Worship Scheduling Application for Faith Family Church
 
-* Ruby 2.2.1
+* Ruby 2.4.0
 
-* Rails 4.2.4
+* Rails 5.0.2
 
 * RVM 1.26.11
 
 * MySQL 5.5
 
 * jQuery / DataTables / Bootstrap
+
+* Twitter Dev Account and the following: Consumer Key, Consumer Secret, Access Token, Access Token Secret
+
+* Valid Gmail address (or some other email service)
