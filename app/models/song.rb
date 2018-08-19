@@ -6,6 +6,7 @@ class Song < ActiveRecord::Base
 
 	has_and_belongs_to_many :schedules
 	has_and_belongs_to_many :song_keys
+	has_and_belongs_to_many :tags
 
 
 	def get_embed_video

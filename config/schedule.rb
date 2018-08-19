@@ -21,6 +21,6 @@
 
 set :output, "/var/www/myworship/cron_log.log"
 
-every :thursday, :at => '10am' do
+every :tuesday, :at => '10am' do
   runner "Schedule.send_weekly_schedule"
 end

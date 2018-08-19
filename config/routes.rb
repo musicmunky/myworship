@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tags
 	get 'announcement_types/index'
 
 	resources :announcements
@@ -18,6 +19,12 @@ Rails.application.routes.draw do
 	resources :notifications do
 		member do
 			post "updateAdminNotify"
+		end
+	end
+
+    resources :tags do
+		member do
+			post "addNewTagFromSong"
 		end
 	end
 

@@ -16,14 +16,9 @@ jQuery( document ).on('turbolinks:load', function() {
 		document.body.style.setProperty("font-family", "'Trebuchet MS', Helvetica, sans-serif", "important");
 	}
 
-	$( ".navlink" ).click(function() {
-		FUSION.set.overlayMouseWait();
-	});
-
-	$( ".btn-primary" ).click(function() {
-		FUSION.set.overlayMouseWait();
-	});
-
+	$( ".navlink" ).click(function() { FUSION.set.overlayMouseWait(); });
+	$( ".btn-primary" ).click(function() { FUSION.set.overlayMouseWait(); });
+    $( ".chosen-select" ).chosen({no_results_text: "Oops, nothing found!"});
 
 	var sng_coldefs = [{ "type": "date", "targets": 4 }, { "targets": [ 5 ], "visible": false, "searchable": true }];
 	if(FUSION.get.node("song_table"))
@@ -124,6 +119,39 @@ jQuery( document ).on('turbolinks:load', function() {
 });
 
 
+function addNewTag()
+{
+    // https://stackoverflow.com/questions/11352207/jquery-chosen-plugin-add-options-dynamically
+    var oTagInput = FUSION.get.node("add_tag_input");
+    var sNewTag = oTagInput.value;
+
+    if( !FUSION.lib.isBlank(sNewTag) )
+    {
+        var info = {
+            "type": "POST",
+            "path": "/tags/1/addNewTagFromSong",
+            "data": {
+                "sNewTag": sNewTag
+            },
+            "func": addNewTagResponse
+        };
+    }
+    FUSION.lib.ajaxCall(info);
+}
+
+
+function addNewTagResponse(h)
+{
+	var hash = h || {};
+
+    if(!hash['tag_exists'])
+    {
+    	$('.chosen-select').append('<option value="' + hash['tag_id'] + '">' + hash['tag_name'] + '</option>');
+        $('.chosen-select').trigger("chosen:updated");
+    }
+}
+
+
 function closeNotice(t)
 {
 	try {
@@ -153,7 +181,6 @@ function updateNotifySettings(chk, id)
 		},
 		"func": updateNotifySettingsResponse
 	};
-	FUSION.lib.ajaxCall(info);
 }
 
 
@@ -305,6 +332,18 @@ function checkUserForm()
 	if(FUSION.lib.isBlank(fname) || FUSION.lib.isBlank(lname) || FUSION.lib.isBlank(email))
 	{
 		alert("Please make sure you have a first name, last name, and email address entered!");
+		return false;
+	}
+	return true;
+}
+
+
+function checkTagForm()
+{
+    var tname = FUSION.get.node("tag_name").value;
+	if(FUSION.lib.isBlank(tname))
+	{
+		alert("Please enter a tag name before saving!");
 		return false;
 	}
 	return true;

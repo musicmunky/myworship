@@ -1,0 +1,25 @@
+<% btntxt = new_or_edit == "edit" ? "Update Tag" : "Add New Tag" %>
+
+<%= form_for(tag, html: { class: "rails_form", style: 'height:160px;' }) do |f| %>
+  <% if tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+
+      <ul>
+      <% tag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field w100fl">
+    <%= f.label :name %>
+    <%= f.text_field :name, { class: "txt100", style: "padding:5px;" } %>
+  </div>
+
+  <div class="actions w100fl">
+		<%= f.submit btntxt, { class: "btn btn-success", style: "float:left;width:150px;", onclick: "return checkTagForm();" } %>
+		<%= link_to 'Back', tags_path, { class: "btn btn-primary", style: "float:right;width:150px;" } %>
+  </div>
+<% end %>
