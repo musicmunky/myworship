@@ -12,6 +12,7 @@ class SongsController < ApplicationController
 	# GET /songs/1
 	# GET /songs/1.json
 	def show
+        @songtags = @song.tags.collect{ |t| t.name }
 	end
 
 
@@ -83,10 +84,12 @@ class SongsController < ApplicationController
 	# POST /songs
 	# POST /songs.json
 	def create
-
 		params = song_params
 		songkey = params['song_key']
 		params.delete('song_key')
+
+        songtags = params['tags']
+        params.delete('tags')
 
 		@song = Song.new(params)
 
@@ -97,7 +100,16 @@ class SongsController < ApplicationController
 					@song.song_keys << SongKey.find(songkey)
 				end
 
-				format.html { redirect_to songs_url, notice: "#{@song.name} was successfully added!" }
+                if !songtags.nil?
+                    @tags = []
+                    for tagid in songtags
+                        @tags.push(Tag.find(tagid))
+                    end
+                    @song.tags = @tags
+                end
+
+#				format.html { redirect_to songs_url, notice: "#{@song.name} was successfully added!" }
+				format.html { redirect_to song_url, notice: "#{@song.name} was successfully added!" }
 				format.json { render :show, status: :created, location: @song }
 			else
 				format.html { render :new }
@@ -109,10 +121,14 @@ class SongsController < ApplicationController
 	# PATCH/PUT /songs/1
 	# PATCH/PUT /songs/1.json
 	def update
+#require 'logger'
 
 		params = song_params
 		songkey = params['song_key']
 		params.delete('song_key')
+
+        songtags = params['tags']
+        params.delete('tags')
 
 		respond_to do |format|
 			if @song.update(params)
@@ -122,7 +138,19 @@ class SongsController < ApplicationController
 				else
 					@song.song_keys.destroy_all
 				end
-				format.html { redirect_to songs_url, notice: "#{@song.name} was successfully updated!" }
+
+                @song.tags.destroy_all
+
+                if !songtags.nil?
+                    @tags = []
+                    for tagid in songtags
+                        @tags.push(Tag.find(tagid))
+                    end
+                    @song.tags = @tags
+                end
+
+#				format.html { redirect_to songs_url, notice: "#{@song.name} was successfully updated!" }
+				format.html { redirect_to song_url, notice: "#{@song.name} was successfully updated!" }
 				format.json { render :show, status: :ok, location: @song }
 			else
 				format.html { render :edit }
@@ -149,6 +177,6 @@ class SongsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
-      params.require(:song).permit(:name, :author, :media_link, :lyrics, :composer, :song_key)
+      params.require(:song).permit(:name, :author, :media_link, :lyrics, :composer, :song_key, tags: [])
     end
 end

@@ -25,6 +25,7 @@
 //= require worship
 //= require highcharts
 //= require turbolinks
-//= require chosen.jquery.min
+//= require chosen.jquery
+// require chosen.jquery.min
 // require wsjs
 // require_tree .

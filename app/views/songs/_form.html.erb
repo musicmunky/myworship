@@ -18,7 +18,7 @@
 	</div>
 	<div class="field w100fl">
 		<%= f.label :author %><br>
-		<% authors = Song.uniq.pluck(:author).map { |a| [a, a] } %>
+		<% authors = Song.distinct.pluck(:author).map { |a| [a, a] } %>
 		<select id="song_author" name="song[author]" class="txt100">
 			<option value=""></option>
 			<%= options_for_select(authors.sort_by {|i| i.first.split(' ').map(&:to_s).reverse }, @song.author) %>
@@ -26,25 +26,19 @@
 	</div>
 	<div class="field w100fl">
 		<%= f.label :composer %><br>
-		<% composers = Song.uniq.pluck(:composer).map { |c| [c, c] } %>
+		<% composers = Song.distinct.pluck(:composer).map { |c| [c, c] } %>
 		<select id="song_composer" name="song[composer]" class="txt100">
 			<option value=""></option>
 			<%= options_for_select(composers.sort_by {|i| i.first.split(' ').map(&:to_s).reverse }, @song.composer) %>
 		</select>
 	</div>
-
     <div class="field w100fl" style="padding-right:10px;">
 		<%= f.label :song_key, "Tags" %><br>
         <div class="w100fl" style="line-height: 10px;padding: 10px 0px;">
             <input type="text" id="add_tag_input" class="w50fl" style="padding:5px;" value="" />
             <button type="button" class="btn btn-default btn-xs" style="padding:5px;margin-left:10px;" onclick="addNewTag()">Add New Tag</button>
         </div>
-		<% tags = Tag.all.map { |t| [t.name, t.id] } %>
-		<select data-placeholder="Select a Tag" multiple id="song_tags" name="song[tags]" class="txt100 chosen-select">
-			<option value=""></option>
-			<% tagid = (!@song.id.nil? and @song.tags.length > 0) ? @song.tags.first.id : "" %>
-			<%= options_for_select(tags, tagid) %>
-		</select>
+        <%= select_tag "song[tags]", options_from_collection_for_select(Tag.all, "id", "name", @song.tags.ids), multiple: true, class: 'txt100 chosen-select' %>
 	</div>
 
 	<div class="field w50fl" style="padding-right:10px;">

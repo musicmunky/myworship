@@ -9,13 +9,25 @@
 </h3>
 
 <p style="height: 30px; line-height: 30px; font-size: 18px;">
-	<span style="float:left;width:50%;display:block;">
+	<span style="float:left;width:100%;display:block;">
 		<strong>Artist:</strong>
 		<%= @song.author %>
 	</span>
-	<span style="float:right;width:50%;display:block;">
+</p>
+
+<p style="height: 30px; line-height: 30px; font-size: 18px;">
+	<span style="float:right;width:100%;display:block;">
 		<strong>Song Key:</strong>
 		<% begin %><%= @song.song_keys.first.key_symbol.html_safe %><% rescue;end %>
+	</span>
+</p>
+
+<p style="height: 30px; line-height: 30px; font-size: 18px;">
+	<span style="float:left;width:100%;display:block;">
+		<strong>Tags: </strong>
+        <% for tname in @songtags %>
+            <span class="song-tag"><i class="glyphicon glyphicon-tag"></i><%= tname %></span>
+        <% end %>
 	</span>
 </p>
 

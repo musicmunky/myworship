@@ -20,6 +20,18 @@ html, body {
 	display: -webkit-inline-box;
 }
 
+.song-tag {
+    padding: 10px;
+    background: #eee;
+    margin: 10px;
+    border-radius:5px;
+}
+
+.song-tag > i {
+    margin-right: 5px;
+    font-size: 14px;
+}
+
 .twitterdiv {
 	float: right;
 	padding: 15px;

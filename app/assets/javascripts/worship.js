@@ -148,7 +148,10 @@ function addNewTagResponse(h)
     {
     	$('.chosen-select').append('<option value="' + hash['tag_id'] + '">' + hash['tag_name'] + '</option>');
         $('.chosen-select').trigger("chosen:updated");
+        $('.chosen-select').trigger("chosen:open");
     }
+
+    FUSION.get.node("add_tag_input").value = "";
 }
 
 
