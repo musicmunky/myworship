@@ -38,7 +38,7 @@
             <input type="text" id="add_tag_input" class="w50fl" style="padding:5px;" value="" />
             <button type="button" class="btn btn-default btn-xs" style="padding:5px;margin-left:10px;" onclick="addNewTag()">Add New Tag</button>
         </div>
-        <%= select_tag "song[tags]", options_from_collection_for_select(Tag.all, "id", "name", @song.tags.ids), multiple: true, class: 'txt100 chosen-select' %>
+        <%= select_tag "song[tags]", options_from_collection_for_select(Tag.all, "id", "tag_type_name", @song.tags.ids), multiple: true, class: 'txt100 chosen-select' %>
 	</div>
 
 	<div class="field w50fl" style="padding-right:10px;">
