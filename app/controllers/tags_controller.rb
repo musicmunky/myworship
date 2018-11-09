@@ -21,8 +21,7 @@ class TagsController < ApplicationController
     def edit
     end
 
-    def addNewTagFromSong
-        sNewTag = params[:sNewTag]
+    def getTagsByType
 
 		response = {}
 		content  = {}
@@ -30,21 +29,62 @@ class TagsController < ApplicationController
 		message  = ""
 
 		begin
-            @oExistingTag = Tag.where(name: sNewTag).first
+            @aAllTags = Tag.all
+            @aHashTags = []
+
+            @aAllTags.each do |tag|
+				@aHashTags.push(tag.attributes)
+			end
+
+            @aAllTypes = Tag.select(:tag_type).distinct.map { |t| t.tag_type }
+
+            #hash = Hash.new {|hash, key| hash[key] = f(key) }
+
+            content['tags'] = @aHashTags
+            content['types'] = @aAllTypes
+
+            message = "All tags successfully loaded"
+
+			response['status']  = "success"
+			response['message'] = message
+			response['content'] = content
+		rescue => error
+			response['status']  = "failure"
+			response['message'] = "Error: #{error.message}"
+			response['content'] = error.backtrace
+		ensure
+			respond_to do |format|
+				format.html { render :json => response.to_json }
+			end
+		end
+    end
+
+    def addNewTagFromSong
+        sNewTagName = params[:sNewTagName]
+        sNewTagType = params[:sNewTagType]
+		response = {}
+		content  = {}
+		status   = ""
+		message  = ""
+
+		begin
+            @oExistingTag = Tag.where(name: sNewTagName, tag_type: sNewTagType).first
 
             if @oExistingTag.nil?
                 @oNewTag = Tag.new
-                @oNewTag.name = sNewTag
-
+                @oNewTag.name = sNewTagName
+                @oNewTag.tag_type = sNewTagType
                 @oNewTag.save!
 
                 content['tag_id'] = @oNewTag.id
                 content['tag_name'] = @oNewTag.name
+                content['tag_type'] = @oNewTag.tag_type
                 content['tag_exists'] = false
                 message = "Tag '#{@oNewTag.name}' added to the database!"
             else
                 content['tag_id'] = @oExistingTag.id
                 content['tag_name'] = @oExistingTag.name
+                content['tag_type'] = @oExistingTag.tag_type
                 content['tag_exists'] = true
                 message = "Tag '#{@oExistingTag.name}' is already in the database!"
             end

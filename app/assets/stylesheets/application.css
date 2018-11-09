@@ -18,5 +18,5 @@
  *= require jquery.dataTables.min
  *= require jquery.editable-select
  *= require bootstrap.min
- *= require chosen.min
+ *= require selectize.default
  */

@@ -1,6 +1,6 @@
 <% btntxt = new_or_edit == "edit" ? "Update Song" : "Add New Song" %>
 
-<%= form_for(@song, html: { class: "rails_form", style: 'height:775px;' }) do |f| %>
+<%= form_for(@song, html: { class: "rails_form", style: 'height:775px;', autocomplete: "off" }) do |f| %>
 	<% if @song.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
@@ -32,13 +32,23 @@
 			<%= options_for_select(composers.sort_by {|i| i.first.split(' ').map(&:to_s).reverse }, @song.composer) %>
 		</select>
 	</div>
-    <div class="field w100fl" style="padding-right:10px;">
-		<%= f.label :song_key, "Tags" %><br>
+
+<!--  ANOTHER POSSIBLE OPTION FOR THE SELECT BOX:  https://selectize.github.io/selectize.js  -->
+
+    <div class="field w100fl" style="padding-right:10px;margin-bottom:0px;">
+		<%= f.label "Song Tags", "Tags" %><br>
         <div class="w100fl" style="line-height: 10px;padding: 10px 0px;">
+            <select id="tag_type_name" style="width:100px;float:left;line-height: 20px;display: block;margin: 3px 10px 3px 0px;font-size: 16px;">
+                <option value=""></option>
+                <%= options_for_select(Tag.select(:tag_type).map(&:tag_type).uniq.sort) %>
+            </select>
             <input type="text" id="add_tag_input" class="w50fl" style="padding:5px;" value="" />
             <button type="button" class="btn btn-default btn-xs" style="padding:5px;margin-left:10px;" onclick="addNewTag()">Add New Tag</button>
         </div>
-        <%= select_tag "song[tags]", options_from_collection_for_select(Tag.all, "id", "tag_type_name", @song.tags.ids), multiple: true, class: 'txt100 chosen-select' %>
+	</div>
+    <div class="field w100fl" style="padding-right:10px;">
+        <select name="song[tags][]" id="song_tags" multiple="multiple"></select>
+        <%#= select_tag "song[tags]", options_from_collection_for_select(Tag.all, "id", "tag_type_name", @song.tags.ids), multiple: true, class: '' %>
 	</div>
 
 	<div class="field w50fl" style="padding-right:10px;">

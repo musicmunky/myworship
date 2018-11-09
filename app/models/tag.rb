@@ -4,4 +4,5 @@ class Tag < ApplicationRecord
     def tag_type_name
         return "#{self.tag_type}_#{self.name}"
     end
+
 end

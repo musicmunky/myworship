@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
     resources :tags do
 		member do
+            get "getTagsByType"
 			post "addNewTagFromSong"
 		end
 	end

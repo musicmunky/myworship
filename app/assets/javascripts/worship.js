@@ -18,7 +18,16 @@ jQuery( document ).on('turbolinks:load', function() {
 
 	$( ".navlink" ).click(function() { FUSION.set.overlayMouseWait(); });
 	$( ".btn-primary" ).click(function() { FUSION.set.overlayMouseWait(); });
-    $( ".chosen-select" ).chosen({no_results_text: "Oops, nothing found!"});
+    //$( ".chosen-select" ).chosen({no_results_text: "Oops, nothing found!"});
+
+    // Documentation here:
+    // https://selectize.github.io/selectize.js/
+
+    var oSongTags = FUSION.get.node('song_tags');
+    if( oSongTags !== null && typeof oSongTags !== "undefined" )
+    {
+        buildSelectizeTagList();
+    }
 
 	var sng_coldefs = [{ "type": "date", "targets": 4 }, { "targets": [ 5 ], "visible": false, "searchable": true }];
 	if(FUSION.get.node("song_table"))
@@ -119,24 +128,89 @@ jQuery( document ).on('turbolinks:load', function() {
 });
 
 
+function buildSelectizeTagList()
+{
+    $.ajax({
+        type: "GET",
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader("X-CSRF-Token", $('meta[name="csrf-token"]').attr('content'));
+            xhr.setRequestHeader("Accept", "text/html");
+        },
+        url: "/tags/1/getTagsByType",
+        data: {},
+        success: function(result) {
+            var response = JSON.parse(result);
+            if(response['status'] == "success")
+            {
+                var aTypes = response['content']['types'];
+                var aTags  = response['content']['tags'];
+                var aOptGroup = [], oOptGroup = {}, aOptions = [], oOptions = {};
+
+                for(var i = 0; i < aTags.length; i++) {
+                    var el = aTags[i];
+                    oOptions = {};
+                    oOptions['id'] = el['id'];
+                    oOptions['tag_type'] = el['tag_type'];
+                    oOptions['name'] = el['name'].charAt(0).toUpperCase() + el['name'].slice(1);
+                    aOptions.push(oOptions);
+                }
+
+                for(var j = 0; j < aTypes.length; j++) {
+                    var el = aTypes[j];
+                    oOptGroup = {};
+                    oOptGroup['id'] = el;
+                    oOptGroup['name'] = el;
+                    aOptGroup.push(oOptGroup);
+                }
+
+                $('#song_tags').selectize({
+                    options: aOptions,
+                    optgroups: aOptGroup,
+                    labelField: 'name',
+                    valueField: 'id',
+                    optgroupField: 'tag_type',
+                    optgroupLabelField: 'name',
+                    optgroupValueField: 'id',
+                    optgroupOrder: aTypes,
+                    searchField: ['name'],
+                    plugins: ['remove_button', 'optgroup_columns'],
+                    delimiter: ','
+                });
+            }
+        },
+        error: function(){
+            FUSION.set.overlayMouseNormal();
+            FUSION.error.showError("There was a problem retrieving the tag list");
+        }
+    });
+}
+
+
 function addNewTag()
 {
-    // https://stackoverflow.com/questions/11352207/jquery-chosen-plugin-add-options-dynamically
     var oTagInput = FUSION.get.node("add_tag_input");
-    var sNewTag = oTagInput.value;
+    var oTagSelect = FUSION.get.node("tag_type_name");
 
-    if( !FUSION.lib.isBlank(sNewTag) )
+    var sNewTagName = oTagInput.value;
+    var sNewTagType = oTagSelect.value;
+
+    if( !FUSION.lib.isBlank(sNewTagName) && !FUSION.lib.isBlank(sNewTagType) )
     {
         var info = {
             "type": "POST",
             "path": "/tags/1/addNewTagFromSong",
             "data": {
-                "sNewTag": sNewTag
+                "sNewTagName": sNewTagName,
+                "sNewTagType": sNewTagType
             },
             "func": addNewTagResponse
         };
+        FUSION.lib.ajaxCall(info);
     }
-    FUSION.lib.ajaxCall(info);
+    else
+    {
+        alert("Please be sure to enter a Type and a Name for the tag");
+    }
 }
 
 
@@ -144,14 +218,21 @@ function addNewTagResponse(h)
 {
 	var hash = h || {};
 
+    FUSION.get.node("add_tag_input").value = "";
+    FUSION.get.node("tag_type_name").selectedIndex = 0;
+
     if(!hash['tag_exists'])
     {
-    	$('.chosen-select').append('<option value="' + hash['tag_id'] + '">' + hash['tag_name'] + '</option>');
-        $('.chosen-select').trigger("chosen:updated");
-        $('.chosen-select').trigger("chosen:open");
-    }
+        var oSelect    = $('#song_tags');
+        var oSelectize = oSelect[0].selectize;
 
-    FUSION.get.node("add_tag_input").value = "";
+        var oOption = {};
+        oOption['id'] = hash['tag_id'];
+        oOption['tag_type'] = hash['tag_type'];
+        oOption['name'] = hash['tag_name'];
+
+        oSelectize.addOption(oOption);
+    }
 }
 
 
