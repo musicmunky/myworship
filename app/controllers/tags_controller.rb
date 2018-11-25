@@ -32,9 +32,17 @@ class TagsController < ApplicationController
             @aAllTags = Tag.all
             @aHashTags = []
 
+            nSongId = params[:song_id].to_i
+
             @aAllTags.each do |tag|
 				@aHashTags.push(tag.attributes)
 			end
+
+            @aSongTags = []
+            if nSongId > 0
+                oSong = Song.find(nSongId)
+                @aSongTags = oSong.tags.pluck(:id)
+            end
 
             @aAllTypes = Tag.select(:tag_type).distinct.map { |t| t.tag_type }
 
@@ -42,6 +50,7 @@ class TagsController < ApplicationController
 
             content['tags'] = @aHashTags
             content['types'] = @aAllTypes
+            content['selected_tags'] = @aSongTags
 
             message = "All tags successfully loaded"
 

@@ -1,5 +1,5 @@
 <% btntxt = new_or_edit == "edit" ? "Update Song" : "Add New Song" %>
-
+<input id="current_song_id" type="hidden" value="<%= @song.id %>" />
 <%= form_for(@song, html: { class: "rails_form", style: 'height:775px;', autocomplete: "off" }) do |f| %>
 	<% if @song.errors.any? %>
 		<div id="error_explanation">
@@ -47,6 +47,7 @@
 	</div>
     <div class="field w100fl" style="padding-right:10px;">
         <select name="song[tags][]" id="song_tags" multiple="multiple"></select>
+        <!--, @song.tags.pluck(:id) -->
         <%#= select_tag "song[tags]", options_from_collection_for_select(Tag.all, "id", "tag_type_name", @song.tags.ids), multiple: true, class: '' %>
 	</div>
 

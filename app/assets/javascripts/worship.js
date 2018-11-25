@@ -130,6 +130,17 @@ jQuery( document ).on('turbolinks:load', function() {
 
 function buildSelectizeTagList()
 {
+    var nSongId = 0;
+    var eSongId = FUSION.get.node("current_song_id");
+
+    if( eSongId != null && typeof eSongId != "undefined" )
+    {
+        if( eSongId.value != "" && eSongId.value != 0 )
+        {
+            nSongId = eSongId.value;
+        }
+    }
+
     $.ajax({
         type: "GET",
         beforeSend: function(xhr) {
@@ -137,13 +148,14 @@ function buildSelectizeTagList()
             xhr.setRequestHeader("Accept", "text/html");
         },
         url: "/tags/1/getTagsByType",
-        data: {},
+        data: { song_id: nSongId },
         success: function(result) {
             var response = JSON.parse(result);
             if(response['status'] == "success")
             {
                 var aTypes = response['content']['types'];
                 var aTags  = response['content']['tags'];
+                var aSelectedTags = response['content']['selected_tags'];
                 var aOptGroup = [], oOptGroup = {}, aOptions = [], oOptions = {};
 
                 for(var i = 0; i < aTags.length; i++) {
@@ -165,6 +177,7 @@ function buildSelectizeTagList()
 
                 $('#song_tags').selectize({
                     options: aOptions,
+                    items: aSelectedTags,
                     optgroups: aOptGroup,
                     labelField: 'name',
                     valueField: 'id',
