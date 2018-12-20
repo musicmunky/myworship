@@ -4,7 +4,6 @@
   <% if tag.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
-
       <ul>
       <% tag.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -12,6 +11,14 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="field w100fl">
+    <%= f.label "Tag Type" %><br />
+    <select id="tag_tag_type" name="tag[tag_type]" class="txt100" style="width:100px;float:left;line-height: 20px;display: block;margin: 3px 10px 3px 0px;font-size: 16px;">
+        <option value=""></option>
+        <%= options_for_select(Tag.select(:tag_type).map(&:tag_type).uniq.sort) %>
+    </select>
+  </div>
 
   <div class="field w100fl">
     <%= f.label :name %>

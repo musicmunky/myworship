@@ -109,7 +109,7 @@ class SongsController < ApplicationController
                 end
 
 #				format.html { redirect_to songs_url, notice: "#{@song.name} was successfully added!" }
-				format.html { redirect_to song_url, notice: "#{@song.name} was successfully added!" }
+				format.html { redirect_to action: "show", id: @song.id, notice: "#{@song.name} was successfully added!" }
 				format.json { render :show, status: :created, location: @song }
 			else
 				format.html { render :new }

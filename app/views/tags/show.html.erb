@@ -1,9 +1,19 @@
-<p id="notice"><%= notice %></p>
+<h3>
+	<%= @tag.name %>
+	<span style="font-size:14px;float:right;height:36px;line-height:36px;display:block;">
+		<% if user_signed_in? %>
+			<%= link_to 'Edit', edit_tag_path(@tag) %>&nbsp;&nbsp;|&nbsp;&nbsp;
+		<% end %>
+		<%= link_to 'Back', tags_path %>
+	</span>
+</h3>
 
 <p>
-  <strong>Name:</strong>
-  <%= @tag.name %>
+    <strong><%= @songs.size %> songs for <%= @tag.name%>:</strong><br />
+    <% if @songs.size > 0 %>
+        <% @sortedsongs = @songs.sort_by {|song| song.name } %>
+        <% @sortedsongs.each do |ssong| %>
+        <p><%= link_to ssong.name, song_path(ssong) %></p>
+        <% end %>
+    <% end %>
 </p>
-
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>

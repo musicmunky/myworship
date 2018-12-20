@@ -10,6 +10,7 @@ class TagsController < ApplicationController
     # GET /tags/1
     # GET /tags/1.json
     def show
+        @songs = @tag.songs
     end
 
     # GET /tags/new
@@ -161,6 +162,6 @@ class TagsController < ApplicationController
 
         # Never trust parameters from the scary internet, only allow the white list through.
         def tag_params
-            params.require(:tag).permit(:name)
+            params.require(:tag).permit(:name, :tag_type)
         end
 end

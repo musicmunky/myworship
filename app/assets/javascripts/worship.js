@@ -18,7 +18,8 @@ jQuery( document ).on('turbolinks:load', function() {
 
 	$( ".navlink" ).click(function() { FUSION.set.overlayMouseWait(); });
 	$( ".btn-primary" ).click(function() { FUSION.set.overlayMouseWait(); });
-    //$( ".chosen-select" ).chosen({no_results_text: "Oops, nothing found!"});
+
+    $('#tag_table').DataTable();
 
     // Documentation here:
     // https://selectize.github.io/selectize.js/
@@ -60,11 +61,12 @@ jQuery( document ).on('turbolinks:load', function() {
 		{
 			sch_coldefs = [{ "searchable": false, "targets": sch_last_col }, { "orderable": false, "targets": sch_last_col }];
 		}
+
+        $('#schedule_table').DataTable({
+            "order": [[ 1, "desc" ]],
+            "columnDefs": sch_coldefs
+        });
 	}
-	$('#schedule_table').DataTable({
-		"order": [[ 1, "desc" ]],
-		"columnDefs": sch_coldefs
-	});
 
 	$( "#all_reports" ).tabs();
 
@@ -438,9 +440,10 @@ function checkUserForm()
 function checkTagForm()
 {
     var tname = FUSION.get.node("tag_name").value;
-	if(FUSION.lib.isBlank(tname))
+    var ttype = FUSION.get.node("tag_tag_type").value;
+	if(FUSION.lib.isBlank(tname) || FUSION.lib.isBlank(ttype))
 	{
-		alert("Please enter a tag name before saving!");
+		alert("Please enter a tag name and type before saving!");
 		return false;
 	}
 	return true;

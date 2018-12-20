@@ -26,7 +26,8 @@
 	<span style="float:left;width:100%;display:block;">
 		<strong>Tags: </strong>
         <% for tname in @songtags %>
-            <span class="song-tag"><i class="glyphicon glyphicon-tag"></i><%= tname.titleize %></span>
+            <% @tag = Tag.where(name: tname).first %>
+            <span class="song-tag"><i class="glyphicon glyphicon-tag"></i><%= link_to @tag.name.titleize, tag_path(@tag) %></span>
         <% end %>
 	</span>
 </p>
