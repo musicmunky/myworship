@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180916151755) do
+ActiveRecord::Schema.define(version: 20190317143526) do
 
   create_table "announcement_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|
     t.string   "type_name"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180916151755) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.text     "song_order",    limit: 65535
+    t.string   "schedule_type"
   end
 
   create_table "schedules_songs", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci" do |t|

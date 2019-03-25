@@ -45,7 +45,7 @@ class SchedulesController < ApplicationController # < WebsocketRails::BaseContro
 		params['schedule_date'] = schdate
 		params['song_order'] = songids
 
-		newschedule = { :name => params['name'], :schedule_date => schdate, :notes => params['notes'], :song_order => params['song_order']}
+		newschedule = { :name => params['name'], :schedule_type => params['schedule_type'], :schedule_date => schdate, :notes => params['notes'], :song_order => params['song_order']}
 		@schedule = Schedule.new(newschedule)
 
 		respond_to do |format|
@@ -178,6 +178,6 @@ class SchedulesController < ApplicationController # < WebsocketRails::BaseContro
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:name, :schedule_date, :notes, :song_order)
+      params.require(:schedule).permit(:name, :schedule_type, :schedule_date, :notes, :song_order)
     end
 end

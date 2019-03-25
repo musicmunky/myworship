@@ -1,6 +1,6 @@
 <% btntxt = new_or_edit == "edit" ? "Update Schedule" : "Add New Schedule" %>
 
-<%= form_for(@schedule, html: { class: "rails_form", style: 'height:600px;' }) do |f| %>
+<%= form_for(@schedule, html: { class: "rails_form", style: 'height:700px;' }) do |f| %>
 	<% if @schedule.errors.any? %>
 		<div id="error_explanation">
 			<h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
@@ -18,7 +18,18 @@
 		<%= f.text_field :name, { value: nm, class: "txt100", style: "", autofocus: true } %>
 	</div>
 
+<%#= f.select :project_id, options_for_select(..., @work.project_id) %>
 	<div class="field w100fl">
+		<%= f.label :schedule_type %><br>
+        <%= f.select :schedule_type, options_for_select(["", "Sunday Service", "Community"], @schedule.schedule_type), {}, { class: "txt100" } %>
+		<!--<select id="schedule_schedule_type" name="schedule[schedule_type]" class="txt100">
+            <option value=""></option>
+            <option value="Sunday Service">Sunday Service</option>
+            <option value="Community">Community</option>
+        </select>-->
+	</div>
+
+    <div class="field w100fl">
 		<%= f.label :schedule_date %><br>
 		<% dval = @schedule.id.nil? ? "" : @schedule.schedule_date.strftime("%m/%d/%Y") %>
 		<%= f.text_field :schedule_date, { class: "txt100", style: "", value: dval } %>
